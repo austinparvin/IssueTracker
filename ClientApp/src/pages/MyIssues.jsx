@@ -1,12 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const MyIssues = () => {
   return (
     <section className="empty-my-issues">
       <header>You have no Issues</header>
-      <button>Add an Issue</button>
+      <Link to="/issues/add">
+        <button>Add an Issue</button>
+      </Link>
       <header>OR</header>
-      <button>Check Available Issues</button>
+      <Link to="/issues/avail">
+        <button>Check Available Issues</button>
+      </Link>
     </section>
   )
 }
