@@ -9,7 +9,7 @@ namespace IssueTracker.Models
     {
 
 
-
+        public DbSet<Issue> Issues { get; set; }
 
         private string ConvertPostConnectionToConnectionString(string connection)
         {

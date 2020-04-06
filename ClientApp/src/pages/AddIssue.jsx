@@ -1,15 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const AddIssue = () => {
+  const [issueToAdd, setIssueToAdd] = useState({})
+
+  const trackIssueDetails = e => {
+    const key = e.target.name
+    const value = e.target.value
+    setIssueToAdd(oldIssue => {
+      oldIssue[key] = value
+      return oldIssue
+    })
+  }
+
+  const addIssueToApi = () => {
+    console.log(issueToAdd)
+  }
+
   return (
     <div className="add-issue">
-      <input type="text" className="title" name="title" value="Title..." />
+      <input
+        onChange={trackIssueDetails}
+        type="text"
+        className="title"
+        name="title"
+        defaultValue="Title..."
+      />
 
-      <textarea rows="4" cols="50">
-        Description...
-      </textarea>
+      <textarea
+        onChange={trackIssueDetails}
+        name="description"
+        rows="4"
+        cols="50"
+        defaultValue="Description..."
+      />
 
-      <button>Add Issue</button>
+      <button onClick={addIssueToApi}>Add Issue</button>
     </div>
   )
 }
