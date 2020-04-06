@@ -5,14 +5,16 @@ const NotFound = () => {
     <div>
       <h2>
         {Math.ceil(Math.random() * 100) % 2 === 0 ? (
-          <span>🤷🏼‍♂️</span>
+          <span role="img" aria-label="guy raising questioning hands">
+            🤷🏼‍♂️
+          </span>
         ) : (
-          <span>🤷‍♀️</span>
+          <span role="img" aria-label="girl raising questioning hands">
+            🤷‍♀️
+          </span>
         )}
         &nbsp;Not sure how you got here. Do you want to{' '}
-        <a href="" onclick="window.history.go(-1); return false;">
-          go back?
-        </a>
+        <p onclick="window.history.go(-1); return false;">go back?</p>
       </h2>
     </div>
   )

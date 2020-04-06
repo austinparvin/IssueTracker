@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 const AddIssue = () => {
   const [issueToAdd, setIssueToAdd] = useState({})
@@ -12,8 +13,9 @@ const AddIssue = () => {
     })
   }
 
-  const addIssueToApi = () => {
-    console.log(issueToAdd)
+  const addIssueToApi = async () => {
+    const resp = await axios.post('/api/issue', issueToAdd)
+    console.log(resp)
   }
 
   return (
