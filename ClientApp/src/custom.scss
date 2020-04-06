@@ -37,6 +37,13 @@ code {
 }
 
 .add-issue {
+  background-color: whitesmoke;
+  margin: 2rem;
+  border: black solid 2px;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+
   button {
     align-self: center;
     font-weight: bold;
@@ -46,12 +53,6 @@ code {
     width: 100%;
     box-shadow: 2px 2px;
   }
-  background-color: whitesmoke;
-  margin: 2rem;
-  border: black solid 2px;
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem;
   input {
     border: black solid 2px;
     margin-bottom: 0.5rem;
@@ -70,6 +71,25 @@ code {
 
     input {
       width: 80%;
+    }
+  }
+}
+
+.issue-details {
+  background-color: whitesmoke;
+  margin: 2rem;
+  border: black solid 2px;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  div {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+    div.icons {
+      div {
+        margin: 0 0.5rem;
+      }
     }
   }
 }

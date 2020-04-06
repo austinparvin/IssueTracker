@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound'
 import './custom.scss'
 import MyIssues from './pages/MyIssues'
 import AddIssue from './pages/AddIssue'
+import IssueDetails from './pages/IssueDetails'
 export default class App extends Component {
   static displayName = App.name
 
@@ -16,6 +17,7 @@ export default class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/issues/my" component={MyIssues} />
           <Route exact path="/issues/add" component={AddIssue} />
+          <Route exact path="/issues/details" component={IssueDetails} />
           <Route exact path="*" component={NotFound} />
         </Switch>
       </Layout>

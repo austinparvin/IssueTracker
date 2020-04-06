@@ -13,8 +13,8 @@ export class NavMenu extends Component {
             My Issues
           </Link>
 
-          <Link tag={Link} className="text-dark" to="/issues/aval">
-            Aval Issues
+          <Link tag={Link} className="text-dark" to="/issues/avail">
+            Avail Issues
           </Link>
 
           <Link tag={Link} className="text-dark" to="/issues/add">
