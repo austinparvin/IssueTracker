@@ -4,9 +4,9 @@ import { NavMenu } from './NavMenu'
 
 export function Layout(props) {
   return (
-    <div>
+    <div className="gray-bg">
       <NavMenu />
-      <Container>{props.children}</Container>
+      <div>{props.children}</div>
     </div>
   )
 }

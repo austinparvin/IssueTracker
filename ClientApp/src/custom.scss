@@ -1,6 +1,12 @@
 /* Provide sufficient contrast against white background */
+
 a {
   color: #0366d6;
+}
+
+#root {
+  background-color: #eeeeee;
+  height: 700vh;
 }
 
 code {
@@ -11,4 +17,21 @@ code {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+.empty-my-issues {
+  color: #999999;
+  text-align: center;
+  button {
+    font-weight: bold;
+    border: 0.15rem solid;
+    padding: 2rem;
+    width: 70%;
+    box-shadow: 4px 4px;
+  }
+  header {
+    text-align: center;
+    font-size: 2.7rem;
+    padding: 5rem 2rem;
+  }
 }
