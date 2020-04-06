@@ -27,11 +27,49 @@ code {
     border: 0.15rem solid;
     padding: 2rem;
     width: 70%;
-    box-shadow: 4px 4px;
+    box-shadow: 2px 2px;
   }
   header {
     text-align: center;
     font-size: 2.7rem;
     padding: 5rem 2rem;
+  }
+}
+
+.add-issue {
+  button {
+    align-self: center;
+    font-weight: bold;
+    border: 0.15rem solid;
+    margin: 0rem;
+    padding: 1.5rem;
+    width: 100%;
+    box-shadow: 2px 2px;
+  }
+  background-color: whitesmoke;
+  margin: 2rem;
+  border: black solid 2px;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  input {
+    border: black solid 2px;
+    margin-bottom: 0.5rem;
+    padding: 0 5px;
+  }
+  textarea {
+    align-content: flex-start;
+    height: 40vh;
+    border: black solid 2px;
+    margin-bottom: 0.5rem;
+    padding: 0 5px;
+  }
+  div {
+    display: flex;
+    justify-content: space-between;
+
+    input {
+      width: 80%;
+    }
   }
 }

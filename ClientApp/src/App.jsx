@@ -5,6 +5,7 @@ import { Home } from './pages/Home'
 import NotFound from './pages/NotFound'
 import './custom.scss'
 import MyIssues from './pages/MyIssues'
+import AddIssue from './pages/AddIssue'
 export default class App extends Component {
   static displayName = App.name
 
@@ -14,7 +15,7 @@ export default class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/issues/my" component={MyIssues} />
-          {/* <Route exact path="/typescript" component={HeyWorld} /> */}
+          <Route exact path="/issues/add" component={AddIssue} />
           <Route exact path="*" component={NotFound} />
         </Switch>
       </Layout>
