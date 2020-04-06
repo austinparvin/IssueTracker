@@ -27,6 +27,13 @@ namespace IssueTracker.Controllers
             return await _context.Issues.ToListAsync();
         }
 
+        // GET: api/Issue
+        [HttpGet("open")]
+        public async Task<ActionResult<IEnumerable<Issue>>> GetOpenIssues()
+        {
+            return await _context.Issues.Where(issue => issue.IsOpen == true).ToListAsync();
+        }
+
         // GET: api/Issue/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Issue>> GetIssue(int id)

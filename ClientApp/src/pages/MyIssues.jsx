@@ -7,7 +7,7 @@ const MyIssues = () => {
   const [myIssues, setMyIssues] = useState([])
 
   const getMyIssues = async () => {
-    const resp = await axios.get('api/issue')
+    const resp = await axios.get('api/issue/open')
     setMyIssues(resp.data)
   }
 
