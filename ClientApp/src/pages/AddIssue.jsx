@@ -29,18 +29,18 @@ const AddIssue = () => {
     console.log(resp.data)
 
     // Add issue Id to list of Action Items
-    setActionItemsToAdd(oldActionItems => {
-      oldActionItems.map(i => (i.issueId = resp.data.id))
-      return oldActionItems
+    setActionItemsToAdd(prevActionItems => {
+      prevActionItems.forEach(i => (i.issueId = resp.data.id))
+      return prevActionItems
     })
 
     // Post Action Items to Db
-    actionItemsToAdd.map(actionItem =>
-      axios.post('/api/actionitem', actionItem)
-    )
+    // actionItemsToAdd.map(actionItem =>
+    //   axios.post('/api/actionitem', actionItem)
+    // )
 
     //refactor late to have them all uploaded at once?
-    // await axios.post('/api/actionitem/list', actionItemsToAdd)
+    await axios.post('/api/actionitem/list', actionItemsToAdd)
   }
 
   return (

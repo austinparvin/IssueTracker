@@ -88,7 +88,7 @@ namespace IssueTracker.Controllers
         [HttpPost("list")]
         public async Task<ActionResult> PostActionItem(List<ActionItem> actionItems)
         {
-            actionItems.Select(actionItem => _context.ActionItems.Add(actionItem));
+            _context.ActionItems.AddRange(actionItems);
 
             await _context.SaveChangesAsync();
 
