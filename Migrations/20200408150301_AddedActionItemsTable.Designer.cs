@@ -41,7 +41,7 @@ namespace IssueTracker.Migrations
 
                     b.HasIndex("IssueId");
 
-                    b.ToTable("ActoinItems");
+                    b.ToTable("ActionItems");
                 });
 
             modelBuilder.Entity("IssueTracker.Models.Issue", b =>

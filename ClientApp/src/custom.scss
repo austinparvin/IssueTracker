@@ -60,10 +60,22 @@ code {
   }
   textarea {
     align-content: flex-start;
-    height: 40vh;
+    height: 20vh;
     border: black solid 2px;
-    margin-bottom: 0.5rem;
     padding: 0 5px;
+  }
+  div.action-item {
+    display: flex;
+    justify-content: start;
+    .checkbox {
+      margin: auto 0.5rem;
+      width: 1rem;
+    }
+    .description {
+      margin: 0.5rem 0;
+      width: 100%;
+      border:gray solid 2px;
+    }
   }
   div {
     display: flex;

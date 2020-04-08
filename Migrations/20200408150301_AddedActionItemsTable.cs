@@ -8,7 +8,7 @@ namespace IssueTracker.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ActoinItems",
+                name: "ActionItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -19,9 +19,9 @@ namespace IssueTracker.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ActoinItems", x => x.Id);
+                    table.PrimaryKey("PK_ActionItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ActoinItems_Issues_IssueId",
+                        name: "FK_ActionItems_Issues_IssueId",
                         column: x => x.IssueId,
                         principalTable: "Issues",
                         principalColumn: "Id",
@@ -29,15 +29,15 @@ namespace IssueTracker.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ActoinItems_IssueId",
-                table: "ActoinItems",
+                name: "IX_ActionItems_IssueId",
+                table: "ActionItems",
                 column: "IssueId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ActoinItems");
+                name: "ActionItems");
         }
     }
 }

@@ -10,7 +10,7 @@ namespace IssueTracker.Models
 
 
         public DbSet<Issue> Issues { get; set; }
-        public DbSet<ActionItem> ActoinItems { get; set; }
+        public DbSet<ActionItem> ActionItems { get; set; }
 
         private string ConvertPostConnectionToConnectionString(string connection)
         {
