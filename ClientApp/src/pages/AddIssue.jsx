@@ -35,7 +35,12 @@ const AddIssue = () => {
     })
 
     // Post Action Items to Db
-    await axios.post('/api/actionitem/list', actionItemsToAdd)
+    actionItemsToAdd.map(actionItem =>
+      axios.post('/api/actionitem', actionItem)
+    )
+
+    //refactor late to have them all uploaded at once?
+    // await axios.post('/api/actionitem/list', actionItemsToAdd)
   }
 
   return (
