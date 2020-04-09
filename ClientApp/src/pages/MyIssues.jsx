@@ -15,23 +15,28 @@ const MyIssues = () => {
     getMyIssues()
   }, [])
 
-  return (
-    <section className="my-issues">
-      {myIssues.map(issue => {
-        return <Issue issue={issue} />
-      })}
-    </section>
-    // <section className="empty-my-issues">
-    //   <header>You have no Issues</header>
-    //   <Link to="/issues/add">
-    //     <button>Add an Issue</button>
-    //   </Link>
-    //   <header>OR</header>
-    //   <Link to="/issues/avail">
-    //     <button>Check Available Issues</button>
-    //   </Link>
-    // </section>
-  )
+  if (myIssues.length < 1) {
+    return (
+      <section className="empty-my-issues">
+        <header>You have no Issues</header>
+        <Link to="/issues/add">
+          <button>Add an Issue</button>
+        </Link>
+        <header>OR</header>
+        <Link to="/issues/avail">
+          <button>Check Available Issues</button>
+        </Link>
+      </section>
+    )
+  } else {
+    return (
+      <section className="my-issues">
+        {myIssues.map(issue => {
+          return <Issue issue={issue} />
+        })}
+      </section>
+    )
+  }
 }
 
 export default MyIssues
