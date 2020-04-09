@@ -31,3 +31,11 @@ html {
     background-color: whitesmoke;
   }
 }
+
+.action-item-input-list {
+  display: flex;
+  flex-direction: column;
+  button {
+    margin-bottom: 0.5rem;
+  }
+}

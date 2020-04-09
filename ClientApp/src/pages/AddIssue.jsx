@@ -39,6 +39,32 @@ const AddIssue = () => {
     await axios.post('/api/actionitem/list', actionItemsToAdd)
   }
 
+  // Return a true or false for if all input fields
+  const ActionItems = () => {
+    const [inputList, setInputList] = useState([
+      <ActionItemInput id="0" trackActionItemsToAdd={trackActionItemsToAdd} />,
+    ])
+
+    // Adds Action Items
+    const onAddBtnClick = event => {
+      setInputList(
+        inputList.concat(
+          <ActionItemInput
+            id={inputList.length}
+            trackActionItemsToAdd={trackActionItemsToAdd}
+          />
+        )
+      )
+    }
+
+    return (
+      <div className="action-item-input-list">
+        {inputList}
+        <button onClick={onAddBtnClick}>Add Action Item</button>
+      </div>
+    )
+  }
+
   return (
     <div className="add-issue">
       <input
@@ -57,19 +83,7 @@ const AddIssue = () => {
         placeholder="Description..."
       />
 
-      <ActionItemInput trackActionItemsToAdd={trackActionItemsToAdd} />
-
-      <div className="action-item">
-        <input className="checkbox" type="checkbox" name="" id=""></input>
-        <input
-          onChange={trackActionItemsToAdd}
-          placeholder="Action Item..."
-          className="description"
-          type="text"
-          name=""
-          id="1"
-        />
-      </div>
+      <ActionItems />
 
       <button onClick={addIssueToApi}>Add Issue</button>
     </div>

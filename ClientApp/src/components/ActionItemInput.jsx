@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ActionItemInput = ({ trackActionItemsToAdd }) => {
+const ActionItemInput = ({ trackActionItemsToAdd, id }) => {
   return (
     <div className="action-item">
       <input className="checkbox" type="checkbox" name="" id=""></input>
@@ -10,7 +10,7 @@ const ActionItemInput = ({ trackActionItemsToAdd }) => {
         className="description"
         type="text"
         name=""
-        id="0"
+        id={id}
       />
     </div>
   )
