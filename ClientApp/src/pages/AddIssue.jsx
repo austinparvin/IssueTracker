@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import ActionItemInput from '../components/ActionItemInput'
 
 const AddIssue = () => {
   const [issueToAdd, setIssueToAdd] = useState({})
   const [actionItemsToAdd, setActionItemsToAdd] = useState([])
 
+  // State Trackers
   const trackIssueDetails = e => {
     const key = e.target.name
     const value = e.target.value
@@ -13,7 +15,6 @@ const AddIssue = () => {
       return oldIssue
     })
   }
-
   const trackActionItemsToAdd = e => {
     const value = e.target.value
     const id = e.target.id
@@ -34,12 +35,7 @@ const AddIssue = () => {
       return prevActionItems
     })
 
-    // Post Action Items to Db
-    // actionItemsToAdd.map(actionItem =>
-    //   axios.post('/api/actionitem', actionItem)
-    // )
-
-    //refactor late to have them all uploaded at once?
+    // Posts Action Items to Db with Issue Ids
     await axios.post('/api/actionitem/list', actionItemsToAdd)
   }
 
@@ -61,17 +57,8 @@ const AddIssue = () => {
         placeholder="Description..."
       />
 
-      <div className="action-item">
-        <input className="checkbox" type="checkbox" name="" id=""></input>
-        <input
-          onChange={trackActionItemsToAdd}
-          placeholder="Action Item..."
-          className="description"
-          type="text"
-          name=""
-          id="0"
-        />
-      </div>
+      <ActionItemInput trackActionItemsToAdd={trackActionItemsToAdd} />
+
       <div className="action-item">
         <input className="checkbox" type="checkbox" name="" id=""></input>
         <input
