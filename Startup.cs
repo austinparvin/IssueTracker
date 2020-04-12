@@ -49,7 +49,7 @@ namespace IssueTracker
                    ValidateLifetime = true,
                    ValidateIssuerSigningKey = true,
 
-                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("SOME REALLY LONG SECRET STRING"))
+                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JWT_KEY"]))
                };
            });
         }
