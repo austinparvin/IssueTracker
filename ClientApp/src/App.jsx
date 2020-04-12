@@ -25,7 +25,7 @@ export default class App extends Component {
               if (localStorage.getItem('token')) {
                 return <MyIssues />
               } else {
-                return <Redirect to="/signup" />
+                return <Redirect to="/login" />
               }
             }}
           />

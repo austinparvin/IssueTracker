@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
+  const [shouldRedirect, setShouldRedirect] = useState(false)
 
   const [token, setToken] = useState('')
 
@@ -12,8 +14,18 @@ const Login = () => {
       email: loginEmail,
       password: loginPassword,
     })
-    console.log(resp.data)
-    setToken(resp.data.token)
+    if (resp.status === 200) {
+      console.log(resp.data)
+      setToken(resp.data.token)
+      // Store the token on the client's localstorage
+      localStorage.setItem('token', resp.data.token)
+      setShouldRedirect(true)
+    }
+    // redirect the user to their MyIssues page
+  }
+
+  if (shouldRedirect) {
+    return <Redirect to="/issues/my" />
   }
 
   return (
