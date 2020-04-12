@@ -12,6 +12,8 @@ namespace IssueTracker.Models
         public DbSet<Issue> Issues { get; set; }
         public DbSet<ActionItem> ActionItems { get; set; }
 
+        public DbSet<User> Users { get; set; }
+
         private string ConvertPostConnectionToConnectionString(string connection)
         {
             var _connection = connection.Replace("postgres://", String.Empty);

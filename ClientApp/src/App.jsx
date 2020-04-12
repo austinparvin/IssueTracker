@@ -8,6 +8,7 @@ import MyIssues from './pages/MyIssues'
 import AddIssue from './pages/AddIssue'
 import IssueDetails from './pages/IssueDetails'
 import ClosedIssues from './pages/ClosedIssues'
+import SignUp from './pages/SignUp'
 export default class App extends Component {
   static displayName = App.name
 
@@ -15,7 +16,7 @@ export default class App extends Component {
     return (
       <Layout>
         <Switch>
-          <Route exact path="/" component={MyIssues} />
+          <Route exact path="/" component={SignUp} />
           <Route exact path="/issues/my" component={MyIssues} />
           <Route exact path="/issues/closed" component={ClosedIssues} />
           <Route exact path="/issues/add" component={AddIssue} />
