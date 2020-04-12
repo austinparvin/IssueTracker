@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router'
 import { Layout } from './components/Layout'
-import { Home } from './pages/Home'
 import NotFound from './pages/NotFound'
 import './custom.scss'
 import MyIssues from './pages/MyIssues'
@@ -15,11 +14,26 @@ export default class App extends Component {
 
   render() {
     return (
+      //home page should be and about and adds with a login/signup link in the nav
+      // if logged in then layout should change and myissues should be "homepage"
       <Layout>
         <Switch>
-          <Route exact path="/" component={SignUp} />
+          <Route
+            exact
+            path="/"
+            render={() => {
+              if (localStorage.getItem('token')) {
+                return <MyIssues />
+              } else {
+                return <Redirect to="/signup" />
+              }
+            }}
+          />
+
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/issues/my" component={MyIssues} />
-          <Route exact path="/issues/closed" component={Login} />
+          <Route exact path="/issues/closed" component={ClosedIssues} />
           <Route exact path="/issues/add" component={AddIssue} />
           <Route
             exact
