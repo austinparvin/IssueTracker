@@ -77,13 +77,12 @@ namespace IssueTracker.Controllers
 
             var hashed = new PasswordHasher<User>().HashPassword(user, newUser.Password);
             user.HashedPassword = hashed;
+
             // storing the user data
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
+
             // generating a JWT 
-
-
-            user.HashedPassword = null;
             return Ok(new { Token = CreateJwt(user), User = user });
         }
 
@@ -102,7 +101,6 @@ namespace IssueTracker.Controllers
             if (results == PasswordVerificationResult.Success)
             {
                 //create the token
-                user.HashedPassword = null;
                 return Ok(new { Token = CreateJwt(user), User = user });
             }
             else
