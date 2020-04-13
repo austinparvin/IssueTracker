@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router'
 import { Layout } from './components/Layout'
-import { PromoLayout } from './components/PromoLayout'
 import NotFound from './pages/NotFound'
 import './custom.scss'
 import MyIssues from './pages/MyIssues'
@@ -10,7 +9,6 @@ import IssueDetails from './pages/IssueDetails'
 import ClosedIssues from './pages/ClosedIssues'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
-import Home from './pages/Home'
 export default class App extends Component {
   static displayName = App.name
 
@@ -21,6 +19,9 @@ export default class App extends Component {
       // if logged in then layout should change and myissues should be "homepage"
       <Layout>
         <Switch>
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={Login} />
+
           <Route
             exact
             path="/"
@@ -32,14 +33,39 @@ export default class App extends Component {
               }
             }}
           />
-
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/login" component={Login} />
-
-          <Route exact path="/" component={MyIssues} />
-          <Route exact path="/issues/my" component={MyIssues} />
-          <Route exact path="/issues/closed" component={ClosedIssues} />
-          <Route exact path="/issues/add" component={AddIssue} />
+          <Route
+            exact
+            path="/issues/my"
+            render={() => {
+              if (localStorage.getItem('token')) {
+                return <MyIssues />
+              } else {
+                return <Redirect to="/login" />
+              }
+            }}
+          />
+          <Route
+            exact
+            path="/issues/closed"
+            render={() => {
+              if (localStorage.getItem('token')) {
+                return <ClosedIssues />
+              } else {
+                return <Redirect to="/login" />
+              }
+            }}
+          />
+          <Route
+            exact
+            path="/issues/add"
+            render={() => {
+              if (localStorage.getItem('token')) {
+                return <AddIssue />
+              } else {
+                return <Redirect to="/login" />
+              }
+            }}
+          />
           <Route
             exact
             path="/issue/details/:issueId"
@@ -49,17 +75,5 @@ export default class App extends Component {
         </Switch>
       </Layout>
     )
-    // } else {
-    //   return (
-    //     <PromoLayout>
-    //       <Switch>
-    //         <Route exact path="/" component={Home} />
-    //         <Route exact path="/signup" component={SignUp} />
-    //         <Route exact path="/login" component={Login} />
-    //         <Route exact path="*" component={NotFound} />
-    //       </Switch>
-    //     </PromoLayout>
-    //   )
-    // }
   }
 }

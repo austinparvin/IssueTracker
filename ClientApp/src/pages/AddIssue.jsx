@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import ActionItemInput from '../components/ActionItemInput'
+import { Redirect } from 'react-router-dom'
 
 const AddIssue = () => {
   const [issueToAdd, setIssueToAdd] = useState({})
   const [actionItemsToAdd, setActionItemsToAdd] = useState([])
+  const [shouldRedirect, setShouldRedirect] = useState(false)
 
   // State Trackers
   const trackIssueDetails = e => {
@@ -28,15 +30,22 @@ const AddIssue = () => {
     // Post Issue to Dd
     const resp = await axios.post('/api/issue', issueToAdd)
     console.log(resp.data)
+    if (resp.status === 201) {
+      setShouldRedirect(true)
 
-    // Add issue Id to list of Action Items
-    setActionItemsToAdd(prevActionItems => {
-      prevActionItems.forEach(i => (i.issueId = resp.data.id))
-      return prevActionItems
-    })
+      // Add issue Id to list of Action Items
+      setActionItemsToAdd(prevActionItems => {
+        prevActionItems.forEach(i => (i.issueId = resp.data.id))
+        return prevActionItems
+      })
 
-    // Posts Action Items to Db with Issue Ids
-    await axios.post('/api/actionitem/list', actionItemsToAdd)
+      // Posts Action Items to Db with Issue Ids
+      await axios.post('/api/actionitem/list', actionItemsToAdd)
+    }
+  }
+
+  if (shouldRedirect) {
+    return <Redirect to="/issues/my" />
   }
 
   // Return a true or false for if all input fields
