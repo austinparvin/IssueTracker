@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace IssueTracker.Models
@@ -11,5 +12,9 @@ namespace IssueTracker.Models
         [JsonIgnore]
         public string HashedPassword { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
+
+
+        // Navigation Properties
+        public List<Issue> Issues { get; set; }
     }
 }
