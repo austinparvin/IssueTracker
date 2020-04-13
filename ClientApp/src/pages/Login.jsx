@@ -20,6 +20,8 @@ const Login = () => {
       // Store the token on the client's localstorage
       localStorage.setItem('token', resp.data.token)
       setShouldRedirect(true)
+      axios.defaults.headers.common['Authorization'] =
+        'Bearer ' + resp.data.token
     }
     // redirect the user to their MyIssues page
   }

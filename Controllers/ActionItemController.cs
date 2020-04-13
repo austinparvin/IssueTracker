@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using IssueTracker.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IssueTracker.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ActionItemController : ControllerBase
     {
         private readonly DatabaseContext _context;

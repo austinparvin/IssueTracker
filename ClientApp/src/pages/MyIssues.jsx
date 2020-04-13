@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import Issue from '../components/Issue'
 
 const MyIssues = () => {
+  axios.defaults.headers.common['Authorization'] =
+    'Bearer ' + localStorage.getItem('token')
   const [myIssues, setMyIssues] = useState([])
 
   const getMyIssues = async () => {
