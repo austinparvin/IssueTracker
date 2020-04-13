@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import ActionItemInput from '../components/ActionItemInput'
 import { Redirect } from 'react-router-dom'
@@ -8,7 +8,7 @@ const AddIssue = () => {
     'Bearer ' + localStorage.getItem('token')
 
   // Hooks
-  const [issueToAdd, setIssueToAdd] = useState({ userId: 1 })
+  const [issueToAdd, setIssueToAdd] = useState({})
   const [actionItemsToAdd, setActionItemsToAdd] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
 
@@ -32,7 +32,21 @@ const AddIssue = () => {
   }
 
   // Axios calls
+  const getCurrentUserId = async () => {
+    const resp = await axios.get('api/profile')
+    setIssueToAdd(oldIssue => {
+      oldIssue['userId'] = resp.data
+      return oldIssue
+    })
+  }
+
   const addIssueToApi = async () => {
+    const response = await axios.get('api/profile')
+    setIssueToAdd(oldIssue => {
+      oldIssue['userId'] = response.data
+      return oldIssue
+    })
+
     // Post Issue to Dd
     const resp = await axios({
       method: 'POST',

@@ -13,7 +13,13 @@ const MyIssues = () => {
     setMyIssues(resp.data)
   }
 
+  const getCurrentUserId = async () => {
+    const resp = await axios.get('api/profile')
+    console.log(resp.data)
+  }
+
   useEffect(() => {
+    getCurrentUserId()
     getMyIssues()
   }, [])
 
