@@ -74,7 +74,7 @@ code {
     .description {
       margin: 0.5rem 0;
       width: 100%;
-      border:gray solid 2px;
+      border: gray solid 2px;
     }
   }
   div {
@@ -94,6 +94,9 @@ code {
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
+  p {
+    margin-bottom: 0.5rem;
+  }
   div {
     font-size: 2rem;
     display: flex;
@@ -103,5 +106,28 @@ code {
         margin: 0 0.5rem;
       }
     }
+  }
+}
+
+.my-action-items {
+  display: flex;
+  flex-direction: column;
+
+  .action-item {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  div.checkbox {
+    display: flex;
+    align-content: center;
+  }
+  input.checkbox {
+    align-self: center;
+    margin-left: 1rem;
+  }
+  p {
+    font-size: 1rem;
+    margin: 0.5rem 1rem;
   }
 }
