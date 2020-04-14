@@ -3,13 +3,13 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 
 const SignUp = () => {
+  // Hooks
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [shouldRedirect, setShouldRedirect] = useState(false)
 
-  const [token, setToken] = useState('')
-
+  // Sign Up User api call
   const sendNewUserToApi = async () => {
     // Add extra validation logic here
     const resp = await axios.post('/auth/signup', {
@@ -17,16 +17,15 @@ const SignUp = () => {
       email: email,
       password: password,
     })
+
     if (resp.status === 200) {
-      console.log(resp.data)
-      setToken(resp.data.token)
       // Store the token on the client's localstorage
       localStorage.setItem('token', resp.data.token)
       setShouldRedirect(true)
     }
-    // redirect the user to their MyIssues page
   }
 
+  // redirect the user to their MyIssues page
   if (shouldRedirect) {
     return <Redirect to="/issues/my" />
   }

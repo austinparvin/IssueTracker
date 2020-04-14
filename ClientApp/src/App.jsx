@@ -9,6 +9,7 @@ import IssueDetails from './pages/IssueDetails'
 import ClosedIssues from './pages/ClosedIssues'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
+import EditIssue from './pages/EditIssue'
 export default class App extends Component {
   static displayName = App.name
 
@@ -66,6 +67,7 @@ export default class App extends Component {
               }
             }}
           />
+          <Route exact path="/issue/edit/:issueId" component={EditIssue} />
           <Route
             exact
             path="/issue/details/:issueId"

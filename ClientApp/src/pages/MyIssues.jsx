@@ -40,7 +40,7 @@ const MyIssues = () => {
     return (
       <section className="my-issues">
         {myIssues.map(issue => {
-          return <Issue issue={issue} />
+          return <Issue key={issue.id} issue={issue} />
         })}
       </section>
     )

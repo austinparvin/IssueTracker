@@ -3,29 +3,26 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 const Login = () => {
+  // Hooks
   const [loginEmail, setLoginEmail] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
   const [shouldRedirect, setShouldRedirect] = useState(false)
 
-  const [token, setToken] = useState('')
-
+  // Login User api call
   const logUserIntoApi = async () => {
     const resp = await axios.post('/auth/login', {
       email: loginEmail,
       password: loginPassword,
     })
+
     if (resp.status === 200) {
-      console.log(resp.data)
-      setToken(resp.data.token)
       // Store the token on the client's localstorage
       localStorage.setItem('token', resp.data.token)
       setShouldRedirect(true)
-      axios.defaults.headers.common['Authorization'] =
-        'Bearer ' + resp.data.token
     }
-    // redirect the user to their MyIssues page
   }
 
+  // redirect the user to their MyIssues page
   if (shouldRedirect) {
     return <Redirect to="/issues/my" />
   }

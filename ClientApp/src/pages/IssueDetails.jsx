@@ -50,7 +50,7 @@ const IssueDetails = props => {
       <p>{issue.description}</p>
       <div className="my-action-items">
         {actionItems.map(actionItem => {
-          return <ActionItem actionItem={actionItem} />
+          return <ActionItem key={actionItem.id} actionItem={actionItem} />
         })}
       </div>
     </section>

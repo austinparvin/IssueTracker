@@ -1,23 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ActionItemInput from '../components/ActionItemInput'
 import { Redirect } from 'react-router-dom'
 
-const AddIssue = () => {
-  // Authorization
+const EditIssue = props => {
+  // Authentication
   axios.defaults.headers.common['Authorization'] =
     'Bearer ' + localStorage.getItem('token')
 
   // Hooks
-  const [issueToAdd, setIssueToAdd] = useState({})
-  const [actionItemsToAdd, setActionItemsToAdd] = useState([])
+  const issueId = props.match.params.issueId
+  const [issue, setIssue] = useState({})
+  const [actionItems, setActionItems] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
+
+  // Get Issue and ActionItems
+  const getIssue = async () => {
+    const resp = await axios.get(`api/issue/${issueId}`)
+    console.log(resp.data)
+    setIssue(resp.data)
+    const response = await axios.get(`/api/actionItem/${issueId}`)
+    setActionItems(response.data)
+  }
 
   // Hook Trackers
   const trackIssueDetails = e => {
     const key = e.target.name
     const value = e.target.value
-    setIssueToAdd(oldIssue => {
+    setIssue(oldIssue => {
       oldIssue[key] = value
       return oldIssue
     })
@@ -26,42 +36,35 @@ const AddIssue = () => {
   const trackActionItemsToAdd = e => {
     const value = e.target.value
     const id = e.target.id
-    setActionItemsToAdd(oldActionItems => {
+    setActionItems(oldActionItems => {
       oldActionItems[id] = { description: value, issueId: 0 }
       return oldActionItems
     })
   }
 
-  // Axios calls
-
   const addIssueToApi = async () => {
     const response = await axios.get('api/profile')
-    setIssueToAdd(oldIssue => {
+    setIssue(oldIssue => {
       oldIssue['userId'] = response.data
       return oldIssue
     })
 
     // Post Issue to Dd
     const resp = await axios({
-      method: 'POST',
+      method: 'PUT',
       url: '/api/issue',
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('token'),
-      },
-      data: issueToAdd,
+      data: issue,
     })
-
-    console.log(resp.data.id)
 
     if (resp.status === 201) {
       // Add issue Id to list of Action Items
-      setActionItemsToAdd(prevActionItems => {
+      setActionItems(prevActionItems => {
         prevActionItems.forEach(i => (i.issueId = resp.data.id))
         return prevActionItems
       })
 
       // Posts Action Items to Db with Issue Ids
-      await axios.post('/api/actionitem/list', actionItemsToAdd)
+      await axios.post('/api/actionitem/list', actionItems)
 
       setShouldRedirect(true)
     }
@@ -74,11 +77,7 @@ const AddIssue = () => {
   // Return a true or false for if all input fields
   const ActionItems = () => {
     const [inputList, setInputList] = useState([
-      <ActionItemInput
-        key="0"
-        id="0"
-        trackActionItemsToAdd={trackActionItemsToAdd}
-      />,
+      <ActionItemInput id="0" trackActionItemsToAdd={trackActionItemsToAdd} />,
     ])
 
     // Adds Action Items
@@ -86,14 +85,15 @@ const AddIssue = () => {
       setInputList(
         inputList.concat(
           <ActionItemInput
-            key={inputList.length}
             id={inputList.length}
             trackActionItemsToAdd={trackActionItemsToAdd}
           />
         )
       )
     }
-
+    useEffect(() => {
+      getIssue()
+    }, [])
     return (
       <div className="action-item-input-list">
         {inputList}
@@ -109,7 +109,7 @@ const AddIssue = () => {
         type="text"
         className="title"
         name="title"
-        placeholder="Title..."
+        defaultValue={issue.title}
       />
 
       <textarea
@@ -117,7 +117,7 @@ const AddIssue = () => {
         name="description"
         rows="4"
         cols="50"
-        placeholder="Description..."
+        defaultValue={issue.description}
       />
 
       <ActionItems />
@@ -127,4 +127,4 @@ const AddIssue = () => {
   )
 }
 
-export default AddIssue
+export default EditIssue
