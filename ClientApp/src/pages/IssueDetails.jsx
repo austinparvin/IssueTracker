@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import ActionItem from '../components/ActionItem'
 
 const IssueDetails = props => {
   const issueId = props.match.params.issueId
   const [issue, setIssue] = useState({})
   const [shouldRedirect, setShouldRedirect] = useState(false)
+  const [actionItems, setActionItems] = useState([])
 
   const getIssueById = async () => {
     const resp = await axios.get(`/api/issue/${issueId}`)
     setIssue(resp.data)
+    const response = await axios.get(`/api/actionItem/${issueId}`)
+    setActionItems(response.data)
   }
 
   const closeIssue = async () => {
@@ -44,6 +48,11 @@ const IssueDetails = props => {
         </div>
       </div>
       <p>{issue.description}</p>
+      <div className="my-action-items">
+        {actionItems.map(actionItem => {
+          return <ActionItem actionItem={actionItem} />
+        })}
+      </div>
     </section>
   )
 }

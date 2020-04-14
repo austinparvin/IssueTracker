@@ -17,7 +17,7 @@ namespace IssueTracker.Controllers
         public async Task<ActionResult> GetCurrentUser()
         {
             var userId = User.Claims.FirstOrDefault(claim => claim.Type == "id").Value;
-            
+
             return Ok(userId);
         }
     }

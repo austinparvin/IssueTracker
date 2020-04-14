@@ -31,16 +31,16 @@ namespace IssueTracker.Controllers
 
         // GET: api/ActionItem/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ActionItem>> GetActionItem(int id)
+        public async Task<ActionResult<List<ActionItem>>> GetActionItem(int id)
         {
-            var actionItem = await _context.ActionItems.FindAsync(id);
+            var actionItems = await _context.ActionItems.Where(actionItem => actionItem.IssueId == id).ToListAsync();
 
-            if (actionItem == null)
+            if (actionItems == null)
             {
                 return NotFound();
             }
 
-            return actionItem;
+            return Ok(actionItems);
         }
 
         // PUT: api/ActionItem/5
