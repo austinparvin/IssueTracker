@@ -65,7 +65,7 @@ const EditIssue = props => {
     // Grab current User and set Issue's userId == User.id
     const response = await axios.get('api/profile')
     setIssue(oldIssue => {
-      oldIssue['userId'] = response.data
+      oldIssue['userId'] = response.data.id
       return oldIssue
     })
 

@@ -37,7 +37,7 @@ const AddIssue = () => {
   const addIssueToApi = async () => {
     const response = await axios.get('api/profile')
     setIssueToAdd(oldIssue => {
-      oldIssue['userId'] = response.data
+      oldIssue['userId'] = response.data.id
       return oldIssue
     })
 

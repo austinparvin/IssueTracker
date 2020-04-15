@@ -8,6 +8,7 @@ const IssueDetails = props => {
   const issueId = props.match.params.issueId
   const [issue, setIssue] = useState({})
   const [shouldRedirect, setShouldRedirect] = useState(false)
+  const [redirectLocation, setRedirectLocation] = useState('')
   const [actionItems, setActionItems] = useState([])
 
   const getIssueById = async () => {
@@ -25,6 +26,16 @@ const IssueDetails = props => {
     const resp = await axios.put(`/api/issue/${issueId}`, issue)
     console.log(resp.data)
     if (resp.status === 204) {
+      setRedirectLocation('my')
+      setShouldRedirect(true)
+    }
+  }
+
+  const deleteIssue = async () => {
+    const resp = await axios.delete(`/api/issue/${issueId}`)
+    console.log(resp.data)
+    if (resp.status === 200) {
+      setRedirectLocation('closed')
       setShouldRedirect(true)
     }
   }
@@ -34,7 +45,7 @@ const IssueDetails = props => {
   }, [])
 
   if (shouldRedirect) {
-    return <Redirect to="/issues/my" />
+    return <Redirect to={`/issues/${redirectLocation}`} />
   }
 
   return (
@@ -47,6 +58,9 @@ const IssueDetails = props => {
           </Link>
           <div onClick={closeIssue} className="close">
             &#60;
+          </div>
+          <div onClick={deleteIssue} className="close">
+            &
           </div>
         </div>
       </div>
