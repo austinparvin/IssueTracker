@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 const IssueDetails = props => {
   const issueId = props.match.params.issueId
+  const [currentUser, setCurrentUser] = useState({})
   const [issue, setIssue] = useState({})
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [redirectLocation, setRedirectLocation] = useState('')
@@ -40,12 +41,27 @@ const IssueDetails = props => {
     }
   }
 
+  const getCurrentUser = async () => {
+    const resp = await axios.get('api/profile')
+    console.log(resp.data)
+    setCurrentUser(resp.data)
+  }
+
   useEffect(() => {
+    getCurrentUser()
     getIssueById()
   }, [])
 
   if (shouldRedirect) {
     return <Redirect to={`/issues/${redirectLocation}`} />
+  }
+
+  const DeleteButton = () => {
+    return (
+      <div onClick={deleteIssue} className="close">
+        &#x1F5D1;
+      </div>
+    )
   }
 
   return (
@@ -54,14 +70,12 @@ const IssueDetails = props => {
         <header>{issue.title}</header>
         <div className="icons">
           <Link to={`/issue/edit/${issue.id}`}>
-            <div className="edit">&#934;</div>
+            <div className="edit"> &#x270F;</div>
           </Link>
           <div onClick={closeIssue} className="close">
-            &#60;
+            &#x2612;
           </div>
-          <div onClick={deleteIssue} className="close">
-            &
-          </div>
+          {currentUser.id === issue.userId ? <DeleteButton /> : null}
         </div>
       </div>
       <p>{issue.description}</p>
