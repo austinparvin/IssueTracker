@@ -75,6 +75,19 @@ namespace IssueTracker.Controllers
             return NoContent();
         }
 
+        [HttpPut("list")]
+        public async Task<IActionResult> PutActionItem(List<ActionItem> actionItems)
+        {
+            foreach (var actionItem in actionItems)
+            {
+                _context.Entry(actionItem).State = EntityState.Modified;
+
+                await _context.SaveChangesAsync();
+            }
+
+            return NoContent();
+        }
+
         // POST: api/ActionItem
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

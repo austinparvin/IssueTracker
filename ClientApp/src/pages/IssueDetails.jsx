@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import ActionItem from '../components/ActionItem'
+import { Link } from 'react-router-dom'
 
 const IssueDetails = props => {
   const issueId = props.match.params.issueId
@@ -41,7 +42,9 @@ const IssueDetails = props => {
       <div>
         <header>{issue.title}</header>
         <div className="icons">
-          <div className="edit">&#934;</div>
+          <Link to={`/issue/edit/${issue.id}`}>
+            <div className="edit">&#934;</div>
+          </Link>
           <div onClick={closeIssue} className="close">
             &#60;
           </div>

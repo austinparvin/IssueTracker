@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import ActionItemInputEdit from '../components/ActionItemInputEdit'
 import ActionItemInput from '../components/ActionItemInput'
 import { Redirect } from 'react-router-dom'
 
@@ -10,18 +11,23 @@ const EditIssue = props => {
 
   // Hooks
   const issueId = props.match.params.issueId
+
   const [issue, setIssue] = useState({})
   const [actionItems, setActionItems] = useState([])
+  const [actionItemsToAdd, setActionItemsToAdd] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
 
   // Get Issue and ActionItems
   const getIssue = async () => {
     const resp = await axios.get(`api/issue/${issueId}`)
-    console.log(resp.data)
     setIssue(resp.data)
     const response = await axios.get(`/api/actionItem/${issueId}`)
     setActionItems(response.data)
   }
+
+  useEffect(() => {
+    getIssue()
+  }, [])
 
   // Hook Trackers
   const trackIssueDetails = e => {
@@ -33,16 +39,30 @@ const EditIssue = props => {
     })
   }
 
-  const trackActionItemsToAdd = e => {
+  const trackActionItems = e => {
     const value = e.target.value
     const id = e.target.id
+
+    const title = parseInt(e.target.title)
     setActionItems(oldActionItems => {
-      oldActionItems[id] = { description: value, issueId: 0 }
+      oldActionItems[id] = { id: title, description: value, issueId: 0 }
       return oldActionItems
     })
   }
 
-  const addIssueToApi = async () => {
+  const trackActionItemsToAdd = e => {
+    const value = e.target.value
+    const id = e.target.id
+    setActionItemsToAdd(oldActionItemsToAdd => {
+      oldActionItemsToAdd[id] = { description: value, issueId: 0 }
+      return oldActionItemsToAdd
+    })
+  }
+
+  // Add Issue To Db api call
+  const updateIssueToApi = async () => {
+
+    // Grab current User and set Issue's userId == User.id
     const response = await axios.get('api/profile')
     setIssue(oldIssue => {
       oldIssue['userId'] = response.data
@@ -50,24 +70,31 @@ const EditIssue = props => {
     })
 
     // Post Issue to Dd
-    const resp = await axios({
-      method: 'PUT',
-      url: '/api/issue',
-      data: issue,
+    const resp = await axios.put(`/api/issue/${issue.id}`, issue)
+    console.log(resp.data + 'Issue Updated')
+
+    // Add issue Id to list of Action Items
+    setActionItems(prevActionItems => {
+      prevActionItems.forEach(i => (i.issueId = issue.id))
+      return prevActionItems
     })
 
-    if (resp.status === 201) {
-      // Add issue Id to list of Action Items
-      setActionItems(prevActionItems => {
-        prevActionItems.forEach(i => (i.issueId = resp.data.id))
-        return prevActionItems
-      })
+    setActionItemsToAdd(prevActionItemsToAdd => {
+      prevActionItemsToAdd.forEach(i => (i.issueId = issue.id))
+      return prevActionItemsToAdd
+    })
 
-      // Posts Action Items to Db with Issue Ids
-      await axios.post('/api/actionitem/list', actionItems)
+    const rep = await axios.put('/api/actionitem/list', actionItems)
+    console.log(rep.data)
 
-      setShouldRedirect(true)
-    }
+    const filtered = actionItemsToAdd.filter(ai => {
+      return ai != null
+    })
+
+    const postResp = await axios.post('/api/actionitem/list', filtered)
+    console.log(postResp.data)
+
+    setShouldRedirect(true)
   }
 
   if (shouldRedirect) {
@@ -76,24 +103,32 @@ const EditIssue = props => {
 
   // Return a true or false for if all input fields
   const ActionItems = () => {
-    const [inputList, setInputList] = useState([
-      <ActionItemInput id="0" trackActionItemsToAdd={trackActionItemsToAdd} />,
-    ])
+    const [inputList, setInputList] = useState(
+      actionItems.map((actionItem, i) => {
+        return (
+          <ActionItemInputEdit
+            actionItem={actionItem}
+            key={i}
+            id={i}
+            trackActionItems={trackActionItems}
+          />
+        )
+      })
+    )
 
     // Adds Action Items
     const onAddBtnClick = event => {
       setInputList(
         inputList.concat(
           <ActionItemInput
+            key={inputList.length}
             id={inputList.length}
             trackActionItemsToAdd={trackActionItemsToAdd}
           />
         )
       )
     }
-    useEffect(() => {
-      getIssue()
-    }, [])
+
     return (
       <div className="action-item-input-list">
         {inputList}
@@ -122,7 +157,7 @@ const EditIssue = props => {
 
       <ActionItems />
 
-      <button onClick={addIssueToApi}>Add Issue</button>
+      <button onClick={updateIssueToApi}>Update Issue</button>
     </div>
   )
 }

@@ -1,19 +1,19 @@
 import React from 'react'
 
-const ActionItemInput = ({ trackActionItemsToAdd, id, actionItem }) => {
+const ActionItemInputEdit = ({ trackActionItems, id, actionItem }) => {
   return (
     <div className="action-item">
       <input className="checkbox" type="checkbox" name="" id=""></input>
       <input
-        onChange={trackActionItemsToAdd}
-        placeholder="Action Item..."
+        onChange={trackActionItems}
+        defaultValue={actionItem.description}
         className="description"
         type="text"
-        name=""
+        title={actionItem.id}
         id={id}
       />
     </div>
   )
 }
 
-export default ActionItemInput
+export default ActionItemInputEdit
