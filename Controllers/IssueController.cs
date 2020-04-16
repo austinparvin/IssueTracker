@@ -31,10 +31,16 @@ namespace IssueTracker.Controllers
         }
 
         // GET: api/Issue/open
-        [HttpGet("open")]
-        public async Task<ActionResult<IEnumerable<Issue>>> GetOpenIssues()
+        [HttpGet("my/{userId}")]
+        public async Task<ActionResult<IEnumerable<Issue>>> GetOpenIssues(int userId)
         {
-            return await _context.Issues.Where(issue => issue.IsOpen == true).ToListAsync();
+            return await _context.Issues.Where(issue => issue.ClaimedUserId == userId).ToListAsync();
+        }
+
+        [HttpGet("available")]
+        public async Task<ActionResult<IEnumerable<Issue>>> GetAvailableIssues()
+        {
+            return await _context.Issues.Where(issue => issue.IsOpen == true && issue.ClaimedUserId == null).ToListAsync();
         }
 
         // GET: api/Issue/closed

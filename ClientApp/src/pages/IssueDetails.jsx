@@ -47,6 +47,18 @@ const IssueDetails = props => {
     setCurrentUser(resp.data)
   }
 
+  const claimIssue = async () => {
+    setIssue(oldIssue => {
+      oldIssue['claimedUserId'] = currentUser.id
+      return oldIssue
+    })
+    const resp = await axios.put(`/api/issue/${issue.id}`, issue)
+    if (resp.status === 204) {
+      setRedirectLocation('my')
+      setShouldRedirect(true)
+    }
+  }
+
   useEffect(() => {
     getCurrentUser()
     getIssueById()
@@ -84,6 +96,7 @@ const IssueDetails = props => {
           return <ActionItem key={actionItem.id} actionItem={actionItem} />
         })}
       </div>
+      <button onClick={claimIssue}>Claim Issue</button>
     </section>
   )
 }

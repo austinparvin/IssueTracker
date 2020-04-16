@@ -3,38 +3,36 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Issue from '../components/Issue'
 
-const MyIssues = () => {
+const AvailableIssues = () => {
   axios.defaults.headers.common['Authorization'] =
     'Bearer ' + localStorage.getItem('token')
-  const [myIssues, setMyIssues] = useState([])
+  const [availableIssues, setAvailableIssues] = useState([])
 
-  const getMyIssues = async () => {
-    const user = await axios.get('api/profile')
-    const resp = await axios.get(`api/issue/my/${user.data.id}`)
-    setMyIssues(resp.data)
+  const getAvailableIssues = async () => {
+    const resp = await axios.get('api/issue/available')
+    setAvailableIssues(resp.data)
+  }
+
+  const getCurrentUser = async () => {
+    const resp = await axios.get('api/profile')
+    console.log(resp.data)
   }
 
   useEffect(() => {
-    getMyIssues()
+    getCurrentUser()
+    getAvailableIssues()
   }, [])
 
-  if (myIssues.length < 1) {
+  if (availableIssues.length < 1) {
     return (
       <section className="empty-my-issues">
         <header>You have no Issues</header>
-        <Link to="/issues/add">
-          <button>Add an Issue</button>
-        </Link>
-        <header>OR</header>
-        <Link to="/issues/avail">
-          <button>Check Available Issues</button>
-        </Link>
       </section>
     )
   } else {
     return (
       <section className="my-issues">
-        {myIssues.map(issue => {
+        {availableIssues.map(issue => {
           return <Issue key={issue.id} issue={issue} />
         })}
       </section>
@@ -42,4 +40,4 @@ const MyIssues = () => {
   }
 }
 
-export default MyIssues
+export default AvailableIssues

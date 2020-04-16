@@ -10,6 +10,7 @@ import ClosedIssues from './pages/ClosedIssues'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
 import EditIssue from './pages/EditIssue'
+import AvailableIssues from './pages/AvailableIssues'
 export default class App extends Component {
   static displayName = App.name
 
@@ -67,6 +68,18 @@ export default class App extends Component {
               }
             }}
           />
+          <Route
+            exact
+            path="/issues/avail"
+            render={() => {
+              if (localStorage.getItem('token')) {
+                return <AvailableIssues />
+              } else {
+                return <Redirect to="/login" />
+              }
+            }}
+          />
+
           <Route exact path="/issue/edit/:issueId" component={EditIssue} />
           <Route
             exact
