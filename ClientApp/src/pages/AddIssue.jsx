@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import ActionItemInput from '../components/ActionItemInput'
+import Users from '../components/Users'
 import { Redirect } from 'react-router-dom'
 
 const AddIssue = () => {
@@ -121,7 +122,7 @@ const AddIssue = () => {
       />
 
       <ActionItems />
-
+      <Users />
       <button onClick={addIssueToApi}>Add Issue</button>
     </div>
   )
