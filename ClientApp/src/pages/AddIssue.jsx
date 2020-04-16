@@ -10,14 +10,21 @@ const AddIssue = () => {
     'Bearer ' + localStorage.getItem('token')
 
   // Hooks
-  const [issueToAdd, setIssueToAdd] = useState({})
+  const [issueToAdd, setIssueToAdd] = useState({ ClaimedIssueId: null })
   const [actionItemsToAdd, setActionItemsToAdd] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
 
   // Hook Trackers
   const trackIssueDetails = e => {
+    console.log(e.target.value)
+
     const key = e.target.name
-    const value = e.target.value
+    let value = e.target.value
+
+    if (key === 'ClaimedUserId') {
+      value = parseInt(value)
+    }
+
     setIssueToAdd(oldIssue => {
       oldIssue[key] = value
       return oldIssue
@@ -122,7 +129,7 @@ const AddIssue = () => {
       />
 
       <ActionItems />
-      <Users />
+      <Users trackIssueDetails={trackIssueDetails} />
       <button onClick={addIssueToApi}>Add Issue</button>
     </div>
   )

@@ -34,7 +34,7 @@ namespace IssueTracker.Controllers
         [HttpGet("my/{userId}")]
         public async Task<ActionResult<IEnumerable<Issue>>> GetOpenIssues(int userId)
         {
-            return await _context.Issues.Where(issue => issue.ClaimedUserId == userId).ToListAsync();
+            return await _context.Issues.Where(issue => issue.ClaimedUserId == userId && issue.IsOpen == true).ToListAsync();
         }
 
         [HttpGet("available")]
