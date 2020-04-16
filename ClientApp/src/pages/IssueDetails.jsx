@@ -96,7 +96,11 @@ const IssueDetails = props => {
           return <ActionItem key={actionItem.id} actionItem={actionItem} />
         })}
       </div>
-      <button onClick={claimIssue}>Claim Issue</button>
+      {!issue.claimedUserId ? (
+        <button onClick={claimIssue}>Claim Issue</button>
+      ) : (
+        ''
+      )}
     </section>
   )
 }
