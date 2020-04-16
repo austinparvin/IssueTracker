@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IssueTracker.Models
 {
@@ -12,8 +13,16 @@ namespace IssueTracker.Models
         public DateTime DateCreated { get; set; } = DateTime.Now;
 
         // Navigation Properties
+        // Who the issue was created by
+
         public int UserId { get; set; }
+        [ForeignKey("UserId")]
         public User User { get; set; }
+
+        // Who is assigned the issue
+        public int? ClaimedUserId { get; set; }
+        [ForeignKey("ClaimedUserId")]
+        public User ClaimedUser { get; set; }
 
         public List<ActionItem> ActionItems { get; set; }
     }

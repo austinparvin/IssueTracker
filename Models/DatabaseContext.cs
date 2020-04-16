@@ -36,5 +36,13 @@ namespace IssueTracker.Models
             }
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasMany(user => user.ClaimedIssues);
+
+            modelBuilder.Entity<Issue>().HasOne(issue => issue.ClaimedUser);
+            modelBuilder.Entity<Issue>().HasOne(issue => issue.User);
+        }
+
     }
 }
