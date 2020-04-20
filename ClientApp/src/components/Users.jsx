@@ -15,7 +15,11 @@ const Users = ({ trackIssueDetails }) => {
     <select onChange={trackIssueDetails} name="ClaimedUserId" id="users">
       <option value={-1}>Unassigned</option>
       {users.map(user => {
-        return <option value={user.id}>{user.fullName}</option>
+        return (
+          <option key={user.id} value={user.id}>
+            {user.fullName}
+          </option>
+        )
       })}
     </select>
   )

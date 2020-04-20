@@ -56,6 +56,7 @@ const IssueDetails = props => {
     }
   }
 
+
   useEffect(() => {
     getCurrentUser()
     getIssueById()
@@ -72,6 +73,7 @@ const IssueDetails = props => {
       </div>
     )
   }
+
 
   return (
     <section className="issue-details">

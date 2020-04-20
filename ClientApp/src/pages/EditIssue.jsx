@@ -101,7 +101,7 @@ const EditIssue = props => {
   }
 
   if (shouldRedirect) {
-    return <Redirect to="/issues/my" />
+    return <Redirect to={`/issue/details/${issue.id}`} />
   }
 
   // Return a true or false for if all input fields
