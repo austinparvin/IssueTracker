@@ -102,7 +102,7 @@ code {
   button {
     display: none;
   }
-  .issue-details {
+  .issue-card {
     padding: 1rem;
     height: 25vh;
     header {
@@ -149,7 +149,8 @@ select#users {
   margin: 1rem 0;
 }
 
-.issue-details {
+.issue-details,
+.issue-card {
   box-shadow: 0px 1px 5px 1px rgb(83, 83, 83);
   background-color: #ebecf0;
   margin: 1.5rem;
