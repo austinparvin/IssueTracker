@@ -20,7 +20,7 @@ code {
 }
 
 .empty-my-issues {
-  color: #999999;
+  color: #ebecf0;
   text-align: center;
   button {
     font-weight: bold;
@@ -96,8 +96,6 @@ code {
     color: black;
     text-decoration: none;
   }
-  a:hover {
-  }
   .icons {
     display: none;
   }
@@ -108,6 +106,8 @@ code {
     padding: 1rem;
     height: 25vh;
     header {
+      width: 100%;
+      border-bottom: 1px solid black;
       font-size: 1rem;
       font-weight: bold;
       overflow: hidden;
@@ -117,6 +117,7 @@ code {
       -webkit-line-clamp: 1; /* number of lines to show */
       line-height: 1.5rem; /* fallback */
       max-height: 4rem;
+      margin-bottom: 0.5rem;
     }
 
     p {
@@ -125,8 +126,9 @@ code {
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2; /* number of lines to show */
-      line-height: 1rem; /* fallback */
+      line-height: 1.2rem; /* fallback */
       max-height: 3rem;
+      margin-bottom: 0.5rem;
     }
   }
   .checkbox {

@@ -10,19 +10,22 @@ export class NavMenu extends Component {
       <header>
         <ul className="custom-nav-bar">
           <Link tag={Link} to="/issues/my">
-            My Issues
+            My
           </Link>
 
           <Link tag={Link} to="/issues/avail">
-            Avail Issues
+            Avail
           </Link>
 
           <Link tag={Link} to="/issues/add">
-            Add Issue
+            Add
           </Link>
 
           <Link tag={Link} to="/issues/closed">
-            Closed Issues
+            Closed
+          </Link>
+          <Link tag={Link} to="/issues/closed">
+            Settings
           </Link>
         </ul>
       </header>

@@ -27,7 +27,7 @@ const AvailableIssues = () => {
   if (availableIssues.length < 1) {
     return (
       <section className="empty-my-issues">
-        <header>You have no Issues</header>
+        <header>There are no Available Issues</header>
       </section>
     )
   } else {
