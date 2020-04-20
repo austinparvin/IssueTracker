@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
-import IssueDetails from './IssueDetails'
+import IssueCard from '../components/IssueCard'
 
 const AvailableIssues = () => {
   axios.defaults.headers.common['Authorization'] =
@@ -33,11 +32,7 @@ const AvailableIssues = () => {
     return (
       <section className="my-issues">
         {availableIssues.map(issue => {
-          return (
-            <Link to={`/issue/details/${issue.id}`}>
-              <IssueDetails key={issue.id} issueId={issue.id} />
-            </Link>
-          )
+          return <IssueCard key={issue.id} issue={issue} />
         })}
       </section>
     )
