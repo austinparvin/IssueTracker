@@ -37,7 +37,7 @@ const MyIssues = () => {
       <section className="my-issues">
         {myIssues.map(issue => {
           return (
-            <Link to={`/issue/details/${issue.id}`}>
+            <Link key={issue.id} to={`/issue/details/${issue.id}`}>
               <IssueDetails key={issue.id} issueId={issue.id} />
             </Link>
           )

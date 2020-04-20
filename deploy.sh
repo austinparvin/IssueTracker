@@ -1,8 +1,7 @@
-docker build -t IssueTracker-image .
+docker build -t issuetracker-image .
 
-docker tag IssueTracker-image registry.heroku.com/IssueTracker/web
+docker tag issuetracker-image registry.heroku.com/sdg-issue-tracker/web
 
+docker push registry.heroku.com/sdg-issue-tracker/web
 
-docker push registry.heroku.com/IssueTracker/web
-
-heroku container:release web -a IssueTracker
+heroku container:release web -a sdg-issue-tracker

@@ -74,7 +74,7 @@ const IssueDetails = props => {
   }
 
   return (
-    <section className="issue-details scale-up-center">
+    <section className="issue-details">
       <div>
         <header>{issue.title}</header>
       </div>
