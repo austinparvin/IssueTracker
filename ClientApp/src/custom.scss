@@ -156,14 +156,19 @@ select#users {
   margin: 1.5rem;
   border: black solid 2px;
   border-radius: 3px;
-  padding: 0.5rem;
+  padding: 1rem;
 
   overflow: hidden;
   header {
+    width: 100%;
     font-size: 1rem;
     font-weight: bold;
+    border-bottom: 1px solid black;
   }
-
+  p {
+    margin-bottom: 0;
+    line-height: 1.2rem;
+  }
   .buttons {
     button {
       font-size: 1rem;
@@ -187,10 +192,11 @@ select#users {
 
   div.checkbox {
     display: flex;
-    align-content: center;
+    align-content: flex-start;
+    margin: 0.6rem 0;
   }
   input.checkbox {
-    align-self: center;
+    align-self: flex-start;
     margin-left: 1rem;
   }
   p {
