@@ -52,6 +52,7 @@ namespace IssueTracker
                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JWT_KEY"]))
                };
            });
+            services.AddHttpsRedirection(opt => opt.HttpsPort = 443);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

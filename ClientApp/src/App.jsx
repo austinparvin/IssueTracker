@@ -15,15 +15,11 @@ export default class App extends Component {
   static displayName = App.name
 
   render() {
-    // if (localStorage.getItem('token')) {
     return (
-      //home page should be and about and adds with a login/signup link in the nav
-      // if logged in then layout should change and myissues should be "homepage"
       <Layout>
         <Switch>
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />
-
           <Route
             exact
             path="/"
