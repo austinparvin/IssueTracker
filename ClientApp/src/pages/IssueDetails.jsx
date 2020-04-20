@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-import ActionItem from '../components/ActionItem'
 import { Link } from 'react-router-dom'
+import ListOfActionItems from '../components/ListOfActionItems'
 
 const IssueDetails = props => {
-  const issueId = props.match.params.issueId
+  const issueId = props.match ? props.match.params.issueId : props.issueId
   const [currentUser, setCurrentUser] = useState({})
   const [issue, setIssue] = useState({})
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [redirectLocation, setRedirectLocation] = useState('')
-  const [actionItems, setActionItems] = useState([])
 
   const getIssueById = async () => {
     const resp = await axios.get(`/api/issue/${issueId}`)
     setIssue(resp.data)
-    const response = await axios.get(`/api/actionItem/${issueId}`)
-    setActionItems(response.data)
   }
 
   const closeIssue = async () => {
@@ -80,6 +77,15 @@ const IssueDetails = props => {
     <section className="issue-details">
       <div>
         <header>{issue.title}</header>
+      </div>
+      <p>{issue.description}</p>
+      <ListOfActionItems issueId={issueId} />
+      <div className="buttons">
+        {!issue.claimedUserId ? (
+          <button onClick={claimIssue}>Claim Issue</button>
+        ) : (
+          ''
+        )}
         <div className="icons">
           <Link to={`/issue/edit/${issue.id}`}>
             <div className="edit"> &#x270F;</div>
@@ -90,17 +96,6 @@ const IssueDetails = props => {
           {currentUser.id === issue.userId ? <DeleteButton /> : null}
         </div>
       </div>
-      <p>{issue.description}</p>
-      <div className="my-action-items">
-        {actionItems.map(actionItem => {
-          return <ActionItem key={actionItem.id} actionItem={actionItem} />
-        })}
-      </div>
-      {!issue.claimedUserId ? (
-        <button onClick={claimIssue}>Claim Issue</button>
-      ) : (
-        ''
-      )}
     </section>
   )
 }

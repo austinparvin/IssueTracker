@@ -5,7 +5,7 @@ a {
 }
 
 #root {
-  background-color: #eeeeee;
+  background-color: #659e60;
   height: 700vh;
 }
 
@@ -37,12 +37,13 @@ code {
 }
 
 .add-issue {
-  background-color: whitesmoke;
+  background-color: #ebecf0;
   margin: 2rem;
   border: black solid 2px;
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
+  box-shadow: 0px 1px 5px 1px rgb(83, 83, 83);
 
   button {
     align-self: center;
@@ -88,11 +89,57 @@ code {
 }
 
 .my-issues {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   a {
     color: black;
     text-decoration: none;
   }
   a:hover {
+  }
+  .icons {
+    display: none;
+  }
+  button {
+    display: none;
+  }
+  .issue-details {
+    padding: 1rem;
+    height: 25vh;
+    header {
+      font-size: 1rem;
+      font-weight: bold;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1; /* number of lines to show */
+      line-height: 1.5rem; /* fallback */
+      max-height: 4rem;
+    }
+
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      line-height: 1rem; /* fallback */
+      max-height: 3rem;
+    }
+  }
+  .checkbox {
+    .cover {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      display: none;
+    }
   }
 }
 
@@ -101,24 +148,28 @@ select#users {
 }
 
 .issue-details {
-  background-color: whitesmoke;
-  margin: 2rem;
+  box-shadow: 0px 1px 5px 1px rgb(83, 83, 83);
+  background-color: #ebecf0;
+  margin: 1.5rem;
   border: black solid 2px;
-  display: flex;
-  flex-direction: column;
+  border-radius: 3px;
   padding: 0.5rem;
-  p {
-    margin-bottom: 0.5rem;
+
+  overflow: hidden;
+  header {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .buttons {
+    button {
+      font-size: 1rem;
+    }
   }
   div {
     font-size: 2rem;
     display: flex;
     justify-content: space-between;
-    div.icons {
-      div {
-        margin: 0 0.5rem;
-      }
-    }
   }
 }
 

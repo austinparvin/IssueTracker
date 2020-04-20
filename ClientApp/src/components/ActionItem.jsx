@@ -21,6 +21,7 @@ const ActionItem = ({ actionItem }) => {
   return (
     <div className="action-item">
       <div className="checkbox">
+      <div class="cover"></div>
         <input
           onClick={trackIsChecked}
           className="checkbox"

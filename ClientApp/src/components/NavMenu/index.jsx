@@ -9,19 +9,19 @@ export class NavMenu extends Component {
     return (
       <header>
         <ul className="custom-nav-bar">
-          <Link tag={Link} className="text-dark" to="/issues/my">
+          <Link tag={Link} to="/issues/my">
             My Issues
           </Link>
 
-          <Link tag={Link} className="text-dark" to="/issues/avail">
+          <Link tag={Link} to="/issues/avail">
             Avail Issues
           </Link>
 
-          <Link tag={Link} className="text-dark" to="/issues/add">
+          <Link tag={Link} to="/issues/add">
             Add Issue
           </Link>
 
-          <Link tag={Link} className="text-dark" to="/issues/closed">
+          <Link tag={Link} to="/issues/closed">
             Closed Issues
           </Link>
         </ul>

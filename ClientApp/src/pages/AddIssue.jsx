@@ -23,6 +23,9 @@ const AddIssue = () => {
 
     if (key === 'ClaimedUserId') {
       value = parseInt(value)
+      if (value === -1) {
+        value = null
+      }
     }
 
     setIssueToAdd(oldIssue => {

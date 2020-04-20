@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import Issue from '../components/Issue'
+import IssueDetails from './IssueDetails'
 
 const ClosedIssues = () => {
   const [myClosedIssues, setMyClosedIssues] = useState([])
@@ -17,7 +19,11 @@ const ClosedIssues = () => {
   return (
     <section className="my-issues">
       {myClosedIssues.map(issue => {
-        return <Issue key={issue.id} issue={issue} />
+        return (
+          <Link to={`/issue/details/${issue.id}`}>
+            <IssueDetails key={issue.id} issueId={issue.id} />
+          </Link>
+        )
       })}
     </section>
   )
