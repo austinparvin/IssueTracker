@@ -67,7 +67,7 @@ const AddIssue = () => {
     if (resp.status === 201) {
       // Add issue Id to list of Action Items
       setActionItemsToAdd(prevActionItems => {
-        prevActionItems.forEach(i => (i.issueId = resp.data.id))
+        prevActionItems.forEach(i => {i.issueId = resp.data.id})
         return prevActionItems
       })
 

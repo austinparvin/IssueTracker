@@ -61,7 +61,6 @@ const EditIssue = props => {
 
   // Add Issue To Db api call
   const updateIssueToApi = async () => {
-
     // Grab current User and set Issue's userId == User.id
     const response = await axios.get('api/profile')
     setIssue(oldIssue => {
@@ -75,12 +74,16 @@ const EditIssue = props => {
 
     // Add issue Id to list of Action Items
     setActionItems(prevActionItems => {
-      prevActionItems.forEach(i => (i.issueId = issue.id))
+      prevActionItems.forEach(i => {
+        i.issueId = issue.id
+      })
       return prevActionItems
     })
 
     setActionItemsToAdd(prevActionItemsToAdd => {
-      prevActionItemsToAdd.forEach(i => (i.issueId = issue.id))
+      prevActionItemsToAdd.forEach(i => {
+        i.issueId = issue.id
+      })
       return prevActionItemsToAdd
     })
 
