@@ -57,7 +57,6 @@ const AddIssue = () => {
 
     // Get Token
     const token = await getTokenSilently()
-    console.log(token)
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
     // Post Issue to Dd

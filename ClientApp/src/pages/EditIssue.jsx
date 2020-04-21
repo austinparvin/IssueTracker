@@ -3,12 +3,11 @@ import axios from 'axios'
 import ActionItemInputEdit from '../components/ActionItemInputEdit'
 import ActionItemInput from '../components/ActionItemInput'
 import { Redirect } from 'react-router-dom'
+import { useAuth0 } from '../react-auth0-spa'
 
 const EditIssue = props => {
-  // Authentication
-  axios.defaults.headers.common['Authorization'] =
-    'Bearer ' + localStorage.getItem('token')
-
+  const { user } = useAuth0()
+  const { getTokenSilently } = useAuth0()
   // Hooks
   const issueId = props.match.params.issueId
 
@@ -19,6 +18,10 @@ const EditIssue = props => {
 
   // Get Issue and ActionItems
   const getIssue = async () => {
+    // Get Token
+    const token = await getTokenSilently()
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+
     const resp = await axios.get(`api/issue/${issueId}`)
     setIssue(resp.data)
     const response = await axios.get(`/api/actionItem/${issueId}`)
@@ -61,14 +64,16 @@ const EditIssue = props => {
 
   // Add Issue To Db api call
   const updateIssueToApi = async () => {
-    // Grab current User and set Issue's userId == User.id
-    const response = await axios.get('api/profile')
     setIssue(oldIssue => {
-      oldIssue['userId'] = response.data.id
+      oldIssue['userEmail'] = user.email
       return oldIssue
     })
 
     // Post Issue to Dd
+    // Get Token
+    const token = await getTokenSilently()
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+
     const resp = await axios.put(`/api/issue/${issue.id}`, issue)
     console.log(resp.data + 'Issue Updated')
 

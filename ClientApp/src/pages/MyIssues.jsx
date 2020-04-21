@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import IssueCard from '../components/IssueCard'
+import { useAuth0 } from '../react-auth0-spa'
 
 const MyIssues = () => {
-  axios.defaults.headers.common['Authorization'] =
-    'Bearer ' + localStorage.getItem('token')
+  const { user } = useAuth0()
+  const { getTokenSilently } = useAuth0()
   const [myIssues, setMyIssues] = useState([])
 
   const getMyIssues = async () => {
-    const user = await axios.get('api/profile')
-    const resp = await axios.get(`api/issue/my/${user.data.id}`)
+    const token = await getTokenSilently()
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+    const resp = await axios.get(`api/issue/my/${user.email}`)
     setMyIssues(resp.data)
   }
 

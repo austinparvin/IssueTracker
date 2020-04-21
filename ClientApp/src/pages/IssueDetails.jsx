@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import ListOfActionItems from '../components/ListOfActionItems'
+import { useAuth0 } from '../react-auth0-spa'
 
 const IssueDetails = props => {
   const issueId = props.match ? props.match.params.issueId : props.issueId
@@ -10,12 +11,10 @@ const IssueDetails = props => {
   const [issue, setIssue] = useState({})
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [redirectLocation, setRedirectLocation] = useState('')
-
   const getIssueById = async () => {
     const resp = await axios.get(`/api/issue/${issueId}`)
     setIssue(resp.data)
   }
-
   const closeIssue = async () => {
     setIssue(oldIssue => {
       oldIssue.isOpen = false
@@ -28,7 +27,6 @@ const IssueDetails = props => {
       setShouldRedirect(true)
     }
   }
-
   const deleteIssue = async () => {
     const resp = await axios.delete(`/api/issue/${issueId}`)
     console.log(resp.data)
@@ -37,7 +35,6 @@ const IssueDetails = props => {
       setShouldRedirect(true)
     }
   }
-
   const claimIssue = async () => {
     setIssue(oldIssue => {
       oldIssue['claimedUserEmail'] = user.email
@@ -49,15 +46,12 @@ const IssueDetails = props => {
       setShouldRedirect(true)
     }
   }
-
   useEffect(() => {
     getIssueById()
   }, [])
-
   if (shouldRedirect) {
     return <Redirect to={`/issues/${redirectLocation}`} />
   }
-
   const DeleteButton = () => {
     return (
       <div onClick={deleteIssue} className="close">
@@ -65,7 +59,6 @@ const IssueDetails = props => {
       </div>
     )
   }
-
   return (
     <section className="issue-details">
       <div>
@@ -74,7 +67,7 @@ const IssueDetails = props => {
       <p>{issue.description}</p>
       <ListOfActionItems issueId={issueId} />
       <div className="buttons">
-        {!issue.claimedUserId ? (
+        {!issue.claimedUserEmail ? (
           <button onClick={claimIssue}>Claim Issue</button>
         ) : (
           ''
@@ -93,4 +86,4 @@ const IssueDetails = props => {
   )
 }
 
-export default IssueDetails``
+export default IssueDetails
