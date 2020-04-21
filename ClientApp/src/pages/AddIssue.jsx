@@ -51,14 +51,14 @@ const AddIssue = () => {
   const addIssueToApi = async () => {
     // Set UserEmail on Issue
     setIssueToAdd(oldIssue => {
-      oldIssue['userId'] = user.email
+      oldIssue['userEmail'] = user.email
       return oldIssue
     })
 
     // Get Token
     const token = await getTokenSilently()
     console.log(token)
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.id_token
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
     // Post Issue to Dd
     const resp = await axios.post('/api/issue', issueToAdd)
@@ -79,7 +79,7 @@ const AddIssue = () => {
         method: 'POST',
         url: '/api/actionitem/list',
         headers: {
-          Authorization: 'Bearer ' + token.id_token,
+          Authorization: 'Bearer ' + token,
         },
         data: actionItemsToAdd,
       })
