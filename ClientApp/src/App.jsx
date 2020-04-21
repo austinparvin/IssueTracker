@@ -31,9 +31,9 @@ function App() {
           <Route path="/" exact />
           {/* <PrivateRoute path="/profile" component={Profile} /> */}
           {/* <PrivateRoute path="/issues/my" component={MyIssues} /> */}
-          {/* <PrivateRoute path="/issues/avail" component={AvailableIssues} /> */}
+          <PrivateRoute path="/issues/avail" component={AvailableIssues} />
           <PrivateRoute path="/issues/add" component={AddIssue} />
-          {/* <PrivateRoute path="/issues/closed" component={ClosedIssues} /> */}
+          <PrivateRoute path="/issues/closed" component={ClosedIssues} />
         </Switch>
       </Router>
     </div>
