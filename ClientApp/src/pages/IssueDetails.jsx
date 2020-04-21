@@ -6,7 +6,7 @@ import ListOfActionItems from '../components/ListOfActionItems'
 
 const IssueDetails = props => {
   const issueId = props.match ? props.match.params.issueId : props.issueId
-  const [currentUser, setCurrentUser] = useState({})
+  const { user } = useAuth0()
   const [issue, setIssue] = useState({})
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [redirectLocation, setRedirectLocation] = useState('')
@@ -38,15 +38,9 @@ const IssueDetails = props => {
     }
   }
 
-  const getCurrentUser = async () => {
-    const resp = await axios.get('api/profile')
-    console.log(resp.data)
-    setCurrentUser(resp.data)
-  }
-
   const claimIssue = async () => {
     setIssue(oldIssue => {
-      oldIssue['claimedUserId'] = currentUser.id
+      oldIssue['claimedUserEmail'] = user.email
       return oldIssue
     })
     const resp = await axios.put(`/api/issue/${issue.id}`, issue)
@@ -56,9 +50,7 @@ const IssueDetails = props => {
     }
   }
 
-
   useEffect(() => {
-    getCurrentUser()
     getIssueById()
   }, [])
 
@@ -73,7 +65,6 @@ const IssueDetails = props => {
       </div>
     )
   }
-
 
   return (
     <section className="issue-details">
@@ -95,12 +86,11 @@ const IssueDetails = props => {
           <div onClick={closeIssue} className="close">
             &#x2612;
           </div>
-          {currentUser.id === issue.userId ? <DeleteButton /> : null}
+          {user.email === issue.userEmail ? <DeleteButton /> : null}
         </div>
       </div>
     </section>
   )
 }
 
-export default IssueDetails
-``
+export default IssueDetails``

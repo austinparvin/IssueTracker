@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import IssueCard from '../components/IssueCard'
-
 import { useAuth0 } from '../react-auth0-spa'
 
 const AvailableIssues = () => {
@@ -12,7 +11,6 @@ const AvailableIssues = () => {
   const getAvailableIssues = async () => {
     // Get Token
     const token = await getTokenSilently()
-    console.log(token)
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
     const resp = await axios.get('api/issue/available')
