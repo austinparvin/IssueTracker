@@ -7,13 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using IssueTracker.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace IssueTracker.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
     public class IssueController : ControllerBase
     {
         private readonly DatabaseContext _context;
@@ -31,16 +30,16 @@ namespace IssueTracker.Controllers
         }
 
         // GET: api/Issue/open
-        [HttpGet("my/{userId}")]
-        public async Task<ActionResult<IEnumerable<Issue>>> GetOpenIssues(int userId)
+        [HttpGet("my/{userEmail}")]
+        public async Task<ActionResult<IEnumerable<Issue>>> GetOpenIssues(string userEmail)
         {
-            return await _context.Issues.Where(issue => issue.ClaimedUserId == userId && issue.IsOpen == true).ToListAsync();
+            return await _context.Issues.Where(issue => issue.ClaimedUserEmail == userEmail && issue.IsOpen == true).ToListAsync();
         }
 
         [HttpGet("available")]
         public async Task<ActionResult<IEnumerable<Issue>>> GetAvailableIssues()
         {
-            return await _context.Issues.Where(issue => issue.IsOpen == true && issue.ClaimedUserId == null).ToListAsync();
+            return await _context.Issues.Where(issue => issue.IsOpen == true && issue.ClaimedUserEmail == null).ToListAsync();
         }
 
         // GET: api/Issue/closed
@@ -99,7 +98,9 @@ namespace IssueTracker.Controllers
         // POST: api/Issue
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
+
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Issue>> PostIssue(Issue issue)
         {
             _context.Issues.Add(issue);

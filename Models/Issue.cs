@@ -14,15 +14,10 @@ namespace IssueTracker.Models
 
         // Navigation Properties
         // Who the issue was created by
-
-        public int UserId { get; set; }
-        [ForeignKey("UserId")]
-        public User User { get; set; }
+        public string UserEmail { get; set; }
 
         // Who is assigned the issue
-        public int? ClaimedUserId { get; set; }
-        [ForeignKey("ClaimedUserId")]
-        public User ClaimedUser { get; set; }
+        public string? ClaimedUserEmail { get; set; }
 
         public List<ActionItem> ActionItems { get; set; }
     }

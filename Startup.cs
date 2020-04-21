@@ -41,18 +41,16 @@ namespace IssueTracker
             });
             services.AddDbContext<DatabaseContext>();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            services.AddAuthentication(options =>
            {
-               options.TokenValidationParameters = new TokenValidationParameters
-               {
-                   ValidateIssuer = false,
-                   ValidateAudience = false,
-                   ValidateLifetime = true,
-                   ValidateIssuerSigningKey = true,
-
-                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JWT_KEY"]))
-               };
+               options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+               options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+           }).AddJwtBearer(options =>
+           {
+               options.Authority = "https://dev-om43iisv.auth0.com/";
+               options.Audience = "https://localhost:5001";
            });
+
             services.Configure<ForwardedHeadersOptions>(options =>
             {
                 options.ForwardedHeaders =

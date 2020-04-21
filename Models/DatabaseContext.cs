@@ -12,8 +12,6 @@ namespace IssueTracker.Models
         public DbSet<Issue> Issues { get; set; }
         public DbSet<ActionItem> ActionItems { get; set; }
 
-        public DbSet<User> Users { get; set; }
-
         private string ConvertPostConnectionToConnectionString(string connection)
         {
             var _connection = connection.Replace("postgres://", String.Empty);
@@ -35,14 +33,5 @@ namespace IssueTracker.Models
                 optionsBuilder.UseNpgsql(conn);
             }
         }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>().HasMany(user => user.ClaimedIssues);
-
-            modelBuilder.Entity<Issue>().HasOne(issue => issue.ClaimedUser);
-            modelBuilder.Entity<Issue>().HasOne(issue => issue.User);
-        }
-
     }
 }

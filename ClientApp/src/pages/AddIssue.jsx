@@ -3,11 +3,14 @@ import axios from 'axios'
 import ActionItemInput from '../components/ActionItemInput'
 import Users from '../components/Users'
 import { Redirect } from 'react-router-dom'
+import { useAuth0 } from '../react-auth0-spa'
 
 const AddIssue = () => {
+  const { user } = useAuth0()
+  const { getTokenSilently } = useAuth0()
+  console.log(user)
+
   // Authorization
-  axios.defaults.headers.common['Authorization'] =
-    'Bearer ' + localStorage.getItem('token')
 
   // Hooks
   const [issueToAdd, setIssueToAdd] = useState({ ClaimedIssueId: null })
@@ -46,41 +49,48 @@ const AddIssue = () => {
   // Axios calls
 
   const addIssueToApi = async () => {
-    const response = await axios.get('api/profile')
+    // Set UserEmail on Issue
     setIssueToAdd(oldIssue => {
-      oldIssue['userId'] = response.data.id
+      oldIssue['userId'] = user.email
       return oldIssue
     })
 
+    // Get Token
+    const token = await getTokenSilently()
+    console.log(token)
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.id_token
+
     // Post Issue to Dd
-    const resp = await axios({
-      method: 'POST',
-      url: '/api/issue',
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('token'),
-      },
-      data: issueToAdd,
-    })
+    const resp = await axios.post('/api/issue', issueToAdd)
 
     console.log(resp.data.id)
 
     if (resp.status === 201) {
       // Add issue Id to list of Action Items
       setActionItemsToAdd(prevActionItems => {
-        prevActionItems.forEach(i => {i.issueId = resp.data.id})
+        prevActionItems.forEach(i => {
+          i.issueId = resp.data.id
+        })
         return prevActionItems
       })
 
       // Posts Action Items to Db with Issue Ids
-      await axios.post('/api/actionitem/list', actionItemsToAdd)
+      await axios({
+        method: 'POST',
+        url: '/api/actionitem/list',
+        headers: {
+          Authorization: 'Bearer ' + token.id_token,
+        },
+        data: actionItemsToAdd,
+      })
 
       setShouldRedirect(true)
     }
   }
 
-  if (shouldRedirect) {
-    return <Redirect to="/issues/my" />
-  }
+  // if (shouldRedirect) {
+  //   return <Redirect to="/issues/my" />
+  // }
 
   // Return a true or false for if all input fields
   const ActionItems = () => {
@@ -132,7 +142,7 @@ const AddIssue = () => {
       />
 
       <ActionItems />
-      <Users trackIssueDetails={trackIssueDetails} />
+      {/* <Users trackIssueDetails={trackIssueDetails} /> */}
       <button onClick={addIssueToApi}>Add Issue</button>
     </div>
   )

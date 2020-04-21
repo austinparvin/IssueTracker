@@ -1,90 +1,43 @@
-import React, { Component } from 'react'
-import { Route, Switch, Redirect } from 'react-router'
-import { Layout } from './components/Layout'
-import NotFound from './pages/NotFound'
-import './custom.scss'
+// src/App.js
+
+import React from 'react'
+import NavBar from './components/NavBar'
+import { useAuth0 } from './react-auth0-spa'
+
+import { Router, Route, Switch } from 'react-router-dom'
+import Profile from './components/Profile'
+import history from './utils/history'
+
+import PrivateRoute from './components/PrivateRoute'
 import MyIssues from './pages/MyIssues'
-import AddIssue from './pages/AddIssue'
-import IssueDetails from './pages/IssueDetails'
-import ClosedIssues from './pages/ClosedIssues'
-import SignUp from './pages/SignUp'
-import Login from './pages/Login'
-import EditIssue from './pages/EditIssue'
 import AvailableIssues from './pages/AvailableIssues'
-export default class App extends Component {
-  static displayName = App.name
+import AddIssue from './pages/AddIssue'
+import ClosedIssues from './pages/ClosedIssues'
 
-  render() {
-    return (
-      <Layout>
-        <Switch>
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/login" component={Login} />
-          <Route
-            exact
-            path="/"
-            render={() => {
-              if (localStorage.getItem('token')) {
-                return <MyIssues />
-              } else {
-                return <Redirect to="/login" />
-              }
-            }}
-          />
-          <Route
-            exact
-            path="/issues/my"
-            render={() => {
-              if (localStorage.getItem('token')) {
-                return <MyIssues />
-              } else {
-                return <Redirect to="/login" />
-              }
-            }}
-          />
-          <Route
-            exact
-            path="/issues/closed"
-            render={() => {
-              if (localStorage.getItem('token')) {
-                return <ClosedIssues />
-              } else {
-                return <Redirect to="/login" />
-              }
-            }}
-          />
-          <Route
-            exact
-            path="/issues/add"
-            render={() => {
-              if (localStorage.getItem('token')) {
-                return <AddIssue />
-              } else {
-                return <Redirect to="/login" />
-              }
-            }}
-          />
-          <Route
-            exact
-            path="/issues/avail"
-            render={() => {
-              if (localStorage.getItem('token')) {
-                return <AvailableIssues />
-              } else {
-                return <Redirect to="/login" />
-              }
-            }}
-          />
+function App() {
+  const { loading } = useAuth0()
 
-          <Route exact path="/issue/edit/:issueId" component={EditIssue} />
-          <Route
-            exact
-            path="/issue/details/:issueId"
-            component={IssueDetails}
-          />
-          <Route exact path="*" component={NotFound} />
-        </Switch>
-      </Layout>
-    )
+  if (loading) {
+    return <div>Loading...</div>
   }
+
+  return (
+    <div className="App">
+      <Router history={history}>
+        <header>
+          <NavBar />
+        </header>
+        <Switch>
+          <Route path="/" exact />
+          {/* <PrivateRoute path="/profile" component={Profile} /> */}
+          {/* <PrivateRoute path="/issues/my" component={MyIssues} /> */}
+          {/* <PrivateRoute path="/issues/avail" component={AvailableIssues} /> */}
+          <PrivateRoute path="/issues/add" component={AddIssue} />
+          {/* <PrivateRoute path="/issues/closed" component={ClosedIssues} /> */}
+        </Switch>
+      </Router>
+    </div>
+  )
 }
+
+export default App
