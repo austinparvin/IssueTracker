@@ -74,7 +74,12 @@ const AddIssue = () => {
 
     if (resp.status === 201) {
       // Add issue Id to list of Action Items
-     const actionItemsToAdd = descriptionsToAdd.map()
+      const actionItemsToAdd = descriptionsToAdd
+        .filter(description => description.length > 0)
+        .map(description => ({
+          description: description,
+          issueId: resp.data.id,
+        }))
 
       // Posts Action Items to Db with Issue Ids
       await axios({
@@ -83,7 +88,7 @@ const AddIssue = () => {
         headers: {
           Authorization: 'Bearer ' + token,
         },
-        data: descriptionsToAdd,
+        data: actionItemsToAdd,
       })
 
       setShouldRedirect(true)
