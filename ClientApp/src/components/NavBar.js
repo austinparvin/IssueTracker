@@ -53,18 +53,6 @@ const NavBar = () => {
 
       {isAuthenticated && (
         <span className="nav">
-          {/* <Link to="/issues/my">My</Link>
-          <Link to="/issues/avail">Available</Link>
-          <Link to="/issues/add">Add</Link>
-          <Link to="/issues/closed">Closed</Link>
-          <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-            <DropdownToggle caret>Settings</DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem header>Profile</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem onClick={() => logout()}>Logout</DropdownItem>
-            </DropdownMenu>
-          </Dropdown> */}
           <Nav pills>
             <NavItem>
               <NavLink

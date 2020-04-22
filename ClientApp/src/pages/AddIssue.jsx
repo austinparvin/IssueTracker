@@ -87,9 +87,9 @@ const AddIssue = () => {
     }
   }
 
-  // if (shouldRedirect) {
-  //   return <Redirect to="/issues/my" />
-  // }
+  if (shouldRedirect) {
+    return <Redirect to="/issues/my" />
+  }
 
   // Return a true or false for if all input fields
   const ActionItems = () => {
