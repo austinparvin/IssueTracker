@@ -141,7 +141,7 @@ const AddIssue = () => {
       />
 
       <ActionItems />
-      {/* <Users trackIssueDetails={trackIssueDetails} /> */}
+      <Users trackIssueDetails={trackIssueDetails} />
       <button onClick={addIssueToApi}>Add Issue</button>
     </div>
   )
