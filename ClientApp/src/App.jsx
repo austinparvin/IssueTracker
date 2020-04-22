@@ -7,7 +7,7 @@ import { useAuth0 } from './react-auth0-spa'
 import { Router, Route, Switch } from 'react-router-dom'
 import Profile from './components/Profile'
 import history from './utils/history'
-
+import './custom.scss'
 import PrivateRoute from './components/PrivateRoute'
 import MyIssues from './pages/MyIssues'
 import AvailableIssues from './pages/AvailableIssues'

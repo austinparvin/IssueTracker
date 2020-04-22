@@ -1,12 +1,10 @@
 /* Provide sufficient contrast against white background */
+#root {
+  font-family: Rubik;
+}
 
 a {
   color: #0366d6;
-}
-
-#root {
-  background-color: #659e60;
-  height: 700vh;
 }
 
 code {
@@ -18,7 +16,61 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
-
+span.nav {
+  display: flex;
+  justify-content: center;
+}
+.navbar {
+  padding: 1rem;
+  .login {
+    color: white;
+  }
+  button {
+    border-radius: 0.5rem;
+    background-color: white;
+    border-color: white;
+    color: #719e60;
+    margin-left: 1rem;
+  }
+}
+.nav-item {
+  color: yellow;
+}
+.promo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h1 {
+    margin: 2rem 1.5rem 0 1.5rem;
+    color: white;
+    font-weight: 500;
+    font-size: 1.5625rem;
+    text-align: center;
+  }
+  p {
+    margin: 2rem 1.5rem 2rem 1.5rem;
+    color: white;
+    font-weight: 300;
+    font-size: 1.3125rem;
+    text-align: center;
+  }
+  button {
+    align-self: center;
+    background-color: #d36300;
+    border-radius: 0.5rem;
+    border-color: #d36300;
+    width: 14.0625rem;
+    height: 3.4375rem;
+    color: white;
+    font-size: 1.3125rem;
+    font-weight: 500;
+  }
+}
+.App {
+  background-image: url('./images/mobile-promo-bg.png');
+  background-size: cover;
+  height: 170vh;
+}
 .empty-my-issues {
   color: #ebecf0;
   text-align: center;
