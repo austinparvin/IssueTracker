@@ -14,7 +14,7 @@ const AddIssue = () => {
 
   // Hooks
   const [issueToAdd, setIssueToAdd] = useState({ ClaimedIssueId: null })
-  const [actionItemsToAdd, setActionItemsToAdd] = useState([])
+  const [descriptionsToAdd, setDescriptionsToAdd] = useState([''])
   const [shouldRedirect, setShouldRedirect] = useState(false)
 
   // Hook Trackers
@@ -37,13 +37,21 @@ const AddIssue = () => {
     })
   }
 
-  const trackActionItemsToAdd = e => {
-    const value = e.target.value
-    const id = e.target.id
-    setActionItemsToAdd(oldActionItems => {
-      oldActionItems[id] = { description: value, issueId: 0 }
-      return oldActionItems
-    })
+  const trackActionItemsToAdd = (index, newDescription) => {
+    let newDescriptionsToAdd = [
+      ...descriptionsToAdd.slice(0, index),
+      newDescription,
+      ...descriptionsToAdd.slice(index + 1),
+    ].filter(description => description.length > 0)
+    const allFilled = newDescriptionsToAdd.every(
+      description => description.length > 0
+    )
+    console.log({ newDescriptionsToAdd, allFilled })
+
+    if (allFilled) {
+      newDescriptionsToAdd = newDescriptionsToAdd.concat([''])
+    }
+    setDescriptionsToAdd(newDescriptionsToAdd)
   }
 
   // Axios calls
@@ -66,12 +74,7 @@ const AddIssue = () => {
 
     if (resp.status === 201) {
       // Add issue Id to list of Action Items
-      setActionItemsToAdd(prevActionItems => {
-        prevActionItems.forEach(i => {
-          i.issueId = resp.data.id
-        })
-        return prevActionItems
-      })
+     const actionItemsToAdd = descriptionsToAdd.map()
 
       // Posts Action Items to Db with Issue Ids
       await axios({
@@ -80,7 +83,7 @@ const AddIssue = () => {
         headers: {
           Authorization: 'Bearer ' + token,
         },
-        data: actionItemsToAdd,
+        data: descriptionsToAdd,
       })
 
       setShouldRedirect(true)
@@ -89,37 +92,6 @@ const AddIssue = () => {
 
   if (shouldRedirect) {
     return <Redirect to="/issues/my" />
-  }
-
-  // Return a true or false for if all input fields
-  const ActionItems = () => {
-    const [inputList, setInputList] = useState([
-      <ActionItemInput
-        key="0"
-        id="0"
-        trackActionItemsToAdd={trackActionItemsToAdd}
-      />,
-    ])
-
-    // Adds Action Items
-    const onAddBtnClick = event => {
-      setInputList(
-        inputList.concat(
-          <ActionItemInput
-            key={inputList.length}
-            id={inputList.length}
-            trackActionItemsToAdd={trackActionItemsToAdd}
-          />
-        )
-      )
-    }
-
-    return (
-      <div className="action-item-input-list">
-        {inputList}
-        <button onClick={onAddBtnClick}>Add Action Item</button>
-      </div>
-    )
   }
 
   return (
@@ -139,8 +111,19 @@ const AddIssue = () => {
         cols="50"
         placeholder="Description..."
       />
-
-      <ActionItems />
+      {descriptionsToAdd.map((description, index) => (
+        <div className="action-item">
+          <input className="checkbox" type="checkbox" name="" id=""></input>
+          <input
+            onChange={event => trackActionItemsToAdd(index, event.target.value)}
+            value={description}
+            placeholder="Action Item..."
+            className="description"
+            type="text"
+            name=""
+          />
+        </div>
+      ))}
       <Users trackIssueDetails={trackIssueDetails} />
       <button onClick={addIssueToApi}>Add Issue</button>
     </div>
