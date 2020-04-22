@@ -31,7 +31,9 @@ const NavBar = () => {
               <Link className="login" to="/issues/my">
                 Log in
               </Link>
-              <button>Sign Up</button>
+              <Link className="login" to="/issues/my">
+                <button>Sign Up</button>
+              </Link>
             </section>
           </nav>
           <div className="promo">
@@ -42,9 +44,9 @@ const NavBar = () => {
               Trello’s boards, lists, and cards enable you to organize and
               prioritize your projects in a fun, flexible, and rewarding way
             </p>
-            <button onClick={() => loginWithRedirect({})}>
-              Sign Up - It's Free!
-            </button>
+            <Link className="signup-cta" to="/issues/my">
+              <button>Sign Up - It's Free!</button>
+            </Link>
           </div>
         </>
       )}

@@ -55,7 +55,6 @@ span.nav {
     text-align: center;
   }
   button {
-    align-self: center;
     background-color: #d36300;
     border-radius: 0.5rem;
     border-color: #d36300;
@@ -64,6 +63,10 @@ span.nav {
     color: white;
     font-size: 1.3125rem;
     font-weight: 500;
+  }
+  .signup-cta {
+    width: 14.0625rem;
+    align-self: center;
   }
 }
 .App {
