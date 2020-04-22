@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useAuth0 } from '../react-auth0-spa'
 import { Link } from 'react-router-dom'
 import { ReactComponent as ReactLogo } from '../images/logo.svg'
+import { NavLink as RRNavLink } from 'react-router-dom'
 import {
   Nav,
   NavItem,
@@ -27,10 +28,10 @@ const NavBar = () => {
           <nav className="navbar">
             <ReactLogo />
             <section className="login-signup">
-              <span className="login" onClick={() => loginWithRedirect({})}>
+              <Link className="login" to="/issues/my">
                 Log in
-              </span>
-              <button onClick={() => loginWithRedirect({})}>Sign Up</button>
+              </Link>
+              <button>Sign Up</button>
             </section>
           </nav>
           <div className="promo">
@@ -64,23 +65,38 @@ const NavBar = () => {
           </Dropdown> */}
           <Nav pills>
             <NavItem>
-              <NavLink href="/issues/my">My</NavLink>
+              <NavLink
+                tag={RRNavLink}
+                exact
+                to="/issues/my"
+                activeClassName="active"
+              >
+                My
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/issues/avail">Avail</NavLink>
+              <NavLink tag={RRNavLink} exact to="/issues/avail">
+                Avail
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/issues/add">Add</NavLink>
+              <NavLink tag={RRNavLink} exact to="/issues/add">
+                Add
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/issues/closed">Closed</NavLink>
+              <NavLink tag={RRNavLink} exact to="/issues/closed">
+                Closed
+              </NavLink>
             </NavItem>
             <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
               <DropdownToggle nav caret>
                 Set
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem>Profile</DropdownItem>
+                <DropdownItem tag={RRNavLink} exact to="/profile">
+                  Profile
+                </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem onClick={() => logout()}>Logout</DropdownItem>
               </DropdownMenu>
