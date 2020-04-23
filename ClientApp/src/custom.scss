@@ -33,9 +33,31 @@ span.nav {
     margin-left: 1rem;
   }
 }
-.nav-item {
-  color: yellow;
+
+span.nav {
+  background-color: #3d7b38;
+  justify-content: flex-start;
+  ul {
+    width: 100%;
+  }
+  .nav-link {
+    color: white;
+    -webkit-box-shadow: inset 2px -2px 7px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 2px -2px 7px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 2px -2px 7px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 0;
+  }
+  .nav-link.active {
+    background-color: #719e60;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  li.nav-item {
+    width: 20%;
+    text-align: center;
+  }
 }
+
 .promo {
   display: flex;
   flex-direction: column;
@@ -75,6 +97,8 @@ span.nav {
   height: 170vh;
 }
 .empty-my-issues {
+  background-color: #719e60;
+  height: inherit;
   color: #ebecf0;
   text-align: center;
   button {
@@ -92,8 +116,14 @@ span.nav {
 }
 
 .add-issue {
+  background-color: #719e60;
+  height: inherit;
+  padding: 2rem 0 0 0;
+}
+
+.add-issue-form {
   background-color: #ebecf0;
-  margin: 2rem;
+  margin: 0 2rem;
   border: black solid 2px;
   display: flex;
   flex-direction: column;
@@ -144,9 +174,10 @@ span.nav {
 }
 
 .my-issues {
+  background-color: #719e60;
+  height: inherit;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   a {
     color: black;
     text-decoration: none;

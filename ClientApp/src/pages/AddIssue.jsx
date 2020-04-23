@@ -101,36 +101,40 @@ const AddIssue = () => {
 
   return (
     <div className="add-issue">
-      <input
-        onChange={trackIssueDetails}
-        type="text"
-        className="title"
-        name="title"
-        placeholder="Title..."
-      />
+      <div className="add-issue-form">
+        <input
+          onChange={trackIssueDetails}
+          type="text"
+          className="title"
+          name="title"
+          placeholder="Title..."
+        />
 
-      <textarea
-        onChange={trackIssueDetails}
-        name="description"
-        rows="4"
-        cols="50"
-        placeholder="Description..."
-      />
-      {descriptionsToAdd.map((description, index) => (
-        <div className="action-item">
-          <input className="checkbox" type="checkbox" name="" id=""></input>
-          <input
-            onChange={event => trackActionItemsToAdd(index, event.target.value)}
-            value={description}
-            placeholder="Action Item..."
-            className="description"
-            type="text"
-            name=""
-          />
-        </div>
-      ))}
-      <Users trackIssueDetails={trackIssueDetails} />
-      <button onClick={addIssueToApi}>Add Issue</button>
+        <textarea
+          onChange={trackIssueDetails}
+          name="description"
+          rows="4"
+          cols="50"
+          placeholder="Description..."
+        />
+        {descriptionsToAdd.map((description, index) => (
+          <div className="action-item">
+            <input className="checkbox" type="checkbox" name="" id=""></input>
+            <input
+              onChange={event =>
+                trackActionItemsToAdd(index, event.target.value)
+              }
+              value={description}
+              placeholder="Action Item..."
+              className="description"
+              type="text"
+              name=""
+            />
+          </div>
+        ))}
+        <Users trackIssueDetails={trackIssueDetails} />
+        <button onClick={addIssueToApi}>Add Issue</button>
+      </div>
     </div>
   )
 }
