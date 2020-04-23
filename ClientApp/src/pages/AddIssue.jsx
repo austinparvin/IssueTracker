@@ -119,7 +119,13 @@ const AddIssue = () => {
         />
         {descriptionsToAdd.map((description, index) => (
           <div className="action-item">
-            <input className="checkbox" type="checkbox" name="" id=""></input>
+            <input
+              className="checkbox"
+              type="checkbox"
+              name=""
+              id=""
+              disabled
+            ></input>
             <input
               onChange={event =>
                 trackActionItemsToAdd(index, event.target.value)

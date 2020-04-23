@@ -37,10 +37,15 @@ span.nav {
 span.nav {
   background-color: #3d7b38;
   justify-content: flex-start;
+  div.dropdown-menu.show {
+    transform: translate3d(-40px, 40px, 0px);
+    min-width: 0;
+  }
   ul {
     width: 100%;
   }
   .nav-link {
+    padding: 8px;
     color: white;
     -webkit-box-shadow: inset 2px -2px 7px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: inset 2px -2px 7px 0px rgba(0, 0, 0, 0.75);
@@ -123,8 +128,9 @@ span.nav {
 
 .add-issue-form {
   background-color: #ebecf0;
+  border-radius: 8px;
   margin: 0 2rem;
-  border: black solid 2px;
+  border: #979797 solid 1px;
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
@@ -137,17 +143,17 @@ span.nav {
     margin: 0rem;
     padding: 1.5rem;
     width: 100%;
-    box-shadow: 2px 2px;
+    box-shadow: 2px 2px 4px;
   }
   input {
-    border: black solid 2px;
+    border: #979797 solid 2px;
     margin-bottom: 0.5rem;
     padding: 0 5px;
   }
   textarea {
     align-content: flex-start;
     height: 20vh;
-    border: black solid 2px;
+    border: #979797 solid 2px;
     padding: 0 5px;
   }
   div.action-item {
@@ -178,6 +184,7 @@ span.nav {
   height: inherit;
   display: flex;
   flex-direction: column;
+  padding-top: 1.5rem;
   a {
     color: black;
     text-decoration: none;
@@ -235,13 +242,21 @@ select#users {
   margin: 1rem 0;
 }
 
+.issue-details-page {
+  background-color: #719e60;
+  height: inherit;
+  padding-top: 1.5rem;
+  p {
+    padding-top: 0.5rem;
+  }
+}
 .issue-details,
 .issue-card {
   box-shadow: 0px 1px 5px 1px rgb(83, 83, 83);
   background-color: #ebecf0;
-  margin: 1.5rem;
-  border: black solid 2px;
-  border-radius: 3px;
+  margin: 0 1.5rem 1.5rem;
+  border: #979797 solid 1px;
+  border-radius: 8px;
   padding: 1rem;
 
   overflow: hidden;

@@ -60,29 +60,31 @@ const IssueDetails = props => {
     )
   }
   return (
-    <section className="issue-details">
-      <div>
-        <header>{issue.title}</header>
-      </div>
-      <p>{issue.description}</p>
-      <ListOfActionItems issueId={issueId} />
-      <div className="buttons">
-        {!issue.claimedUserEmail ? (
-          <button onClick={claimIssue}>Claim Issue</button>
-        ) : (
-          ''
-        )}
-        <div className="icons">
-          <Link to={`/issue/edit/${issue.id}`}>
-            <div className="edit"> &#x270F;</div>
-          </Link>
-          <div onClick={closeIssue} className="close">
-            &#x2612;
-          </div>
-          {user.email === issue.userEmail ? <DeleteButton /> : null}
+    <div className="issue-details-page">
+      <section className="issue-details">
+        <div>
+          <header>{issue.title}</header>
         </div>
-      </div>
-    </section>
+        <p>{issue.description}</p>
+        <ListOfActionItems issueId={issueId} />
+        <div className="buttons">
+          {!issue.claimedUserEmail ? (
+            <button onClick={claimIssue}>Claim Issue</button>
+          ) : (
+            ''
+          )}
+          <div className="icons">
+            <Link to={`/issue/edit/${issue.id}`}>
+              <div className="edit"> &#x270F;</div>
+            </Link>
+            <div onClick={closeIssue} className="close">
+              &#x2612;
+            </div>
+            {user.email === issue.userEmail ? <DeleteButton /> : null}
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }
 
