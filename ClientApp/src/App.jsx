@@ -18,16 +18,16 @@ import IssueDetails from './pages/IssueDetails'
 import NotFound from './pages/NotFound'
 
 function App() {
-  const { loading } = useAuth0()
+  const { isAuthenticated, loading } = useAuth0()
 
   if (loading) {
     return <div>Loading...</div>
   }
 
   return (
-    <div className="App">
+    <div className={isAuthenticated ? 'App' : 'PromoApp'}>
       <Router history={history}>
-        <header>
+        <header className="links">
           <NavBar />
         </header>
         <Switch>

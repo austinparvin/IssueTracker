@@ -100,7 +100,7 @@ const AddIssue = () => {
   }
 
   return (
-    <div className="add-issue">
+    <section className="add-issue">
       <div className="add-issue-form">
         <input
           onChange={trackIssueDetails}
@@ -141,7 +141,7 @@ const AddIssue = () => {
         <Users trackIssueDetails={trackIssueDetails} />
         <button onClick={addIssueToApi}>Add Issue</button>
       </div>
-    </div>
+    </section>
   )
 }
 

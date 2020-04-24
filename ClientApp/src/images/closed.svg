@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="44px" viewBox="0 0 50 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="list-of-issues" transform="translate(-27.000000, -282.000000)" fill="#FFFEFE" stroke="#979797" stroke-width="2">
+            <g id="sidebar-nav" transform="translate(0.000000, 63.000000)">
+                <g id="create-issue" transform="translate(0.000000, 190.000000)">
+                    <g id="Group" transform="translate(27.000000, 29.000000)">
+                        <path d="M43,1 L1,1 L1,36 C1,37.9329966 1.78350169,39.6829966 3.05025253,40.9497475 C4.31700338,42.2164983 6.06700338,43 8,43 L36,43 C37.9329966,43 39.6829966,42.2164983 40.9497475,40.9497475 C42.2164983,39.6829966 43,37.9329966 43,36 L43,1 Z" id="Rectangle"></path>
+                        <path d="M43.1673853,1 L1.20407053,1.01647457 L6.77674519,31.268137 C7.0826283,32.9286453 7.95944802,34.3616111 9.18190864,35.3794497 C10.4043693,36.3972884 11.9724708,37 13.6609175,37 L41.3917141,37 C41.8170676,37 42.2415358,36.9612304 42.6598511,36.8841723 C44.5608628,36.533986 46.1399648,35.4464145 47.1562673,33.9711367 C48.1725698,32.4958588 48.6260728,30.6328747 48.2758864,28.731863 L43.1673853,1 Z" id="Rectangle"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

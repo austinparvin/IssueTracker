@@ -4,6 +4,10 @@ import React, { useState } from 'react'
 import { useAuth0 } from '../react-auth0-spa'
 import { Link } from 'react-router-dom'
 import { ReactComponent as ReactLogo } from '../images/logo.svg'
+import { ReactComponent as AddIcon } from '../images/add.svg'
+import { ReactComponent as AccountIcon } from '../images/account-icon.svg'
+import { ReactComponent as AvailIcon } from '../images/card.svg'
+import { ReactComponent as ClosedIcon } from '../images/closed.svg'
 import { NavLink as RRNavLink } from 'react-router-dom'
 import {
   Nav,
@@ -61,27 +65,31 @@ const NavBar = () => {
                 to="/issues/my"
                 activeClassName="active"
               >
-                My
+                <AccountIcon className="hide" />
+                My <span className="hide">Issues</span>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink tag={RRNavLink} exact to="/issues/avail">
-                Avail
+                <AvailIcon className="hide" />
+                Avail<span className="hide">able Issues</span>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink tag={RRNavLink} exact to="/issues/add">
-                Add
+                <AddIcon className="hide" />
+                Add <span className="hide">Issues</span>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink tag={RRNavLink} exact to="/issues/closed">
-                Closed
+                <ClosedIcon className="hide" />
+                Closed <span className="hide">Issues</span>
               </NavLink>
             </NavItem>
             <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
               <DropdownToggle nav caret>
-                Set
+                Set<span className="hide">tings</span>
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem tag={RRNavLink} exact to="/profile">
