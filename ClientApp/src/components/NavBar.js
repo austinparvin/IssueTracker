@@ -121,23 +121,11 @@ const NavBar = () => {
                   Closed <span className="hide">Issues</span>
                 </NavLink>
               </NavItem>
-              <Dropdown
-                className="hide-desktop"
-                nav
-                isOpen={dropdownOpen}
-                toggle={toggle}
-              >
-                <DropdownToggle nav caret>
-                  Set
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem tag={RRNavLink} exact to="/profile">
-                    Profile
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem onClick={() => logout()}>Logout</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
+              <NavItem className="hide-desktop">
+                <NavLink tag={RRNavLink} exact to="/profile">
+                  Profile
+                </NavLink>
+              </NavItem>
             </Nav>
           </span>
         </>
