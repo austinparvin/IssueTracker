@@ -6,7 +6,6 @@ import { BrowserRouter } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker'
 
 import { Auth0Provider } from './react-auth0-spa'
-import config from './auth_config.json'
 import history from './utils/history'
 
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href')
@@ -22,8 +21,8 @@ const onRedirectCallback = appState => {
 
 ReactDOM.render(
   <Auth0Provider
-    domain={config.domain}
-    client_id={config.clientId}
+    domain={process.env.REACT_APP_AUTH0_DOMAIN}
+    client_id={process.env.REACT_APP_AUTH0_CLIENT_ID}
     redirect_uri={window.location.origin}
     onRedirectCallback={onRedirectCallback}
   >
