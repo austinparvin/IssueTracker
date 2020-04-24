@@ -146,7 +146,7 @@ const EditIssue = props => {
   }
 
   return (
-    <div className="add-issue">
+    <div className="edit-issue">
       <input
         onChange={trackIssueDetails}
         type="text"

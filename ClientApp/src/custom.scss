@@ -2,249 +2,253 @@
 #root {
   font-family: Rubik;
 }
+
+.hide {
+  display: none;
+}
+
 html,
 body,
 div#root {
   height: 100%;
-}
-a {
-  color: #0366d6;
+  .App {
+    height: 100%;
+    header {
+      div {
+        nav.fixed-top-nav {
+          display: none;
+        }
+        span.nav {
+          background-color: #3d7b38;
+          justify-content: flex-start;
+          div.dropdown-menu.show {
+            transform: translate3d(-40px, 40px, 0px);
+            min-width: 0;
+          }
+          ul {
+            width: 100%;
+          }
+          .nav-link {
+            padding: 8px;
+            color: white;
+            -webkit-box-shadow: inset 2px -2px 7px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: inset 2px -2px 7px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: inset 2px -2px 7px 0px rgba(0, 0, 0, 0.75);
+            border-radius: 0;
+          }
+          .nav-link.active {
+            background-color: #719e60;
+            border-radius: 0;
+            box-shadow: none;
+          }
+          li.nav-item {
+            width: 20%;
+            text-align: center;
+          }
+        }
+      }
+    }
+    // Main Sections
+    // Empty
+    .empty-my-issues {
+      background-color: #719e60;
+      height: auto;
+      color: #ebecf0;
+      text-align: center;
+      min-height: 100%;
+      button {
+        font-weight: bold;
+        border: 0.15rem solid;
+        padding: 2rem;
+        width: 70%;
+        box-shadow: 2px 2px;
+      }
+      header {
+        text-align: center;
+        font-size: 2.7rem;
+        padding: 5rem 2rem;
+      }
+    }
+    // Adding Issue
+    .add-issue {
+      background-color: #719e60;
+      height: inherit;
+      padding: 2rem 0 0 0;
+
+      .add-issue-form {
+        background-color: #ebecf0;
+        border-radius: 8px;
+        margin: 0 2rem;
+        border: #979797 solid 1px;
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem;
+        box-shadow: 0px 1px 5px 1px rgb(83, 83, 83);
+
+        button {
+          align-self: center;
+          font-weight: bold;
+          border: 0.15rem solid;
+          margin: 0rem;
+          padding: 1.5rem;
+          width: 100%;
+          box-shadow: 2px 2px 4px;
+        }
+        input {
+          border: #979797 solid 2px;
+          margin-bottom: 0.5rem;
+          padding: 0 5px;
+        }
+        textarea {
+          align-content: flex-start;
+          height: 20vh;
+          border: #979797 solid 2px;
+          padding: 0 5px;
+        }
+        div.action-item {
+          display: flex;
+          justify-content: flex-start;
+          .checkbox {
+            margin: auto 0.5rem;
+            width: 1rem;
+          }
+          .description {
+            margin: 0.5rem 0;
+            width: 100%;
+            border: gray solid 2px;
+          }
+        }
+        div {
+          display: flex;
+          justify-content: space-between;
+
+          input {
+            width: 80%;
+          }
+        }
+      }
+    }
+    // if list of issues
+    .my-issues {
+      background-color: #719e60;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      padding-top: 1.5rem;
+      a {
+        color: black;
+        text-decoration: none;
+      }
+      .icons {
+        display: none;
+      }
+      button {
+        display: none;
+      }
+      .issue-card {
+        padding: 1rem;
+        height: 25vh;
+        header {
+          width: 100%;
+          border-bottom: 1px solid black;
+          font-size: 1rem;
+          font-weight: bold;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1; /* number of lines to show */
+          line-height: 1.5rem; /* fallback */
+          max-height: 4rem;
+          margin-bottom: 0.5rem;
+        }
+
+        p {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2; /* number of lines to show */
+          line-height: 1.2rem; /* fallback */
+          max-height: 3rem;
+          margin-bottom: 0.5rem;
+        }
+      }
+      .checkbox {
+        .cover {
+          width: 100%;
+          height: 100%;
+          background: transparent;
+          position: absolute;
+          z-index: 2;
+          top: 0;
+          left: 0;
+          display: none;
+        }
+      }
+    }
+    // Issue Details Page
+    .issue-details-page {
+      background-color: #719e60;
+      height: inherit;
+      padding-top: 1.5rem;
+      header {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
 }
 
-code {
-  color: #e01a76;
-}
-.App {
-  height: 100%;
-}
-.empty-my-issues {
-  height: auto;
-  min-height: 100%;
-}
-.hide {
-  display: none;
-}
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-.navbar {
-  padding: 1rem;
-  .login {
-    color: white;
-  }
-  button {
-    border-radius: 0.5rem;
-    background-color: white;
-    border-color: white;
-    color: #719e60;
-    margin-left: 1rem;
-  }
-}
-.fixed-top-nav {
-  display: none;
-}
-span.nav {
-  background-color: #3d7b38;
-  justify-content: flex-start;
-  div.dropdown-menu.show {
-    transform: translate3d(-40px, 40px, 0px);
-    min-width: 0;
-  }
-  ul {
-    width: 100%;
-  }
-  .nav-link {
-    padding: 8px;
-    color: white;
-    -webkit-box-shadow: inset 2px -2px 7px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: inset 2px -2px 7px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: inset 2px -2px 7px 0px rgba(0, 0, 0, 0.75);
-    border-radius: 0;
-  }
-  .nav-link.active {
-    background-color: #719e60;
-    border-radius: 0;
-    box-shadow: none;
-  }
-  li.nav-item {
-    width: 20%;
-    text-align: center;
-  }
-}
-
-.promo {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  h1 {
-    margin: 2rem 1.5rem 0 1.5rem;
-    color: white;
-    font-weight: 500;
-    font-size: 1.5625rem;
-    text-align: center;
-  }
-  p {
-    margin: 2rem 1.5rem 2rem 1.5rem;
-    color: white;
-    font-weight: 300;
-    font-size: 1.3125rem;
-    text-align: center;
-  }
-  button {
-    background-color: #d36300;
-    border-radius: 0.5rem;
-    border-color: #d36300;
-    width: 14.0625rem;
-    height: 3.4375rem;
-    color: white;
-    font-size: 1.3125rem;
-    font-weight: 500;
-  }
-  .signup-cta {
-    width: 14.0625rem;
-    align-self: center;
-  }
-}
+// Promo page styles
 .PromoApp {
   background-image: url('./images/mobile-promo-bg.png');
   background-size: cover;
   height: 170vh;
-}
-.empty-my-issues {
-  background-color: #719e60;
-  height: auto;
-  color: #ebecf0;
-  text-align: center;
-  button {
-    font-weight: bold;
-    border: 0.15rem solid;
-    padding: 2rem;
-    width: 70%;
-    box-shadow: 2px 2px;
-  }
-  header {
-    text-align: center;
-    font-size: 2.7rem;
-    padding: 5rem 2rem;
-  }
-}
-
-.add-issue {
-  background-color: #719e60;
-  height: inherit;
-  padding: 2rem 0 0 0;
-}
-
-.add-issue-form {
-  background-color: #ebecf0;
-  border-radius: 8px;
-  margin: 0 2rem;
-  border: #979797 solid 1px;
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem;
-  box-shadow: 0px 1px 5px 1px rgb(83, 83, 83);
-
-  button {
-    align-self: center;
-    font-weight: bold;
-    border: 0.15rem solid;
-    margin: 0rem;
-    padding: 1.5rem;
-    width: 100%;
-    box-shadow: 2px 2px 4px;
-  }
-  input {
-    border: #979797 solid 2px;
-    margin-bottom: 0.5rem;
-    padding: 0 5px;
-  }
-  textarea {
-    align-content: flex-start;
-    height: 20vh;
-    border: #979797 solid 2px;
-    padding: 0 5px;
-  }
-  div.action-item {
-    display: flex;
-    justify-content: flex-start;
-    .checkbox {
-      margin: auto 0.5rem;
-      width: 1rem;
-    }
-    .description {
-      margin: 0.5rem 0;
-      width: 100%;
-      border: gray solid 2px;
-    }
-  }
-  div {
-    display: flex;
-    justify-content: space-between;
-
-    input {
-      width: 80%;
-    }
-  }
-}
-
-.my-issues {
-  background-color: #719e60;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  padding-top: 1.5rem;
-  a {
-    color: black;
-    text-decoration: none;
-  }
-  .icons {
-    display: none;
-  }
-  button {
-    display: none;
-  }
-  .issue-card {
+  .navbar {
     padding: 1rem;
-    height: 25vh;
-    header {
-      width: 100%;
-      border-bottom: 1px solid black;
-      font-size: 1rem;
-      font-weight: bold;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1; /* number of lines to show */
-      line-height: 1.5rem; /* fallback */
-      max-height: 4rem;
-      margin-bottom: 0.5rem;
+    .login {
+      color: white;
     }
-
-    p {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2; /* number of lines to show */
-      line-height: 1.2rem; /* fallback */
-      max-height: 3rem;
-      margin-bottom: 0.5rem;
+    button {
+      border-radius: 0.5rem;
+      background-color: white;
+      border-color: white;
+      color: #719e60;
+      margin-left: 1rem;
     }
   }
-  .checkbox {
-    .cover {
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      position: absolute;
-      z-index: 2;
-      top: 0;
-      left: 0;
-      display: none;
+
+  .promo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h1 {
+      margin: 2rem 1.5rem 0 1.5rem;
+      color: white;
+      font-weight: 500;
+      font-size: 1.5625rem;
+      text-align: center;
+    }
+    p {
+      margin: 2rem 1.5rem 2rem 1.5rem;
+      color: white;
+      font-weight: 300;
+      font-size: 1.3125rem;
+      text-align: center;
+    }
+    button {
+      background-color: #d36300;
+      border-radius: 0.5rem;
+      border-color: #d36300;
+      width: 14.0625rem;
+      height: 3.4375rem;
+      color: white;
+      font-size: 1.3125rem;
+      font-weight: 500;
+    }
+    .signup-cta {
+      width: 14.0625rem;
+      align-self: center;
     }
   }
 }
@@ -253,14 +257,6 @@ select#users {
   margin: 1rem 0;
 }
 
-.issue-details-page {
-  background-color: #719e60;
-  height: inherit;
-  padding-top: 1.5rem;
-  header {
-    margin-bottom: 0.5rem;
-  }
-}
 .issue-details,
 .issue-card {
   box-shadow: 0px 1px 5px 1px rgb(83, 83, 83);
@@ -321,80 +317,95 @@ select#users {
   .hide-desktop {
     display: none;
   }
-  .fixed-top-nav {
-    padding: 0 1rem;
-    box-shadow: 0px 2px 9px 0px rgba(0, 0, 0, 0.75);
-    z-index: 1; /* Stay on top */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    background-color: #3d7b38;
-    width: 100%;
-    height: 64px;
-    .search-bar,
-    .settings {
-      .nav-link {
-        padding: 0;
-      }
-      li {
-        list-style: none;
-      }
-      display: flex;
-      align-items: center;
-      margin: 0;
-      width: auto;
-    }
-  }
-  .link-icon {
-    padding-right: 1.5rem;
-    width: 80px;
-  }
   .hide {
     display: inline;
   }
-  span.nav {
-    display: flex;
-    flex-direction: column;
-    li.nav-item {
-      width: 100%;
-      text-align: left;
-      a {
-        display: flex;
-        padding-left: 1.5rem;
-        height: 7rem;
-        align-items: center;
-      }
-    }
-  }
-  .empty-my-issues {
-    height: auto;
-    min-height: 100%;
-  }
-  .my-issues {
-    height: auto;
-  }
-  .App {
-    background-color: #3d7b38;
-    height: auto;
-    min-height: 100%;
-    display: flex;
-    span.nav {
-      width: 240px;
+  html,
+  body,
+  div#root {
+    .App {
       background-color: #3d7b38;
-      margin-top: 64px;
-      height: 100%;
-      position: fixed; /* Set the navbar to fixed position */
-      top: 0; /* Position the navbar at the top of the page */
-    }
-    section {
-      margin-left: 240px;
-      margin-top: 64px;
-      width: 100%;
       height: auto;
       min-height: 100%;
-      .issue-card {
-        margin: 1rem;
+      display: flex;
+      header.links {
+        div {
+          .fixed-top-nav {
+            padding: 0 1rem;
+            box-shadow: 0px 2px 9px 0px rgba(0, 0, 0, 0.75);
+            z-index: 1; /* Stay on top */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+            background-color: #3d7b38;
+            width: 100%;
+            height: 64px;
+            .search-bar,
+            .settings {
+              .nav-link {
+                padding: 0;
+              }
+              li {
+                list-style: none;
+              }
+              display: flex;
+              align-items: center;
+              margin: 0;
+              width: auto;
+            }
+          }
+          span.nav {
+            width: 240px;
+            background-color: #3d7b38;
+            margin-top: 64px;
+            height: 100%;
+            position: fixed; /* Set the navbar to fixed position */
+            top: 0; /* Position the navbar at the top of the page */
+            display: flex;
+            flex-direction: column;
+            li.nav-item {
+              width: 100%;
+              text-align: left;
+              a {
+                display: flex;
+                padding-left: 1.5rem;
+                height: 7rem;
+                align-items: center;
+                .link-icon {
+                  padding-right: 1.5rem;
+                  width: 80px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .section {
+        margin-left: 240px;
+        margin-top: 64px;
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+      }
+      .my-issues {
+        @extend .section;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        a {
+          margin: 0.5rem;
+          width: 13rem;
+          height: 20rem;
+        }
+      }
+      .empty-my-issues {
+        @extend .section;
+        height: auto;
+        min-height: 100%;
+      }
+      .add-issue {
+        @extend .section;
       }
     }
   }

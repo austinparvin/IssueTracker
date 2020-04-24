@@ -60,7 +60,7 @@ const IssueDetails = props => {
     )
   }
   return (
-    <div className="issue-details-page">
+    <section className="issue-details-page">
       <section className="issue-details">
         <div>
           <header>{issue.title}</header>
@@ -84,7 +84,7 @@ const IssueDetails = props => {
           </div>
         </div>
       </section>
-    </div>
+    </section>
   )
 }
 
