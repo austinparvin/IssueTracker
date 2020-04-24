@@ -42,7 +42,9 @@ code {
     margin-left: 1rem;
   }
 }
-
+.fixed-top-nav {
+  display: none;
+}
 span.nav {
   background-color: #3d7b38;
   justify-content: flex-start;
@@ -316,6 +318,38 @@ select#users {
 }
 
 @media (min-width: 720px) {
+  .hide-desktop {
+    display: none;
+  }
+  .fixed-top-nav {
+    padding: 0 1rem;
+    box-shadow: 0px 2px 9px 0px rgba(0, 0, 0, 0.75);
+    z-index: 1; /* Stay on top */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    background-color: #3d7b38;
+    width: 100%;
+    height: 64px;
+    .search-bar,
+    .settings {
+      .nav-link {
+        padding: 0;
+      }
+      li {
+        list-style: none;
+      }
+      display: flex;
+      align-items: center;
+      margin: 0;
+      width: auto;
+    }
+  }
+  .link-icon {
+    padding-right: 1.5rem;
+    width: 80px;
+  }
   .hide {
     display: inline;
   }
@@ -327,7 +361,7 @@ select#users {
       text-align: left;
       a {
         display: flex;
-        padding-left: 2rem;
+        padding-left: 1.5rem;
         height: 7rem;
         align-items: center;
       }
@@ -345,15 +379,17 @@ select#users {
     height: auto;
     min-height: 100%;
     display: flex;
-    header.links {
+    span.nav {
       width: 240px;
       background-color: #3d7b38;
+      margin-top: 64px;
       height: 100%;
       position: fixed; /* Set the navbar to fixed position */
       top: 0; /* Position the navbar at the top of the page */
     }
     section {
       margin-left: 240px;
+      margin-top: 64px;
       width: 100%;
       height: auto;
       min-height: 100%;

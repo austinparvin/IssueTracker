@@ -56,51 +56,76 @@ const NavBar = () => {
       )}
 
       {isAuthenticated && (
-        <span className="nav">
-          <Nav pills>
-            <NavItem>
-              <NavLink
-                tag={RRNavLink}
-                exact
-                to="/issues/my"
-                activeClassName="active"
+        <>
+          <nav className="fixed-top-nav">
+            <ReactLogo />
+            <section className="search-bar">search</section>
+            <section className="settings">
+              <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
+                <DropdownToggle nav caret>
+                  <AccountIcon />
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem tag={RRNavLink} exact to="/profile">
+                    Profile
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem onClick={() => logout()}>Logout</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </section>
+          </nav>
+          <span className="nav">
+            <Nav pills>
+              <NavItem>
+                <NavLink
+                  tag={RRNavLink}
+                  exact
+                  to="/issues/my"
+                  activeClassName="active"
+                >
+                  <AccountIcon className="hide link-icon" />
+                  My <span className="hide">Issues</span>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={RRNavLink} exact to="/issues/avail">
+                  <AvailIcon className="hide link-icon" />
+                  Avail<span className="hide">able Issues</span>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={RRNavLink} exact to="/issues/add">
+                  <AddIcon className="hide link-icon" />
+                  Add <span className="hide">Issues</span>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={RRNavLink} exact to="/issues/closed">
+                  <ClosedIcon className="hide link-icon" />
+                  Closed <span className="hide">Issues</span>
+                </NavLink>
+              </NavItem>
+              <Dropdown
+                className="hide-desktop"
+                nav
+                isOpen={dropdownOpen}
+                toggle={toggle}
               >
-                <AccountIcon className="hide" />
-                My <span className="hide">Issues</span>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={RRNavLink} exact to="/issues/avail">
-                <AvailIcon className="hide" />
-                Avail<span className="hide">able Issues</span>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={RRNavLink} exact to="/issues/add">
-                <AddIcon className="hide" />
-                Add <span className="hide">Issues</span>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={RRNavLink} exact to="/issues/closed">
-                <ClosedIcon className="hide" />
-                Closed <span className="hide">Issues</span>
-              </NavLink>
-            </NavItem>
-            <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
-              <DropdownToggle nav caret>
-                Set<span className="hide">tings</span>
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem tag={RRNavLink} exact to="/profile">
-                  Profile
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem onClick={() => logout()}>Logout</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </Nav>
-        </span>
+                <DropdownToggle nav caret>
+                  Set
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem tag={RRNavLink} exact to="/profile">
+                    Profile
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem onClick={() => logout()}>Logout</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </Nav>
+          </span>
+        </>
       )}
     </div>
   )
