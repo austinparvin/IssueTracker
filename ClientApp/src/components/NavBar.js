@@ -8,6 +8,7 @@ import { ReactComponent as AddIcon } from '../images/add.svg'
 import { ReactComponent as AccountIcon } from '../images/account-icon.svg'
 import { ReactComponent as AvailIcon } from '../images/card.svg'
 import { ReactComponent as ClosedIcon } from '../images/closed.svg'
+import Laptop from '../images/laptop.png'
 import { NavLink as RRNavLink } from 'react-router-dom'
 import {
   Nav,
@@ -33,24 +34,38 @@ const NavBar = () => {
             <ReactLogo />
             <section className="login-signup">
               <Link className="login" to="/issues/my">
-                Log in
+                LOGIN
               </Link>
               <Link className="login" to="/issues/my">
-                <button>Sign Up</button>
+                <button>SIGN UP</button>
               </Link>
             </section>
           </nav>
           <div className="promo">
-            <h1>
-              Trello lets you work more collaboratively and get more done.
-            </h1>
-            <p>
-              Trello’s boards, lists, and cards enable you to organize and
-              prioritize your projects in a fun, flexible, and rewarding way
-            </p>
-            <Link className="signup-cta" to="/issues/my">
-              <button>Sign Up - It's Free!</button>
-            </Link>
+            <div className="left-column">
+              <h1>
+                Ladybug lets you work more efficiently and track progress.
+              </h1>
+              <p>
+                Ladybug’s interface, cards, and lists enable you to track and
+                detail your projects issues in a streamlined, quick way
+              </p>
+              <Link className="signup-cta" to="/issues/my">
+                <button>Sign Up - It's Free!</button>
+              </Link>
+            </div>
+          </div>
+          <div className="promo-row-2">
+            <div className="left-column flex-item">
+              <h1>TRACK ISSUES SEEMLESSLY WITH ISSUE CARDS</h1>
+              <p>
+                Ladybug’s interface, cards, and lists enable you to track and
+                detail your projects issues in a streamlined, quick way
+              </p>
+            </div>
+            <div className="laptop flex-item">
+              <img src={Laptop} alt="Laptop" className="responsive" />
+            </div>
           </div>
         </>
       )}

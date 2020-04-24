@@ -1,4 +1,4 @@
-/* Provide sufficient contrast against white background */
+@import './configs/config-styles.scss';
 #root {
   font-family: Rubik;
 }
@@ -19,7 +19,7 @@ div#root {
           display: none;
         }
         span.nav {
-          background-color: #3d7b38;
+          background-color: $green-dark;
           justify-content: flex-start;
           div.dropdown-menu.show {
             transform: translate3d(-40px, 40px, 0px);
@@ -37,7 +37,7 @@ div#root {
             border-radius: 0;
           }
           .nav-link.active {
-            background-color: #719e60;
+            background-color: $green-light;
             border-radius: 0;
             box-shadow: none;
           }
@@ -51,7 +51,7 @@ div#root {
     // Main Sections
     // Empty
     .empty-my-issues {
-      background-color: #719e60;
+      background-color: $green-light;
       height: auto;
       color: #ebecf0;
       text-align: center;
@@ -70,8 +70,9 @@ div#root {
       }
     }
     // Adding Issue
+    .edit-issue,
     .add-issue {
-      background-color: #719e60;
+      background-color: $green-light;
       height: inherit;
       padding: 2rem 0 0 0;
 
@@ -130,7 +131,7 @@ div#root {
     }
     // if list of issues
     .my-issues {
-      background-color: #719e60;
+      background-color: $green-light;
       height: auto;
       display: flex;
       flex-direction: column;
@@ -189,7 +190,7 @@ div#root {
     }
     // Issue Details Page
     .issue-details-page {
-      background-color: #719e60;
+      background-color: $green-light;
       height: inherit;
       padding-top: 1.5rem;
       header {
@@ -199,29 +200,76 @@ div#root {
   }
 }
 
-// Promo page styles
+//************************************************ Promo Page ***************************************************//
 .PromoApp {
   background-image: url('./images/mobile-promo-bg.png');
   background-size: cover;
   height: 170vh;
   .navbar {
+    margin: 0 auto;
+    width: 80%;
     padding: 1rem;
+    max-width: 320px;
     .login {
       color: white;
     }
     button {
-      border-radius: 0.5rem;
-      background-color: white;
-      border-color: white;
-      color: #719e60;
+      width: 6rem;
+      border-radius: 2rem;
+      background-color: transparent;
+      border: 2px solid $orange-dark;
+
+      color: white;
       margin-left: 1rem;
     }
   }
 
-  .promo {
+  div.promo {
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    max-width: 320px;
+    .left-column {
+      display: flex;
+      flex-direction: column;
+      h1 {
+        margin: 2rem 1.5rem 0 1.5rem;
+        color: white;
+        font-weight: 500;
+        font-size: 1.5625rem;
+        text-align: center;
+      }
+      p {
+        margin: 2rem 1.5rem 2rem 1.5rem;
+        color: white;
+        font-weight: 300;
+        font-size: 1.3125rem;
+        text-align: center;
+      }
+      button {
+        background-color: #d36300;
+        border-radius: 0.5rem;
+        border-color: #d36300;
+        width: 14.0625rem;
+        height: 3.4375rem;
+        color: white;
+        font-size: 1.3125rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+      }
+      .signup-cta {
+        width: 14.0625rem;
+        align-self: center;
+      }
+    }
+  }
+  .promo-row-2 {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 320px;
     h1 {
       margin: 2rem 1.5rem 0 1.5rem;
       color: white;
@@ -236,19 +284,19 @@ div#root {
       font-size: 1.3125rem;
       text-align: center;
     }
-    button {
-      background-color: #d36300;
-      border-radius: 0.5rem;
-      border-color: #d36300;
-      width: 14.0625rem;
-      height: 3.4375rem;
-      color: white;
-      font-size: 1.3125rem;
-      font-weight: 500;
+    .flex-item:nth-of-type(1) {
+      order: 2;
     }
-    .signup-cta {
-      width: 14.0625rem;
-      align-self: center;
+    .flex-item:nth-of-type(2) {
+      order: 1;
+    }
+    .laptop {
+      width: 80%;
+      margin: auto;
+      .responsive {
+        width: 100%;
+        height: auto;
+      }
     }
   }
 }
@@ -313,6 +361,7 @@ select#users {
   }
 }
 
+//************************************************ Desktop ***************************************************//
 @media (min-width: 720px) {
   .hide-desktop {
     display: none;
@@ -324,7 +373,7 @@ select#users {
   body,
   div#root {
     .App {
-      background-color: #3d7b38;
+      background-color: $green-dark;
       height: auto;
       min-height: 100%;
       display: flex;
@@ -338,7 +387,7 @@ select#users {
             justify-content: space-between;
             align-items: center;
             position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-            background-color: #3d7b38;
+            background-color: $green-dark;
             width: 100%;
             height: 64px;
             .search-bar,
@@ -357,7 +406,7 @@ select#users {
           }
           span.nav {
             width: 240px;
-            background-color: #3d7b38;
+            background-color: $green-dark;
             margin-top: 64px;
             height: 100%;
             position: fixed; /* Set the navbar to fixed position */
@@ -406,6 +455,112 @@ select#users {
       }
       .add-issue {
         @extend .section;
+      }
+      .issue-details-page {
+        @extend .section;
+      }
+      .edit-issue {
+        @extend .section;
+      }
+    }
+  }
+
+  .PromoApp {
+    min-height: 1400px;
+    background-image: url('./images/desktop-promo-bg.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    .navbar {
+      max-width: 100%;
+      padding-top: 2rem;
+    }
+    .flex {
+      display: flex;
+      margin-top: 5rem;
+      .laptop {
+        margin: 4rem 7rem 0 0rem;
+      }
+      .responsive {
+        width: 100%;
+        height: auto;
+      }
+    }
+    div.promo {
+      margin: 10% auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: left;
+      width: auto;
+      max-width: 80%;
+      .left-column {
+        max-width: 550px;
+        h1 {
+          text-transform: uppercase;
+          margin: 2rem 1.5rem 0 1.5rem;
+          color: white;
+          font-weight: 300;
+          font-size: 40px;
+          text-align: left;
+        }
+        p {
+          margin: 2rem 1.5rem 2rem 1.5rem;
+          color: white;
+          font-weight: 300;
+          font-size: 22px;
+          text-align: left;
+        }
+        button {
+          background-color: #d36300;
+          border-radius: 0.5rem;
+          border-color: #d36300;
+          width: 14.0625rem;
+          height: 3.4375rem;
+          color: white;
+          font-size: 1.3125rem;
+          font-weight: 500;
+        }
+        .signup-cta {
+          display: none;
+        }
+      }
+    }
+    .promo-row-2 {
+      margin: 13rem auto 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: auto;
+      max-width: 80%;
+      h1 {
+        text-transform: uppercase;
+        margin: 2rem 1.5rem 0 1.5rem;
+        color: white;
+        font-weight: 300;
+        font-size: 40px;
+        text-align: left;
+      }
+      p {
+        margin: 2rem 1.5rem 2rem 1.5rem;
+        color: white;
+        font-weight: 300;
+        font-size: 22px;
+        text-align: left;
+      }
+      .flex-item:nth-of-type(1) {
+        order: 1;
+      }
+      .flex-item:nth-of-type(2) {
+        order: 2;
+      }
+      .laptop {
+        width: 80%;
+        margin: auto;
+        .responsive {
+          width: 100%;
+          height: auto;
+          padding-right: 2rem;
+        }
       }
     }
   }
