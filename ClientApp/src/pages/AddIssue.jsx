@@ -62,6 +62,7 @@ const AddIssue = () => {
     // Set UserEmail on Issue
     setIssueToAdd(oldIssue => {
       oldIssue['userEmail'] = user.email
+      oldIssue['importance'] = rSelected
       return oldIssue
     })
 

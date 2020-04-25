@@ -11,6 +11,7 @@ namespace IssueTracker.Models
         public string Description { get; set; }
         public bool IsOpen { get; set; } = true;
         public DateTime DateCreated { get; set; } = DateTime.Now;
+        public int Importance { get; set; } = 1;
 
         // Navigation Properties
         // Who the issue was created by

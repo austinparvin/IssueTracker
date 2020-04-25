@@ -3,6 +3,7 @@ import axios from 'axios'
 import Users from '../components/Users'
 import { Redirect } from 'react-router-dom'
 import { useAuth0 } from '../react-auth0-spa'
+import { Button, ButtonGroup } from 'reactstrap'
 
 const EditIssue = props => {
   const { user } = useAuth0()
@@ -13,6 +14,7 @@ const EditIssue = props => {
   const [issue, setIssue] = useState({})
   const [descriptionsToAdd, setDescriptionsToAdd] = useState([''])
   const [shouldRedirect, setShouldRedirect] = useState(false)
+  const [rSelected, setRSelected] = useState(1)
 
   // Get Issue and ActionItems
   const getIssue = async () => {
@@ -27,11 +29,20 @@ const EditIssue = props => {
     // Get ActionItems
     const response = await axios.get(`/api/actionItem/${issueId}`)
     setDescriptionsToAdd(response.data.map(ai => ai.description).concat(['']))
+
+    setRSelected(resp.data.importance)
   }
 
   useEffect(() => {
     getIssue()
   }, [])
+
+  useEffect(() => {
+    setIssue(oldIssue => {
+      oldIssue['importance'] = rSelected
+      return oldIssue
+    })
+  }, [rSelected])
   // Hook Trackers
   const trackIssueDetails = e => {
     console.log(e.target.value)
@@ -158,6 +169,32 @@ const EditIssue = props => {
             />
           </div>
         ))}
+        <section className="importance">
+          <h5>Importance</h5>
+          <ButtonGroup>
+            <Button
+              className="low importance-button"
+              onClick={() => setRSelected(1)}
+              active={rSelected === 1}
+            >
+              Low
+            </Button>
+            <Button
+              className="medium importance-button"
+              onClick={() => setRSelected(2)}
+              active={rSelected === 2}
+            >
+              Medium
+            </Button>
+            <Button
+              className="high importance-button"
+              onClick={() => setRSelected(3)}
+              active={rSelected === 3}
+            >
+              High
+            </Button>
+          </ButtonGroup>
+        </section>
         <Users trackIssueDetails={trackIssueDetails} />
         <button onClick={updateIssue}>Update Issue</button>
       </div>
