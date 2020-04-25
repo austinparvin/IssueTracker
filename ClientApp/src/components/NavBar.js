@@ -21,7 +21,7 @@ import {
 } from 'reactstrap'
 
 const NavBar = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0()
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   const toggle = () => setDropdownOpen(prevState => !prevState)
@@ -76,18 +76,15 @@ const NavBar = () => {
             <ReactLogo />
             <section className="search-bar">search</section>
             <section className="settings">
-              <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
-                <DropdownToggle nav caret>
-                  <AccountIcon />
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem tag={RRNavLink} exact to="/profile">
-                    Profile
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem onClick={() => logout()}>Logout</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
+              <Link to="/profile">
+                <img
+                  src={user.picture}
+                  alt="Profile"
+                  className="profile-pic"
+                  width="45"
+                  height="45"
+                />
+              </Link>
             </section>
           </nav>
           <span className="nav">

@@ -11,11 +11,13 @@ const Profile = () => {
   return (
     <Fragment>
       <section className="profile-page">
-        <img src={user.picture} alt="Profile" />
-        <button onClick={() => logout()}>LOGOUT</button>
+        <img src={user.picture} alt="Profile" className="profile-pic" />
+
         <h2>{user.name}</h2>
         <p>{user.email}</p>
-        <code>{JSON.stringify(user, null, 2)}</code>
+        <button className="btn btn-light" onClick={() => logout()}>
+          LOGOUT
+        </button>
       </section>
     </Fragment>
   )
