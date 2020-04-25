@@ -62,8 +62,9 @@ const IssueDetails = props => {
   return (
     <section className="issue-details-page">
       <section className="issue-details">
-        <div>
+        <div className="title-n-importance">
           <header>{issue.title}</header>
+          <span className={`badge text-right bgc-${issue.importance}`}>!</span>
         </div>
         <p>{issue.description}</p>
         <ListOfActionItems issueId={issueId} />

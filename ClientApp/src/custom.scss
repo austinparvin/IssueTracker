@@ -7,6 +7,27 @@
   display: none;
 }
 
+.bgc-1 {
+  background-color: $green-importance;
+}
+.bgc-2 {
+  background-color: $yellow-importance;
+}
+.bgc-3 {
+  background-color: $red-importance;
+}
+.title-n-importance {
+  border-bottom: 1px solid black;
+  header {
+    margin-top: 0.5rem;
+  }
+  span {
+    font-size: 0.5rem;
+    padding: 0.5rem;
+    height: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
 html,
 body,
 div#root {
@@ -161,7 +182,6 @@ div#root {
         height: 25vh;
         header {
           width: 100%;
-          border-bottom: 1px solid black;
           font-size: 1rem;
           font-weight: bold;
           overflow: hidden;
@@ -171,7 +191,7 @@ div#root {
           -webkit-line-clamp: 1; /* number of lines to show */
           line-height: 1.5rem; /* fallback */
           max-height: 4rem;
-          margin-bottom: 0.5rem;
+          margin-top: 0.5rem;
         }
 
         p {
@@ -203,9 +223,6 @@ div#root {
       background-color: $green-light;
       height: inherit;
       padding-top: 1.5rem;
-      header {
-        margin-bottom: 0.5rem;
-      }
     }
     .profile-page {
       display: flex;
@@ -347,7 +364,6 @@ select#users {
     width: 100%;
     font-size: 1rem;
     font-weight: bold;
-    border-bottom: 1px solid black;
   }
   p {
     margin-bottom: 0;
