@@ -126,6 +126,29 @@ namespace IssueTracker.Controllers
 
             return actionItem;
         }
+        [HttpDelete("list/{id}")]
+        public async Task<ActionResult<ActionItem>> DeleteActionItems(int id)
+        {
+            var actionItems = await _context.ActionItems.Where(actionItem => actionItem.IssueId == id).ToListAsync();
+
+            foreach (var actionItem in actionItems)
+            {
+                _context.Entry(actionItem).State = EntityState.Modified;
+
+                await _context.SaveChangesAsync();
+
+                if (actionItem == null)
+                {
+                    return NotFound();
+                }
+
+                _context.ActionItems.Remove(actionItem);
+                await _context.SaveChangesAsync();
+
+            }
+
+            return NoContent();
+        }
 
         private bool ActionItemExists(int id)
         {
