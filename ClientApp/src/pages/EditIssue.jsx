@@ -30,8 +30,10 @@ const EditIssue = props => {
     setIssue(resp.data)
 
     // Grabbing due date from issue
-    let date = new Date(resp.data.dueDate)
-    setStartDate(new Date(date.getTime() - date.getTimezoneOffset() * 60000))
+    const date = new Date(resp.data.dueDate)
+    if (resp.data.dueDate) {
+      setStartDate(new Date(date.getTime() - date.getTimezoneOffset() * 60000))
+    }
 
     // Get ActionItems
     const response = await axios.get(`/api/actionItem/${issueId}`)
@@ -156,7 +158,7 @@ const EditIssue = props => {
           defaultValue={issue.description}
         />
         {descriptionsToAdd.map((description, index) => (
-          <div className="action-item">
+          <div key={index} className="action-item">
             <input
               className="checkbox"
               type="checkbox"

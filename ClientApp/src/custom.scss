@@ -21,6 +21,13 @@
   header {
     margin-top: 0.5rem;
   }
+  div.dueDate {
+    font-size: 0.5rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    color: rosybrown;
+  }
   span {
     font-size: 0.5rem;
     padding: 0.5rem;
@@ -223,6 +230,8 @@ div#root {
       background-color: $green-light;
       height: inherit;
       padding-top: 1.5rem;
+      section.issue-details {
+      }
     }
     .profile-page {
       display: flex;

@@ -124,7 +124,7 @@ const AddIssue = () => {
           placeholder="Description..."
         />
         {descriptionsToAdd.map((description, index) => (
-          <div className="action-item">
+          <div key={index} className="action-item">
             <input
               className="checkbox"
               type="checkbox"
