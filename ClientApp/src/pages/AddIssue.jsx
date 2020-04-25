@@ -15,7 +15,7 @@ const AddIssue = () => {
   // Authorization
 
   // Hooks
-  const [startDate, setStartDate] = useState(new Date())
+  const [startDate, setStartDate] = useState()
   const [issueToAdd, setIssueToAdd] = useState({ ClaimedIssueId: null })
   const [descriptionsToAdd, setDescriptionsToAdd] = useState([''])
   const [shouldRedirect, setShouldRedirect] = useState(false)
@@ -65,7 +65,10 @@ const AddIssue = () => {
     setIssueToAdd(oldIssue => {
       oldIssue['userEmail'] = user.email
       oldIssue['importance'] = rSelected
-      oldIssue['dueDate'] = startDate.toISOString()
+      if (startDate) {
+        oldIssue['dueDate'] = startDate.toISOString()
+      }
+
       return oldIssue
     })
 
@@ -174,6 +177,7 @@ const AddIssue = () => {
         <Users trackIssueDetails={trackIssueDetails} />
         <section>
           <DatePicker
+            placeholderText="Select Due Date"
             selected={startDate}
             onChange={date => setStartDate(date)}
             showTimeSelect

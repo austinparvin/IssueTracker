@@ -14,7 +14,7 @@ const EditIssue = props => {
 
   // Hooks
   const [issue, setIssue] = useState({})
-  const [startDate, setStartDate] = useState(new Date())
+  const [startDate, setStartDate] = useState()
   const [descriptionsToAdd, setDescriptionsToAdd] = useState([''])
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [rSelected, setRSelected] = useState(1)
@@ -206,6 +206,7 @@ const EditIssue = props => {
         </section>
         <Users trackIssueDetails={trackIssueDetails} />
         <DatePicker
+          placeholderText="Select Due Date"
           selected={startDate}
           onChange={date => setStartDate(date)}
           showTimeSelect
