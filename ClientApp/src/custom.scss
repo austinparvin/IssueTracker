@@ -117,7 +117,7 @@ div#root {
             }
           }
         }
-        button {
+        button.create-issue {
           align-self: center;
           font-weight: bold;
           border: 0.15rem solid;
@@ -150,7 +150,7 @@ div#root {
             border: gray solid 2px;
           }
         }
-        div {
+        div.btn-group {
           display: flex;
           justify-content: space-between;
 

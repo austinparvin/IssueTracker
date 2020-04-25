@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import ActionItemInput from '../components/ActionItemInput'
 import Users from '../components/Users'
 import { Redirect } from 'react-router-dom'
 import { useAuth0 } from '../react-auth0-spa'
 import { Button, ButtonGroup } from 'reactstrap'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 const AddIssue = () => {
   const { user } = useAuth0()
@@ -14,6 +15,7 @@ const AddIssue = () => {
   // Authorization
 
   // Hooks
+  const [startDate, setStartDate] = useState(new Date())
   const [issueToAdd, setIssueToAdd] = useState({ ClaimedIssueId: null })
   const [descriptionsToAdd, setDescriptionsToAdd] = useState([''])
   const [shouldRedirect, setShouldRedirect] = useState(false)
@@ -167,8 +169,17 @@ const AddIssue = () => {
             </Button>
           </ButtonGroup>
         </section>
+
         <Users trackIssueDetails={trackIssueDetails} />
-        <button onClick={addIssueToApi}>Add Issue</button>
+        <section>
+          <DatePicker
+            selected={startDate}
+            onChange={date => setStartDate(date)}
+          />
+        </section>
+        <button className="create-issue" onClick={addIssueToApi}>
+          Add Issue
+        </button>
       </div>
     </section>
   )
