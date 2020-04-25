@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Users from '../components/Users'
 import { Redirect } from 'react-router-dom'
@@ -65,6 +65,7 @@ const AddIssue = () => {
     setIssueToAdd(oldIssue => {
       oldIssue['userEmail'] = user.email
       oldIssue['importance'] = rSelected
+      oldIssue['dueDate'] = startDate
       return oldIssue
     })
 
@@ -175,6 +176,7 @@ const AddIssue = () => {
           <DatePicker
             selected={startDate}
             onChange={date => setStartDate(date)}
+            showTimeSelect
           />
         </section>
         <button className="create-issue" onClick={addIssueToApi}>
