@@ -4,6 +4,8 @@ import Users from '../components/Users'
 import { Redirect } from 'react-router-dom'
 import { useAuth0 } from '../react-auth0-spa'
 import { Button, ButtonGroup } from 'reactstrap'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 const EditIssue = props => {
   const { user } = useAuth0()
@@ -12,6 +14,7 @@ const EditIssue = props => {
 
   // Hooks
   const [issue, setIssue] = useState({})
+  const [startDate, setStartDate] = useState(new Date())
   const [descriptionsToAdd, setDescriptionsToAdd] = useState([''])
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [rSelected, setRSelected] = useState(1)
@@ -26,6 +29,10 @@ const EditIssue = props => {
     const resp = await axios.get(`api/issue/${issueId}`)
     setIssue(resp.data)
 
+    // Grabbing due date from issue
+    let date = new Date(resp.data.dueDate)
+    setStartDate(new Date(date.getTime() - date.getTimezoneOffset() * 60000))
+
     // Get ActionItems
     const response = await axios.get(`/api/actionItem/${issueId}`)
     setDescriptionsToAdd(response.data.map(ai => ai.description).concat(['']))
@@ -37,12 +44,7 @@ const EditIssue = props => {
     getIssue()
   }, [])
 
-  useEffect(() => {
-    setIssue(oldIssue => {
-      oldIssue['importance'] = rSelected
-      return oldIssue
-    })
-  }, [rSelected])
+  useEffect(() => {}, [rSelected])
   // Hook Trackers
   const trackIssueDetails = e => {
     console.log(e.target.value)
@@ -94,6 +96,11 @@ const EditIssue = props => {
       descriptionsToAdd
     )
 
+    setIssue(oldIssue => {
+      oldIssue['importance'] = rSelected
+      oldIssue['dueDate'] = startDate
+      return oldIssue
+    })
     // Post Issue to Dd
     const resp = await axios.put(`/api/issue/${issue.id}`, issue)
 
@@ -196,6 +203,11 @@ const EditIssue = props => {
           </ButtonGroup>
         </section>
         <Users trackIssueDetails={trackIssueDetails} />
+        <DatePicker
+          selected={startDate}
+          onChange={date => setStartDate(date)}
+          showTimeSelect
+        />
         <button onClick={updateIssue}>Update Issue</button>
       </div>
     </section>

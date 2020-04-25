@@ -65,7 +65,7 @@ const AddIssue = () => {
     setIssueToAdd(oldIssue => {
       oldIssue['userEmail'] = user.email
       oldIssue['importance'] = rSelected
-      oldIssue['dueDate'] = startDate
+      oldIssue['dueDate'] = startDate.toISOString()
       return oldIssue
     })
 
