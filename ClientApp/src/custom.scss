@@ -86,6 +86,16 @@ div#root {
         padding: 0.5rem;
         box-shadow: 0px 1px 5px 1px rgb(83, 83, 83);
 
+        section.importance {
+          h5 {
+            color: $gray-dark;
+          }
+          div.btn-group {
+            .importance-button {
+              padding: 0;
+            }
+          }
+        }
         button {
           align-self: center;
           font-weight: bold;
