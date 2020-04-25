@@ -8,17 +8,22 @@ const IssueCard = ({ issue }) => {
       return Math.floor(hours / 744) + ' mo.'
     } else if (hours > 24) {
       return Math.floor(hours / 24) + ' days'
-    } else {
+    } else if (hours > 0) {
       return Math.floor(hours) + ' hrs'
+    } else {
+      return 'Past Due'
     }
   }
+  console.log('after today?')
+
+  console.log(new Date(issue.dueDate) > Date.now())
   return (
     <Link to={`/issue/details/${issue.id}`}>
       <section className={`issue-card`}>
         <div className="title-n-importance">
           <header>{issue.title}</header>
           <div className="dueDate">
-            {issue.dueDate
+            {issue.dueDate && issue.isOpen
               ? formatDueByTime(
                   (new Date(
                     new Date(issue.dueDate).getTime() -

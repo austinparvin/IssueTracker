@@ -56,8 +56,10 @@ const IssueDetails = props => {
       return Math.floor(hours / 744) + ' mo.'
     } else if (hours > 24) {
       return Math.floor(hours / 24) + ' days'
-    } else {
+    } else if (hours > 0) {
       return Math.floor(hours) + ' hrs'
+    } else {
+      return 'Past Due'
     }
   }
   useEffect(() => {
@@ -83,7 +85,7 @@ const IssueDetails = props => {
         <div className="title-n-importance">
           <header>{issue.title}</header>
           <div className="dueDate">
-            {dueDate
+            {dueDate && issue.isOpen
               ? formatDueByTime((dueDate - Date.now()) / 10000 / 360)
               : ''}
           </div>
