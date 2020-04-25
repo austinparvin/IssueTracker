@@ -177,6 +177,7 @@ const AddIssue = () => {
             selected={startDate}
             onChange={date => setStartDate(date)}
             showTimeSelect
+            dateFormat="MMMM d, yyyy h:mm aa"
           />
         </section>
         <button className="create-issue" onClick={addIssueToApi}>

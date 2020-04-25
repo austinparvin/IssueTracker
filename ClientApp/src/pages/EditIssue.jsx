@@ -207,6 +207,7 @@ const EditIssue = props => {
           selected={startDate}
           onChange={date => setStartDate(date)}
           showTimeSelect
+          dateFormat="MMMM d, yyyy h:mm aa"
         />
         <button onClick={updateIssue}>Update Issue</button>
       </div>
