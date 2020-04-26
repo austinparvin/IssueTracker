@@ -96,7 +96,7 @@ const NavBar = () => {
               <NavItem>
                 <NavLink tag={RRNavLink} exact to="/issues/create">
                   <AddIcon className="hide link-icon" />
-                  Add<span className="hide">&nbsp;Issues</span>
+                  Create<span className="hide">&nbsp;Issues</span>
                 </NavLink>
               </NavItem>
               <NavItem>
