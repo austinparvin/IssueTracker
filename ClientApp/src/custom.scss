@@ -95,6 +95,7 @@ div#root {
         padding: 2rem;
         width: 70%;
         box-shadow: 2px 2px;
+        background-color: #fff;
       }
       header {
         text-align: center;
@@ -282,7 +283,7 @@ div#root {
       color: white;
     }
     button {
-      width: 6rem;
+      width: 6.5rem;
       border-radius: 2rem;
       background-color: transparent;
       border: 2px solid $orange-dark;
@@ -319,7 +320,7 @@ div#root {
         background-color: #d36300;
         border-radius: 0.5rem;
         border-color: #d36300;
-        width: 14.0625rem;
+        width: 14.5rem;
         height: 3.4375rem;
         color: white;
         font-size: 1.3125rem;
@@ -327,7 +328,7 @@ div#root {
         margin-bottom: 2rem;
       }
       .signup-cta {
-        width: 14.0625rem;
+        width: 14.5rem;
         align-self: center;
       }
     }
