@@ -6,10 +6,14 @@ const IssueCard = ({ issue }) => {
   const formatDueByTime = hours => {
     if (hours > 744) {
       return Math.floor(hours / 744) + ' mo.'
-    } else if (hours > 24) {
+    } else if (hours >= 48) {
       return Math.floor(hours / 24) + ' days'
-    } else if (hours > 0) {
+    } else if (hours > 24) {
+      return Math.floor(hours / 24) + ' day'
+    } else if (hours > 1) {
       return Math.floor(hours) + ' hrs'
+    } else if (hours > 0) {
+      return Math.floor(hours * 60) + ' mins'
     } else {
       return 'Past Due'
     }

@@ -47,7 +47,7 @@ const MyIssues = () => {
   } else {
     return (
       <section className="my-issues">
-        <div className="assigned-created-btns-container">
+        {/* <div className="assigned-created-btns-container">
           <ButtonGroup className="assigned-created-btns">
             <Button
               className=""
@@ -64,7 +64,7 @@ const MyIssues = () => {
               Created
             </Button>
           </ButtonGroup>
-        </div>
+        </div> */}
         {filterList(myIssues).map(issue => {
           return <IssueCard key={issue.id} issue={issue} />
         })}
