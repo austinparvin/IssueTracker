@@ -1,6 +1,4 @@
-// src/components/NavBar.js
-
-import React, { useState } from 'react'
+import React from 'react'
 import { useAuth0 } from '../react-auth0-spa'
 import { Link } from 'react-router-dom'
 import { ReactComponent as ReactLogo } from '../images/logo.svg'
@@ -10,21 +8,10 @@ import { ReactComponent as AvailIcon } from '../images/card.svg'
 import { ReactComponent as ClosedIcon } from '../images/closed.svg'
 import Laptop from '../images/laptop.png'
 import { NavLink as RRNavLink } from 'react-router-dom'
-import {
-  Nav,
-  NavItem,
-  Dropdown,
-  DropdownItem,
-  DropdownToggle,
-  DropdownMenu,
-  NavLink,
-} from 'reactstrap'
+import { Nav, NavItem, NavLink } from 'reactstrap'
 
 const NavBar = () => {
-  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0()
-  const [dropdownOpen, setDropdownOpen] = useState(false)
-
-  const toggle = () => setDropdownOpen(prevState => !prevState)
+  const { isAuthenticated, user } = useAuth0()
 
   return (
     <div>

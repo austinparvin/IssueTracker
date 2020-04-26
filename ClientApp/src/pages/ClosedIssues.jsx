@@ -20,11 +20,11 @@ const ClosedIssues = () => {
   }
 
   const filterList = list => {
-    if (rSelected == 0) {
-      return list.filter(issue => issue.claimedUserEmail == user.email)
-    } else if (rSelected == 1) {
-      return list.filter(issue => issue.userEmail == user.email)
-    } else if (rSelected == 2) {
+    if (rSelected === 0) {
+      return list.filter(issue => issue.claimedUserEmail === user.email)
+    } else if (rSelected === 1) {
+      return list.filter(issue => issue.userEmail === user.email)
+    } else if (rSelected === 2) {
       return list
     }
   }
