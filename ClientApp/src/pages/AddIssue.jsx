@@ -6,6 +6,7 @@ import { useAuth0 } from '../react-auth0-spa'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import ImportanceButtons from '../components/ImportanceButtons'
+import ActionItemInput from '../components/ActionItemInput'
 
 const AddIssue = () => {
   const { user } = useAuth0()
@@ -39,23 +40,6 @@ const AddIssue = () => {
       oldIssue[key] = value
       return oldIssue
     })
-  }
-
-  const trackActionItemsToAdd = (index, newDescription) => {
-    let newDescriptionsToAdd = [
-      ...descriptionsToAdd.slice(0, index),
-      newDescription,
-      ...descriptionsToAdd.slice(index + 1),
-    ].filter(description => description.length > 0)
-    const allFilled = newDescriptionsToAdd.every(
-      description => description.length > 0
-    )
-    console.log({ newDescriptionsToAdd, allFilled })
-
-    if (allFilled) {
-      newDescriptionsToAdd = newDescriptionsToAdd.concat([''])
-    }
-    setDescriptionsToAdd(newDescriptionsToAdd)
   }
 
   // Axios calls
@@ -127,25 +111,12 @@ const AddIssue = () => {
           placeholder="Description..."
         />
         {descriptionsToAdd.map((description, index) => (
-          <div key={index} className="action-item">
-            <input
-              className="checkbox"
-              type="checkbox"
-              name=""
-              id=""
-              disabled
-            ></input>
-            <input
-              onChange={event =>
-                trackActionItemsToAdd(index, event.target.value)
-              }
-              value={description}
-              placeholder="Action Item..."
-              className="description"
-              type="text"
-              name=""
-            />
-          </div>
+          <ActionItemInput
+            setDescriptionsToAdd={setDescriptionsToAdd}
+            descriptionsToAdd={descriptionsToAdd}
+            description={description}
+            index={index}
+          />
         ))}
         <ImportanceButtons setRSelected={setRSelected} rSelected={rSelected} />
         <Users trackIssueDetails={trackIssueDetails} />

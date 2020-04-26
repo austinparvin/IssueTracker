@@ -7,6 +7,7 @@ import { Button, ButtonGroup } from 'reactstrap'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import ImportanceButtons from '../components/ImportanceButtons'
+import ActionItemInput from '../components/ActionItemInput'
 
 const EditIssue = props => {
   const { user } = useAuth0()
@@ -47,11 +48,8 @@ const EditIssue = props => {
     getIssue()
   }, [])
 
-  useEffect(() => {}, [rSelected])
-  // Hook Trackers
+  // Track Issue Details
   const trackIssueDetails = e => {
-    console.log(e.target.value)
-
     const key = e.target.name
     let value = e.target.value
 
@@ -68,26 +66,7 @@ const EditIssue = props => {
     })
   }
 
-  const trackActionItemsToAdd = (index, newDescription) => {
-    let newDescriptionsToAdd = [
-      ...descriptionsToAdd.slice(0, index),
-      newDescription,
-      ...descriptionsToAdd.slice(index + 1),
-    ].filter(description => description.length > 0)
-    const allFilled = newDescriptionsToAdd.every(
-      description => description.length > 0
-    )
-    console.log({ newDescriptionsToAdd, allFilled })
-
-    if (allFilled) {
-      newDescriptionsToAdd = newDescriptionsToAdd.concat([''])
-    }
-    console.log(newDescriptionsToAdd)
-    setDescriptionsToAdd(newDescriptionsToAdd)
-  }
-
-  // Axios calls
-
+  // Update Issue Function
   const updateIssue = async () => {
     // Get Token
     const token = await getTokenSilently()
@@ -99,18 +78,18 @@ const EditIssue = props => {
       descriptionsToAdd
     )
 
+    // Update Issue props to Put
     setIssue(oldIssue => {
       oldIssue['importance'] = rSelected
       oldIssue['dueDate'] = startDate
       return oldIssue
     })
-    // Post Issue to Dd
+
+    // Put Issue to Dd
     const resp = await axios.put(`/api/issue/${issue.id}`, issue)
 
-    console.log(resp)
-
     if (resp.status === 204) {
-      // Add issue Id to list of Action Items
+      // Add issueId and description to list of Action Items to add
       const actionItemsToAdd = descriptionsToAdd
         .filter(description => description.length > 0)
         .map(description => ({
@@ -118,17 +97,8 @@ const EditIssue = props => {
           issueId: issue.id,
         }))
 
-      console.log(actionItemsToAdd)
-
       // Posts Action Items to Db with Issue Ids
-      await axios({
-        method: 'POST',
-        url: '/api/actionitem/list',
-        headers: {
-          Authorization: 'Bearer ' + token,
-        },
-        data: actionItemsToAdd,
-      })
+      await axios.post('/api/actionitem/list', actionItemsToAdd)
 
       setShouldRedirect(true)
     }
@@ -149,7 +119,6 @@ const EditIssue = props => {
           placeholder="Title..."
           defaultValue={issue.title}
         />
-
         <textarea
           onChange={trackIssueDetails}
           name="description"
@@ -159,27 +128,13 @@ const EditIssue = props => {
           defaultValue={issue.description}
         />
         {descriptionsToAdd.map((description, index) => (
-          <div key={index} className="action-item">
-            <input
-              className="checkbox"
-              type="checkbox"
-              name=""
-              id=""
-              disabled
-            ></input>
-            <input
-              onChange={event =>
-                trackActionItemsToAdd(index, event.target.value)
-              }
-              value={description}
-              placeholder="Action Item..."
-              className="description"
-              type="text"
-              name=""
-            />
-          </div>
+          <ActionItemInput
+            setDescriptionsToAdd={setDescriptionsToAdd}
+            descriptionsToAdd={descriptionsToAdd}
+            description={description}
+            index={index}
+          />
         ))}
-
         <ImportanceButtons setRSelected={setRSelected} rSelected={rSelected} />
         <Users trackIssueDetails={trackIssueDetails} />
         <DatePicker
