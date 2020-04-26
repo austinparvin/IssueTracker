@@ -3,34 +3,34 @@ import axios from 'axios'
 import IssueCard from '../components/IssueCard'
 import { useAuth0 } from '../react-auth0-spa'
 
-const AvailableIssues = () => {
+const OpenIssues = () => {
   const { getTokenSilently } = useAuth0()
 
-  const [availableIssues, setAvailableIssues] = useState([])
+  const [openIssues, setOpenIssues] = useState([])
 
-  const getAvailableIssues = async () => {
+  const getOpenIssues = async () => {
     // Get Token
     const token = await getTokenSilently()
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-    const resp = await axios.get('api/issue/available')
-    setAvailableIssues(resp.data)
+    const resp = await axios.get('api/issue/open')
+    setOpenIssues(resp.data)
   }
 
   useEffect(() => {
-    getAvailableIssues()
+    getOpenIssues()
   }, [])
 
-  if (availableIssues.length < 1) {
+  if (openIssues.length < 1) {
     return (
       <section className="empty-my-issues">
-        <header>There are no Available Issues</header>
+        <header>There are no Open Issues</header>
       </section>
     )
   } else {
     return (
       <section className="my-issues">
-        {availableIssues.map(issue => {
+        {openIssues.map(issue => {
           return <IssueCard key={issue.id} issue={issue} />
         })}
       </section>
@@ -38,4 +38,4 @@ const AvailableIssues = () => {
   }
 }
 
-export default AvailableIssues
+export default OpenIssues

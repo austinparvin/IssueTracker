@@ -28,8 +28,8 @@ const MyIssues = () => {
           <button>Add an Issue</button>
         </Link>
         <header>OR</header>
-        <Link to="/issues/avail">
-          <button>Check Available Issues</button>
+        <Link to="/issues/open">
+          <button>Check Open Issues</button>
         </Link>
       </section>
     )
