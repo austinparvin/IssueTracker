@@ -175,7 +175,7 @@ const AddIssue = () => {
         </section>
 
         <Users trackIssueDetails={trackIssueDetails} />
-        <section>
+        <section className="date-picker">
           <DatePicker
             placeholderText="Select Due Date"
             selected={startDate}

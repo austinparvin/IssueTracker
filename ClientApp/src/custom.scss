@@ -1,6 +1,6 @@
 @import './configs/config-styles.scss';
 html {
-  background-color: $green-light; 
+  background-color: $green-light;
 }
 #root {
   font-family: Rubik;
@@ -179,9 +179,14 @@ div#root {
       display: flex;
       flex-direction: column;
       padding-top: 1.5rem;
-      .assigned-created-btns {
-        margin: 1.5rem;
-        margin-top: 0;
+      .assigned-created-btns-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .assigned-created-btns {
+          margin: 1.5rem;
+          margin-top: 0;
+        }
       }
       a {
         color: black;
