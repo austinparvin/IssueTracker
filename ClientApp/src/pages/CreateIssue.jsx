@@ -8,7 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import ImportanceButtons from '../components/ImportanceButtons'
 import ActionItemInput from '../components/ActionItemInput'
 
-const AddIssue = () => {
+const CreateIssue = () => {
   const { user } = useAuth0()
   const { getTokenSilently } = useAuth0()
   console.log(user)
@@ -130,11 +130,11 @@ const AddIssue = () => {
           />
         </section>
         <button className="create-issue" onClick={addIssueToApi}>
-          Add Issue
+          Create Issue
         </button>
       </div>
     </section>
   )
 }
 
-export default AddIssue
+export default CreateIssue

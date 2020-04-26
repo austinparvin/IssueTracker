@@ -35,7 +35,7 @@ const MyIssues = () => {
     return (
       <section className="empty-my-issues">
         <header>You have no Issues</header>
-        <Link to="/issues/add">
+        <Link to="/issues/create">
           <button>Add an Issue</button>
         </Link>
         <header>OR</header>
