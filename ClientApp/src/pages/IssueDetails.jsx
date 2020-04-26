@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import ListOfActionItems from '../components/ListOfActionItems'
 import { useAuth0 } from '../react-auth0-spa'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 const IssueDetails = props => {
   const issueId = props.match ? props.match.params.issueId : props.issueId
@@ -12,13 +13,17 @@ const IssueDetails = props => {
   const [dueDate, setDueDate] = useState()
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [redirectLocation, setRedirectLocation] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+
   const getIssueById = async () => {
+    setIsLoading(true)
     const resp = await axios.get(`/api/issue/${issueId}`)
     setIssue(resp.data)
     if (resp.data.dueDate) {
       const date = new Date(resp.data.dueDate)
       setDueDate(new Date(date.getTime() - date.getTimezoneOffset() * 60000))
     }
+    setIsLoading(false)
   }
   const closeIssue = async () => {
     setIssue(oldIssue => {
@@ -83,39 +88,46 @@ const IssueDetails = props => {
       </div>
     )
   }
-  return (
-    <section className="issue-details-page">
-      <section className="issue-details">
-        <div className="title-n-importance">
-          <header>{issue.title}</header>
-          <div className="dueDate">
-            {dueDate && issue.isOpen
-              ? formatDueByTime((dueDate - Date.now()) / 10000 / 360)
-              : ''}
-          </div>
-          <span className={`badge text-right bgc-${issue.importance}`}>!</span>
-        </div>
-        <p>{issue.description}</p>
-        <ListOfActionItems issueId={issueId} />
-        <div className="buttons">
-          {!issue.claimedUserEmail ? (
-            <button onClick={claimIssue}>Claim Issue</button>
-          ) : (
-            <div></div>
-          )}
-          <div className="icons">
-            <Link to={`/issue/edit/${issue.id}`}>
-              <div className="edit"> &#x270F;</div>
-            </Link>
-            <div onClick={closeIssue} className="close">
-              &#x2612;
+
+  if (isLoading) {
+    return <LoadingSpinner />
+  } else {
+    return (
+      <section className="issue-details-page">
+        <section className="issue-details">
+          <div className="title-n-importance">
+            <header>{issue.title}</header>
+            <div className="dueDate">
+              {dueDate && issue.isOpen
+                ? formatDueByTime((dueDate - Date.now()) / 10000 / 360)
+                : ''}
             </div>
-            {user.email === issue.userEmail ? <DeleteButton /> : null}
+            <span className={`badge text-right bgc-${issue.importance}`}>
+              !
+            </span>
           </div>
-        </div>
+          <p>{issue.description}</p>
+          <ListOfActionItems issueId={issueId} />
+          <div className="buttons">
+            {!issue.claimedUserEmail ? (
+              <button onClick={claimIssue}>Claim Issue</button>
+            ) : (
+              <div></div>
+            )}
+            <div className="icons">
+              <Link to={`/issue/edit/${issue.id}`}>
+                <div className="edit"> &#x270F;</div>
+              </Link>
+              <div onClick={closeIssue} className="close">
+                &#x2612;
+              </div>
+              {user.email === issue.userEmail ? <DeleteButton /> : null}
+            </div>
+          </div>
+        </section>
       </section>
-    </section>
-  )
+    )
+  }
 }
 
 export default IssueDetails

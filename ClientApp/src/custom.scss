@@ -9,7 +9,14 @@ html {
 .hide {
   display: none;
 }
-
+.loadingSpinner {
+  background-color: $green-light;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .bgc-1 {
   background-color: $green-importance;
 }
@@ -176,7 +183,7 @@ div#root {
     // if list of issues
     .my-issues {
       background-color: $green-light;
-      height: auto;
+      height: 100%;
       display: flex;
       flex-direction: column;
       padding-top: 1.5rem;
@@ -529,6 +536,15 @@ select#users {
         p {
           color: white;
         }
+      }
+      .loadingSpinner {
+        @extend .section;
+        background-color: $green-light;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
       .my-issues {
         @extend .section;
