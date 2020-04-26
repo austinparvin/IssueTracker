@@ -33,7 +33,7 @@ namespace IssueTracker.Controllers
         [HttpGet("my/{userEmail}")]
         public async Task<ActionResult<IEnumerable<Issue>>> GetOpenIssues(string userEmail)
         {
-            return await _context.Issues.Where(issue => issue.ClaimedUserEmail == userEmail && issue.IsOpen == true).OrderByDescending(issue => issue.Importance).ToListAsync();
+            return await _context.Issues.Where(issue => (issue.ClaimedUserEmail == userEmail || issue.UserEmail == userEmail) && issue.IsOpen == true).OrderByDescending(issue => issue.Importance).ToListAsync();
         }
 
         [HttpGet("open")]

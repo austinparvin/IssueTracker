@@ -30,7 +30,7 @@ const NavBar = () => {
       {isAuthenticated && (
         <nav className="fixed-top-nav">
           <ReactLogo />
-          <section className="search-bar">search</section>
+          {/* <section className="search-bar">search</section> */}
           <section>
             {' '}
             <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>

@@ -14,7 +14,7 @@ namespace IssueTracker.Models
         public int Importance { get; set; } = 1;
         public DateTime? DueDate { get; set; }
 
-        // Navigation Properties
+
         // Who the issue was created by
         public string UserEmail { get; set; }
 

@@ -74,7 +74,7 @@ const NavBar = () => {
         <>
           <nav className="fixed-top-nav">
             <ReactLogo />
-            <section className="search-bar">search</section>
+            {/* <section className="search-bar">search</section> */}
             <section className="settings">
               <Link to="/profile">
                 <img
