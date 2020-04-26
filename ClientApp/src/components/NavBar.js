@@ -84,25 +84,25 @@ const NavBar = () => {
                   activeClassName="active"
                 >
                   <AccountIcon className="hide link-icon" />
-                  My <span className="hide">Issues</span>
+                  My<span className="hide">&nbsp;Issues</span>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={RRNavLink} exact to="/issues/open">
                   <AvailIcon className="hide link-icon" />
-                  Open<span className="hide"> Issues</span>
+                  Open<span className="hide">&nbsp;Issues</span>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={RRNavLink} exact to="/issues/add">
                   <AddIcon className="hide link-icon" />
-                  Add <span className="hide">Issues</span>
+                  Add<span className="hide">&nbsp;Issues</span>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={RRNavLink} exact to="/issues/closed">
                   <ClosedIcon className="hide link-icon" />
-                  Closed <span className="hide">Issues</span>
+                  Closed<span className="hide">&nbsp;Issues</span>
                 </NavLink>
               </NavItem>
               <NavItem className="hide-desktop">
