@@ -56,6 +56,18 @@ const IssueDetails = props => {
       setShouldRedirect(true)
     }
   }
+  const releaseIssue = async () => {
+    setIssue(oldIssue => {
+      oldIssue['claimedUserEmail'] = null
+      return oldIssue
+    })
+    const resp = await axios.put(`/api/issue/${issue.id}`, issue)
+    if (resp.status === 204) {
+      setRedirectLocation('my')
+      setShouldRedirect(true)
+    }
+  }
+
   const formatDueByTime = hours => {
     if (hours > 744) {
       return Math.floor(hours / 744) + ' mo.'
@@ -88,7 +100,13 @@ const IssueDetails = props => {
       </div>
     )
   }
-
+  const EditButton = () => {
+    return (
+      <Link to={`/issue/edit/${issue.id}`}>
+        <div className="edit"> &#x270F;</div>
+      </Link>
+    )
+  }
   if (isLoading) {
     return <LoadingSpinner />
   } else {
@@ -112,18 +130,21 @@ const IssueDetails = props => {
             {!issue.claimedUserEmail ? (
               <button onClick={claimIssue}>Claim Issue</button>
             ) : (
-              <div></div>
+              <button onClick={releaseIssue}>Release Issue</button>
             )}
             <div className="icons">
-              <Link to={`/issue/edit/${issue.id}`}>
-                <div className="edit"> &#x270F;</div>
-              </Link>
+              {user.email === issue.userEmail ? <EditButton /> : null}
               <div onClick={closeIssue} className="close">
                 &#x2612;
               </div>
               {user.email === issue.userEmail ? <DeleteButton /> : null}
             </div>
           </div>
+          <section className="claimed-by">
+            {issue.claimedUserEmail
+              ? 'Claimed by: ' + issue.claimedUserEmail
+              : 'Available'}
+          </section>
         </section>
       </section>
     )

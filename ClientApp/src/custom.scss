@@ -26,6 +26,14 @@ html {
 .bgc-3 {
   background-color: $red-importance;
 }
+.claimed-by {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: gray;
+  padding-top: 0.5rem;
+  position: absolute;
+  bottom: 7px;
+}
 .title-n-importance {
   border-bottom: 1px solid black;
   header {
@@ -209,6 +217,9 @@ div#root {
       }
       .issue-card {
         padding: 1rem;
+        position: relative;
+        padding-bottom: 1.5rem;
+        overflow: hidden;
         header {
           width: 100%;
           font-size: 1rem;
@@ -389,7 +400,8 @@ select#users {
   border: #979797 solid 1px;
   border-radius: 8px;
   padding: 1rem;
-
+  position: relative;
+  padding-bottom: 1.5rem;
   overflow: hidden;
   header {
     width: 100%;
@@ -402,8 +414,10 @@ select#users {
     line-height: 1.2rem;
   }
   .buttons {
+    margin-top: 1rem;
     button {
       font-size: 1rem;
+      height: 2rem;
     }
   }
   div {
@@ -416,7 +430,6 @@ select#users {
 .my-action-items {
   display: flex;
   flex-direction: column;
-
   .action-item {
     display: flex;
     justify-content: flex-start;
@@ -458,7 +471,7 @@ select#users {
           .fixed-top-nav {
             padding: 0 1rem;
             box-shadow: 0px 2px 9px 0px rgba(0, 0, 0, 0.75);
-            z-index: 1; /* Stay on top */
+            z-index: 2; /* Stay on top */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -568,9 +581,13 @@ select#users {
           }
         }
         .issue-card {
+          overflow: hidden;
           height: 250px;
           width: 200px;
           margin: 0 0.9rem 1rem 0.9rem;
+          p {
+            margin: 0.3rem 0;
+          }
           div.checkbox {
             input.checkbox {
               margin-left: 0.5rem;
@@ -582,6 +599,10 @@ select#users {
               line-height: 1rem;
               padding-top: 0.2rem;
             }
+          }
+          .my-action-items {
+            max-height: 130px;
+            overflow: hidden;
           }
         }
       }

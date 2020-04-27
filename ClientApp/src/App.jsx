@@ -10,7 +10,7 @@ import history from './utils/history'
 import './custom.scss'
 import PrivateRoute from './components/PrivateRoute'
 import MyIssues from './pages/MyIssues'
-import OpenIssues from './pages/OpenIssues'
+import AvailIssues from './pages/AvailIssues'
 import CreateIssue from './pages/CreateIssue'
 import ClosedIssues from './pages/ClosedIssues'
 import EditIssue from './pages/EditIssue'
@@ -34,7 +34,7 @@ function App() {
           <Route path="/" exact />
           <PrivateRoute path="/profile" component={Profile} />
           <PrivateRoute path="/issues/my" component={MyIssues} />
-          <PrivateRoute path="/issues/open" component={OpenIssues} />
+          <PrivateRoute path="/issues/open" component={AvailIssues} />
           <PrivateRoute path="/issues/create" component={CreateIssue} />
           <PrivateRoute path="/issues/closed" component={ClosedIssues} />
           <PrivateRoute

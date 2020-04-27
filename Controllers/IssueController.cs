@@ -36,8 +36,8 @@ namespace IssueTracker.Controllers
             return await _context.Issues.Where(issue => (issue.ClaimedUserEmail == userEmail || issue.UserEmail == userEmail) && issue.IsOpen == true).OrderByDescending(issue => issue.Importance).ToListAsync();
         }
 
-        [HttpGet("open")]
-        public async Task<ActionResult<IEnumerable<Issue>>> GetOpenIssues()
+        [HttpGet("avail")]
+        public async Task<ActionResult<IEnumerable<Issue>>> GetAvailIssues()
         {
             return await _context.Issues.Where(issue => issue.IsOpen == true && issue.ClaimedUserEmail == null).ToListAsync();
         }

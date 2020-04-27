@@ -43,6 +43,9 @@ const IssueCard = ({ issue }) => {
         </div>
         <p>{issue.description}</p>
         <ListOfActionItems issueId={issue.id} />
+        <section className="claimed-by">
+          {issue.claimedUserEmail ? issue.claimedUserEmail : 'Available'}
+        </section>
       </section>
     </Link>
   )
