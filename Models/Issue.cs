@@ -19,8 +19,9 @@ namespace IssueTracker.Models
         public string UserEmail { get; set; }
 
         // Who is assigned the issue
+#nullable enable
         public string? ClaimedUserEmail { get; set; }
-
+#nullable disable
         public List<ActionItem> ActionItems { get; set; }
     }
 }
