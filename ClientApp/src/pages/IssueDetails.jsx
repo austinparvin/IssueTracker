@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom'
 import ListOfActionItems from '../components/ListOfActionItems'
 import { useAuth0 } from '../react-auth0-spa'
 import LoadingSpinner from '../components/LoadingSpinner'
+import { ReactComponent as ClosedIcon } from '../images/closed.svg'
+import { ReactComponent as EditIcon } from '../images/edit.svg'
+import { ReactComponent as TrashIcon } from '../images/trash.svg'
 
 const IssueDetails = props => {
   const issueId = props.match ? props.match.params.issueId : props.issueId
@@ -96,14 +99,16 @@ const IssueDetails = props => {
   const DeleteButton = () => {
     return (
       <div onClick={deleteIssue} className="close">
-        &#x1F5D1;
+        <TrashIcon />
       </div>
     )
   }
   const EditButton = () => {
     return (
       <Link to={`/issue/edit/${issue.id}`}>
-        <div className="edit"> &#x270F;</div>
+        <div className="close">
+          <EditIcon />
+        </div>
       </Link>
     )
   }
@@ -135,7 +140,7 @@ const IssueDetails = props => {
             <div className="icons">
               {user.email === issue.userEmail ? <EditButton /> : null}
               <div onClick={closeIssue} className="close">
-                &#x2612;
+                <ClosedIcon />
               </div>
               {user.email === issue.userEmail ? <DeleteButton /> : null}
             </div>

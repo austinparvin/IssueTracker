@@ -415,9 +415,20 @@ select#users {
   }
   .buttons {
     margin-top: 1rem;
+    align-items: center;
     button {
       font-size: 1rem;
       height: 2rem;
+    }
+    .icons {
+      width: 25%;
+      .close {
+        display: flex;
+        align-items: center;
+      }
+      svg {
+        width: 32px;
+      }
     }
   }
   div {

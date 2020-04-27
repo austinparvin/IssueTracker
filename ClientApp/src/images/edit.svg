@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="59px" height="59px" viewBox="0 0 59 59" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Edit</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-68.000000, -42.000000)" stroke="#979797">
+            <g id="Edit" transform="translate(93.095702, 76.000000) rotate(45.000000) translate(-93.095702, -76.000000) translate(81.595702, 42.000000)">
+                <polygon id="Path-21" stroke-width="2" fill="#FFFFFF" points="0.404298431 0 22.3580396 0 22.3580396 52.6126945 11.381169 67.3692561 0.404298431 52.6126945"></polygon>
+                <line x1="9.40429843" y1="64.5" x2="13.4042984" y2="64.5" id="Path-22" stroke-width="3"></line>
+                <line x1="7.40429843" y1="63.5" x2="14.1379257" y2="63.5" id="Path-23"></line>
+                <polygon id="Path-25" fill="#979797" points="8.40429843 6 14.1379254 6 14.1379254 52 11.321861 49.9466734 8.84887535 52"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
