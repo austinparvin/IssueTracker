@@ -2,6 +2,7 @@ import React from 'react'
 import { useAuth0 } from '../react-auth0-spa'
 import { Link } from 'react-router-dom'
 import { ReactComponent as ReactLogo } from '../images/logo.svg'
+import { ReactComponent as ReactLadybugLogo } from '../images/Ladybug.svg'
 import { ReactComponent as AddIcon } from '../images/add.svg'
 import { ReactComponent as AccountIcon } from '../images/account-icon.svg'
 import { ReactComponent as AvailIcon } from '../images/card.svg'
@@ -61,7 +62,9 @@ const NavBar = () => {
         <>
           <nav className="fixed-top-nav">
             <ReactLogo />
-            {/* <section className="search-bar">search</section> */}
+            <section className="search-bar">
+              <ReactLadybugLogo />
+            </section>
             <section className="settings">
               <Link to="/profile">
                 <img
