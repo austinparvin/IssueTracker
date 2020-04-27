@@ -19,7 +19,10 @@ const NavBar = () => {
       {!isAuthenticated && (
         <>
           <nav className="navbar">
-            <ReactLogo />
+            <section>
+              <ReactLogo className="promo-logo" />
+              <ReactLadybugLogo className="text-logo" />
+            </section>
             <section className="login-signup">
               <Link className="login" to="/issues/my">
                 LOGIN

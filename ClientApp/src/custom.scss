@@ -295,8 +295,11 @@ div#root {
   .navbar {
     margin: 0 auto;
     width: 80%;
-    padding: 1rem;
-    max-width: 320px;
+    padding: 2rem 1rem 1rem;
+    max-width: 360px;
+    .text-logo {
+      display: none;
+    }
     .login {
       color: white;
     }
@@ -316,7 +319,7 @@ div#root {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 320px;
+    max-width: 360px;
     .left-column {
       display: flex;
       flex-direction: column;
@@ -643,6 +646,12 @@ select#users {
     .navbar {
       max-width: 100%;
       padding-top: 2rem;
+      .promo-logo {
+        margin-right: 1rem;
+      }
+      .text-logo {
+        display: inline;
+      }
     }
     .flex {
       display: flex;
@@ -656,7 +665,7 @@ select#users {
       }
     }
     div.promo {
-      margin: 10% auto;
+      margin: 6% auto;
       display: flex;
       flex-direction: column;
       justify-content: left;
