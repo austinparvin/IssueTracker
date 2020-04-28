@@ -502,6 +502,12 @@ select#users {
   }
 }
 
+//************************************************ Tablet ***************************************************//
+@media (max-width: 1000px) and (min-width: 720px) {
+  .PromoApp {
+    background-image: url('./images/tablet-promo-bg.png');
+  }
+}
 //************************************************ Desktop ***************************************************//
 @media (min-width: 720px) {
   .hide-desktop {
@@ -677,7 +683,6 @@ select#users {
 
   .PromoApp {
     min-height: 1400px;
-    background-image: url('./images/desktop-promo-bg.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -689,6 +694,7 @@ select#users {
       }
       .text-logo {
         display: inline;
+        margin-top: 0.5rem;
       }
     }
     .flex {
@@ -773,11 +779,18 @@ select#users {
         width: 80%;
         margin: auto;
         .responsive {
+          max-width: 500px;
           width: 100%;
           height: auto;
           padding-right: 2rem;
         }
       }
     }
+  }
+}
+
+@media (min-width: 1000px) {
+  .PromoApp {
+    background-image: url('./images/desktop-promo-bg.png');
   }
 }

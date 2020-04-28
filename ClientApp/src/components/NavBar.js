@@ -35,7 +35,7 @@ const NavBar = () => {
           <div className="promo">
             <div className="left-column">
               <h1>
-                Ladybug lets you work more efficiently and track progress.
+                Ladybug keeps you out of the weeds and on the right track.
               </h1>
               <p>
                 Ladybug’s interface, cards, and lists enable you to track and
@@ -50,8 +50,8 @@ const NavBar = () => {
             <div className="left-column flex-item">
               <h1>TRACK ISSUES SEEMLESSLY WITH ISSUE CARDS</h1>
               <p>
-                Ladybug’s interface, cards, and lists enable you to track and
-                detail your projects issues in a streamlined, quick way
+                All the info you need in one place to help you do what you do
+                best. The best part? It's FREE!
               </p>
             </div>
             <div className="laptop flex-item">
