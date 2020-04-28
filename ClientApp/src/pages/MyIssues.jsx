@@ -37,7 +37,7 @@ const MyIssues = () => {
 
   if (isLoading) {
     return <LoadingSpinner />
-  } else if (myIssues.length > 1) {
+  } else if (myIssues.length >= 1) {
     return (
       <section className="my-issues">
         <div className="assigned-created-btns-container">
