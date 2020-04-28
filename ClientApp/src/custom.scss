@@ -2,6 +2,9 @@
 html {
   background-color: $green-light;
 }
+body {
+  background-color: $green-light;
+}
 #root {
   font-family: Rubik;
 }
@@ -154,6 +157,15 @@ div#root {
           padding: 1.5rem;
           width: 100%;
           box-shadow: 2px 2px 4px;
+        }
+        button.create-issue:hover {
+          box-shadow: 2px 6px 4px;
+          transform: translateY(-4px);
+        }
+        button.create-issue:active {
+          background-color: $gray-dark;
+          box-shadow: 0 5px #666;
+          transform: translateY(4px);
         }
         input {
           border: #979797 solid 2px;
@@ -420,15 +432,37 @@ select#users {
   .buttons {
     margin-top: 1rem;
     align-items: center;
+
     button {
       font-size: 1rem;
       height: 2rem;
     }
+    button {
+      align-self: center;
+      font-weight: bold;
+      border: 0.15rem solid;
+      margin: 0rem;
+      box-shadow: 2px 2px 4px;
+    }
+    button:hover {
+      box-shadow: 2px 6px 4px;
+      transform: translateY(-4px);
+    }
+    button:active {
+      background-color: $gray-dark;
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+    }
     .icons {
+      margin-right: 0;
+      margin-left: auto;
       width: 10rem;
       .close {
         display: flex;
         align-items: center;
+      }
+      .close:hover {
+        transform: translateY(-4px);
       }
       svg {
         width: 32px;

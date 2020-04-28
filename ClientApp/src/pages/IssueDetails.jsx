@@ -135,7 +135,12 @@ const IssueDetails = props => {
             {!issue.claimedUserEmail ? (
               <button onClick={claimIssue}>Claim Issue</button>
             ) : (
+              ''
+            )}
+            {issue.claimedUserEmail === user.email ? (
               <button onClick={releaseIssue}>Release Issue</button>
+            ) : (
+              ''
             )}
             <div className="icons">
               {user.email === issue.userEmail ? <EditButton /> : null}

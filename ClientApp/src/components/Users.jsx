@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import config from '../auth_config.json'
 
-const Users = ({ trackIssueDetails }) => {
+const Users = ({ issue, trackIssueDetails }) => {
   const [users, setUsers] = useState([])
   const getUsers = async () => {
     // Get Token
@@ -21,11 +21,19 @@ const Users = ({ trackIssueDetails }) => {
     <select onChange={trackIssueDetails} name="ClaimedUserEmail" id="users">
       <option value={-1}>Unassigned</option>
       {users.map(user => {
-        return (
-          <option key={user.email} value={user.email}>
-            {user.name}
-          </option>
-        )
+        if (issue.claimedUserEmail === user.email) {
+          return (
+            <option selected="selected" key={user.email} value={user.email}>
+              {user.name}
+            </option>
+          )
+        } else {
+          return (
+            <option key={user.email} value={user.email}>
+              {user.name}
+            </option>
+          )
+        }
       })}
     </select>
   )

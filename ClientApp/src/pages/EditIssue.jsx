@@ -136,7 +136,7 @@ const EditIssue = props => {
           />
         ))}
         <ImportanceButtons setRSelected={setRSelected} rSelected={rSelected} />
-        <Users trackIssueDetails={trackIssueDetails} />
+        <Users issue={issue} trackIssueDetails={trackIssueDetails} />
         <DatePicker
           placeholderText="Select Due Date"
           selected={startDate}
