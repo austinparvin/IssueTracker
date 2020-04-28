@@ -18,9 +18,7 @@ const IssueCard = ({ issue }) => {
       return 'Past Due'
     }
   }
-  console.log('after today?')
 
-  console.log(new Date(issue.dueDate) > Date.now())
   return (
     <Link to={`/issue/details/${issue.id}`}>
       <section className={`issue-card`}>

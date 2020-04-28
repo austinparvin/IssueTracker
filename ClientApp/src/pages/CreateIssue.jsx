@@ -112,6 +112,7 @@ const CreateIssue = () => {
         />
         {descriptionsToAdd.map((description, index) => (
           <ActionItemInput
+            key={index}
             setDescriptionsToAdd={setDescriptionsToAdd}
             descriptionsToAdd={descriptionsToAdd}
             description={description}

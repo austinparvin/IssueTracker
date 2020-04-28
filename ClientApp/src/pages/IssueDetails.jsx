@@ -19,16 +19,6 @@ const IssueDetails = props => {
   const [redirectLocation, setRedirectLocation] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  const getIssueById = async () => {
-    setIsLoading(true)
-    const resp = await axios.get(`/api/issue/${issueId}`)
-    setIssue(resp.data)
-    if (resp.data.dueDate) {
-      const date = new Date(resp.data.dueDate)
-      setDueDate(new Date(date.getTime() - date.getTimezoneOffset() * 60000))
-    }
-    setIsLoading(false)
-  }
   const closeIssue = async () => {
     setIssue(oldIssue => {
       oldIssue.isOpen = false
@@ -101,8 +91,20 @@ const IssueDetails = props => {
     }
   }
   useEffect(() => {
+    const getIssueById = async () => {
+      setIsLoading(true)
+      const resp = await axios.get(`/api/issue/${issueId}`)
+      setIssue(resp.data)
+      if (resp.data.dueDate) {
+        const date = new Date(resp.data.dueDate)
+        setDueDate(new Date(date.getTime() - date.getTimezoneOffset() * 60000))
+      }
+      setIsLoading(false)
+    }
+
     getIssueById()
-  }, [])
+  }, [issueId])
+  
   useEffect(() => {
     console.log(dueDate)
     console.log((dueDate - Date.now()) / 10000 / 360)

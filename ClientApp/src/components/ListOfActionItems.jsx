@@ -5,13 +5,13 @@ import ActionItem from './ActionItem'
 const ListOfActionItems = ({ issueId }) => {
   const [actionItems, setActionItems] = useState([])
 
-  const GetActionItems = async () => {
-    const response = await axios.get(`/api/actionItem/${issueId}`)
-    setActionItems(response.data)
-  }
   useEffect(() => {
+    const GetActionItems = async () => {
+      const response = await axios.get(`/api/actionItem/${issueId}`)
+      setActionItems(response.data)
+    }
     GetActionItems()
-  }, [])
+  }, [issueId])
 
   return (
     <div className="my-action-items">

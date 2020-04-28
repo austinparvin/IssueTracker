@@ -14,15 +14,6 @@ const MyIssues = () => {
   const [rSelected, setRSelected] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
 
-  const getMyIssues = async () => {
-    setIsLoading(true)
-    const token = await getTokenSilently()
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
-    const resp = await axios.get(`api/issue/my/${user.email}`)
-    setMyIssues(resp.data)
-    setIsLoading(false)
-  }
-
   const filterList = list => {
     if (rSelected === 0) {
       return list.filter(issue => issue.claimedUserEmail === user.email)
@@ -32,8 +23,16 @@ const MyIssues = () => {
   }
 
   useEffect(() => {
+    const getMyIssues = async () => {
+      setIsLoading(true)
+      const token = await getTokenSilently()
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+      const resp = await axios.get(`api/issue/my/${user.email}`)
+      setMyIssues(resp.data)
+      setIsLoading(false)
+    }
     getMyIssues()
-  }, [])
+  }, [getTokenSilently, user.email])
 
   if (isLoading) {
     return <LoadingSpinner />

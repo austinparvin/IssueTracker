@@ -10,20 +10,19 @@ const AvailIssues = () => {
   const [availIssues, setAvailIssues] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
-  const getAvailIssues = async () => {
-    setIsLoading(true)
-    // Get Token
-    const token = await getTokenSilently()
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
-
-    const resp = await axios.get('api/issue/avail')
-    setAvailIssues(resp.data)
-    setIsLoading(false)
-  }
-
   useEffect(() => {
+    const getAvailIssues = async () => {
+      setIsLoading(true)
+      // Get Token
+      const token = await getTokenSilently()
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+
+      const resp = await axios.get('api/issue/avail')
+      setAvailIssues(resp.data)
+      setIsLoading(false)
+    }
     getAvailIssues()
-  }, [])
+  }, [getTokenSilently])
 
   if (isLoading) {
     return <LoadingSpinner />

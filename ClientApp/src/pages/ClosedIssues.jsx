@@ -11,17 +11,6 @@ const ClosedIssues = () => {
   const [rSelected, setRSelected] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
 
-  const getMyClosedIssues = async () => {
-    // Get Token
-    setIsLoading(true)
-    const token = await getTokenSilently()
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
-
-    const resp = await axios.get('api/issue/closed')
-    setMyClosedIssues(resp.data)
-    setIsLoading(false)
-  }
-
   const filterList = list => {
     if (rSelected === 0) {
       return list.filter(issue => issue.claimedUserEmail === user.email)
@@ -32,8 +21,18 @@ const ClosedIssues = () => {
     }
   }
   useEffect(() => {
+    const getMyClosedIssues = async () => {
+      // Get Token
+      setIsLoading(true)
+      const token = await getTokenSilently()
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+
+      const resp = await axios.get('api/issue/closed')
+      setMyClosedIssues(resp.data)
+      setIsLoading(false)
+    }
     getMyClosedIssues()
-  }, [])
+  }, [getTokenSilently])
 
   if (isLoading) {
     return <LoadingSpinner />
