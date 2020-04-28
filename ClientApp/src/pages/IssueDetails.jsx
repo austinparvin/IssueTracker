@@ -173,7 +173,7 @@ const IssueDetails = props => {
             )}
             <div className="icons">
               {user.email === issue.userEmail ? <EditButton /> : null}
-              {user.email === issue.userEmail &&
+              {user.email === issue.userEmail ||
               user.email === issue.claimedUserEmail ? (
                 <CloseButton />
               ) : null}
