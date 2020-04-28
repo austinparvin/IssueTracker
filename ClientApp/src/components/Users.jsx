@@ -28,13 +28,13 @@ const Users = ({ issue, trackIssueDetails }) => {
                 {user.name}
               </option>
             )
+          } else {
+            return (
+              <option key={user.email} value={user.email}>
+                {user.name}
+              </option>
+            )
           }
-        } else {
-          return (
-            <option key={user.email} value={user.email}>
-              {user.name}
-            </option>
-          )
         }
       })}
     </select>
