@@ -8,6 +8,7 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import { ReactComponent as ClosedIcon } from '../images/closed.svg'
 import { ReactComponent as EditIcon } from '../images/edit.svg'
 import { ReactComponent as TrashIcon } from '../images/trash.svg'
+import { ReactComponent as AvailableIcon } from '../images/card.svg'
 
 const IssueDetails = props => {
   const issueId = props.match ? props.match.params.issueId : props.issueId
@@ -31,6 +32,19 @@ const IssueDetails = props => {
   const closeIssue = async () => {
     setIssue(oldIssue => {
       oldIssue.isOpen = false
+      return oldIssue
+    })
+    const resp = await axios.put(`/api/issue/${issueId}`, issue)
+    console.log(resp.data)
+    if (resp.status === 204) {
+      setRedirectLocation('my')
+      setShouldRedirect(true)
+    }
+  }
+  const reOpenIssue = async () => {
+    setIssue(oldIssue => {
+      oldIssue.claimedUserEmail = null
+      oldIssue.isOpen = true
       return oldIssue
     })
     const resp = await axios.put(`/api/issue/${issueId}`, issue)
@@ -112,6 +126,21 @@ const IssueDetails = props => {
       </Link>
     )
   }
+  const CloseButton = () => {
+    if (issue.isOpen) {
+      return (
+        <div onClick={closeIssue} className="close">
+          <ClosedIcon />
+        </div>
+      )
+    } else {
+      return (
+        <div onClick={reOpenIssue} className="close">
+          <AvailableIcon />
+        </div>
+      )
+    }
+  }
   if (isLoading) {
     return <LoadingSpinner />
   } else {
@@ -132,21 +161,23 @@ const IssueDetails = props => {
           <p>{issue.description}</p>
           <ListOfActionItems issueId={issueId} />
           <div className="buttons">
-            {!issue.claimedUserEmail ? (
+            {!issue.claimedUserEmail && issue.isOpen ? (
               <button onClick={claimIssue}>Claim Issue</button>
             ) : (
               ''
             )}
-            {issue.claimedUserEmail === user.email ? (
+            {issue.claimedUserEmail === user.email && issue.isOpen ? (
               <button onClick={releaseIssue}>Release Issue</button>
             ) : (
               ''
             )}
             <div className="icons">
               {user.email === issue.userEmail ? <EditButton /> : null}
-              <div onClick={closeIssue} className="close">
-                <ClosedIcon />
-              </div>
+              {user.email === issue.userEmail &&
+              user.email === issue.claimedUserEmail ? (
+                <CloseButton />
+              ) : null}
+
               {user.email === issue.userEmail ? <DeleteButton /> : null}
             </div>
           </div>
