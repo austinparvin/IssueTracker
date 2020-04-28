@@ -48,7 +48,7 @@ const IssueDetails = props => {
     const resp = await axios.delete(`/api/issue/${issueId}`)
     console.log(resp.data)
     if (resp.status === 200) {
-      setRedirectLocation('closed')
+      setRedirectLocation('my')
       setShouldRedirect(true)
     }
   }
@@ -104,7 +104,7 @@ const IssueDetails = props => {
 
     getIssueById()
   }, [issueId])
-  
+
   useEffect(() => {
     console.log(dueDate)
     console.log((dueDate - Date.now()) / 10000 / 360)
