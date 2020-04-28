@@ -21,12 +21,14 @@ const Users = ({ issue, trackIssueDetails }) => {
     <select onChange={trackIssueDetails} name="ClaimedUserEmail" id="users">
       <option value={-1}>Unassigned</option>
       {users.map(user => {
-        if (issue.claimedUserEmail === user.email) {
-          return (
-            <option selected="selected" key={user.email} value={user.email}>
-              {user.name}
-            </option>
-          )
+        if (issue) {
+          if (issue.claimedUserEmail === user.email) {
+            return (
+              <option selected="selected" key={user.email} value={user.email}>
+                {user.name}
+              </option>
+            )
+          }
         } else {
           return (
             <option key={user.email} value={user.email}>

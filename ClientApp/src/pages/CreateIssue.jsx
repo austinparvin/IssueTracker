@@ -124,6 +124,8 @@ const CreateIssue = () => {
           <DatePicker
             placeholderText="Select Due Date"
             selected={startDate}
+            minDate={new Date()}
+            excludeOutOfBoundsTimes
             onChange={date => setStartDate(date)}
             showTimeSelect
             dateFormat="MMMM d, yyyy h:mm aa"
