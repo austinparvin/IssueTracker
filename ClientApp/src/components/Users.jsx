@@ -35,6 +35,12 @@ const Users = ({ issue, trackIssueDetails }) => {
               </option>
             )
           }
+        } else {
+          return (
+            <option key={user.email} value={user.email}>
+              {user.name}
+            </option>
+          )
         }
       })}
     </select>
