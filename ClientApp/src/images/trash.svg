@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="67px" height="58px" viewBox="0 0 67 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="66px" height="58px" viewBox="0 0 66 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
-    <title>Trash Icon</title>
+    <title>Delete</title>
     <desc>Created with Sketch.</desc>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Artboard" transform="translate(-41.000000, -62.000000)" stroke="#979797" stroke-width="2">
-            <g id="Trash-Icon" transform="translate(43.250594, 63.597816)">
+        <g id="Icons" transform="translate(-328.000000, -29.000000)" stroke="#979797" stroke-width="2">
+            <g id="Delete" transform="translate(330.000000, 31.000000)">
                 <polygon id="Path-6" fill="#FFFEFE" points="21.8604377 7.50649393 0 20.4797309 4.832884 26.9879762 2.26072855 29.475066 7.91399173 36.3711532 5.57853768 41.8665247 21.8604377 54.5550234 44.0851506 52.5947649 54.9654048 38.8611265 62.4800204 36.3711532 59.9648442 31.2100817 53.3776912 30.2257161 58.152937 25.3616016 58.152937 14.7056216 51.1009163 13.3283528 43.1808832 2.56398791 29.7543047 3.90798505e-14 28.7190383 9.53076873"></polygon>
                 <polyline id="Path-7" points="4.832884 26.9879762 13.180707 37.9100916 22.6529603 41.1924345 17.6948771 32.6042133 31.2400102 22.3271831 38.0411035 12.3743402 28.7190383 9.53076873"></polyline>
                 <polyline id="Path-8" points="9.02529289 23.7461873 10.8300335 19.2644781 21.4369937 14.092659 27.4630724 14.7127882"></polyline>

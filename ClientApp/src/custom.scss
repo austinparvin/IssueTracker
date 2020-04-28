@@ -457,7 +457,11 @@ select#users {
       margin-right: 0;
       margin-left: auto;
       width: 10rem;
+      display: flex;
+      justify-content: flex-end;
       .close {
+        margin-left: 1.5rem;
+        margin-right: 1rem;
         display: flex;
         align-items: center;
       }
@@ -700,7 +704,7 @@ select#users {
       }
     }
     div.promo {
-      margin: 6% auto;
+      margin: 10% auto;
       display: flex;
       flex-direction: column;
       justify-content: left;
