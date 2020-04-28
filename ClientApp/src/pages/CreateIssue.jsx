@@ -131,7 +131,7 @@ const CreateIssue = () => {
             dateFormat="MMMM d, yyyy h:mm aa"
           />
         </section>
-        <button className="create-issue" onClick={addIssueToApi}>
+        <button className="submit-issue" onClick={addIssueToApi}>
           Create Issue
         </button>
       </div>

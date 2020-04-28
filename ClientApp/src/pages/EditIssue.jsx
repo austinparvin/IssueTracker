@@ -144,7 +144,9 @@ const EditIssue = props => {
           showTimeSelect
           dateFormat="MMMM d, yyyy h:mm aa"
         />
-        <button onClick={updateIssue}>Update Issue</button>
+        <button className="submit-issue" onClick={updateIssue}>
+          Update Issue
+        </button>
       </div>
     </section>
   )
