@@ -53,7 +53,7 @@ const EditIssue = props => {
     const key = e.target.name
     let value = e.target.value
 
-    if (key === 'ClaimedUserId') {
+    if (key === 'ClaimedUserEmail') {
       value = parseInt(value)
       if (value === -1) {
         value = null
