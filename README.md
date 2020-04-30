@@ -47,3 +47,6 @@ const trackActionItemsToAdd = (index, newDescription) => {
   }
  ```
  
+ ## ERD Diagram
+ 
+ ![LADYBUG ERD DIAGRAM](https://i.imgur.com/TUOwzzz.png)
