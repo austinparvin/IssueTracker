@@ -1,56 +1,49 @@
-# SDG Console template
+# Ladybug
 
-This is the template app SDG uses to start off learning C# and .NET
+Ladybug is a multi-user, issue tracking web application.
+It's a single page application built with ASP.NET Core and a Postgres db for the back end and React for the front end.
 
-## What is does
+# Objectives
 
-This provides a basic console application with the following features:
+- Build an application with CRUD funcitonality
+- To integrate with Auth0 to allow for social profile login
+- Design and develop the user interface and experience for both desktop and mobile
+- Use function components and React Hooks 
 
-- A gitignore
-- A README
-- Tasks that allows users to push to GitHub Automatically.
-- EF Core integration
-- a basic [React SPA + Web API](https://docs.microsoft.com/en-us/aspnet/core/client-side/spa/react?view=aspnetcore-3.1&tabs=visual-studio)
-- docker set up
-- Swagger documentations
-- CORS
-- Dependency Injection of DbContext
-- Scaffolding
-- React integration
+# Includes: 
 
-## How to work with Custom Templates
+- [C#](https://reactjs.org/docs/getting-started.html)
+- [ASP.NET](https://reactjs.org/docs/getting-started.html)
+- [EF CORE](https://reactjs.org/docs/getting-started.html)
+- [REACT](https://reactjs.org/docs/getting-started.html)
+- [AUTH0](https://reactjs.org/docs/getting-started.html)
+ 
+## Live Site
 
-First, [read the docs](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates).
+[LIVE SITE](https://sdg-issue-tracker.herokuapp.com/)
 
-Now with that in mind, The project has 3 main parts:
+![LADYBUG](http://g.recordit.co/Xsii4q0LuJ.gif)
 
-1. `sdg-react-template.nuspec`. This file contains the meta data for the package that is built, The only items that need touched are the `<files>` and the `<version>`
+## Featured Code
 
-2. `SampleApp`. This is sample project. Any changes to the template happen here.
+### Dynamic Action Item Input List via useState and onChange listener
 
-3. `SampleApp\template.config`. This contains the behavior of the package. This generally isn't touch unless you are changing the project type.
+```JSX
+const trackActionItemsToAdd = (index, newDescription) => {
+    let newDescriptionsToAdd = [
+      ...descriptionsToAdd.slice(0, index),
+      newDescription,
+      ...descriptionsToAdd.slice(index + 1),
+    ].filter(description => description.length > 0)
+    const allFilled = newDescriptionsToAdd.every(
+      description => description.length > 0
+    )
+    console.log({ newDescriptionsToAdd, allFilled })
 
-## How to update something
-
-To update, I would recommend opening just the `SampleApp` Folder and working in that project like it was just a normal C# app. Get things working and then test it out.
-
-## How to deploy
-
-Install [nuget](https://docs.microsoft.com/en-us/nuget/reference/nuget-exe-cli-reference) and [set your API key for nuget.org](https://docs.microsoft.com/en-us/nuget/reference/cli-reference/cli-ref-setapikey)
-
-1. Delete the `bin` and the `obj` folder
-2. Bump the version number in the `sdg-react-template.nuspec`.
-3. run `nuget pack .`
-4. run `nuget push SDG.templates.Web.React.X.X.X.nupkg -Source https://www.nuget.org` with the correct version number
-
-This will push it to Nuget. Nuget will index the package, and when it's done indexing (~ 1-30 minutes), it will available for install. To install on a students laptop
-
-```sh
-dotnet new --install SDG.templates.Web.React::X.X.X
-```
-
-To update after download, its the same command
-
-```sh
-dotnet new --install SDG.templates.Web.React::X.X.X
-```
+    if (allFilled) {
+      newDescriptionsToAdd = newDescriptionsToAdd.concat([''])
+    }
+    setDescriptionsToAdd(newDescriptionsToAdd)
+  }
+ ```
+ 
