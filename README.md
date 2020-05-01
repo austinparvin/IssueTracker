@@ -5,7 +5,7 @@ It's a single page application built with ASP.NET Core and a Postgres db for the
 
 # Objectives
 
-- Build an application with CRUD funcitonality
+- Build an application with CRUD functionality
 - To integrate with Auth0 to allow for social profile login
 - Design and develop the user interface and experience for both desktop and mobile
 - Use function components and React Hooks 
